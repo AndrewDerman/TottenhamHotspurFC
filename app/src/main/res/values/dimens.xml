@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="article_item_image_height">200dp</dimen>
+    <dimen name="article_item_title_text_size">16sp</dimen>
+    <dimen name="article_item_desc_text_size">12sp</dimen>
+    <dimen name="article_item_text_margin_horizontal">12dp</dimen>
+    <dimen name="article_item_text_margin_vertical">12dp</dimen>
+    <dimen name="article_item_desc_margin_top">6dp</dimen>
+
+    <dimen name="fragment_article_floating_button_margin">16dp</dimen>
+</resources>

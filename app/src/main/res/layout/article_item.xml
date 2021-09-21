@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="article"
+            type="by.aderman.tottenhamhotspurfc.models.Article" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/article_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/th_background"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_article_image"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/article_item_image_height"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:layout_constraintTop_toBottomOf="@id/iv_article_image">
+
+                    <TextView
+                        android:id="@+id/tv_article_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/article_item_text_margin_horizontal"
+                        android:layout_marginTop="@dimen/article_item_text_margin_vertical"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="@{article.title}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/article_item_title_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Article title" />
+
+                    <TextView
+                        android:id="@+id/tv_article_source"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/article_item_text_margin_horizontal"
+                        android:layout_marginTop="@dimen/article_item_desc_margin_top"
+                        android:layout_marginBottom="@dimen/article_item_text_margin_vertical"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@{article.source.name}"
+                        android:textColor="@color/th_third_blue"
+                        android:textSize="@dimen/article_item_desc_text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_article_title"
+                        tools:text="Article source" />
+
+                    <TextView
+                        android:id="@+id/tv_article_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/article_item_desc_margin_top"
+                        android:layout_marginEnd="@dimen/article_item_text_margin_horizontal"
+                        android:layout_marginBottom="@dimen/article_item_text_margin_vertical"
+                        android:ellipsize="end"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text="@{article.publishedAt.substring(0, 10)}"
+                        android:textColor="@color/th_third_blue"
+                        android:textSize="@dimen/article_item_desc_text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_article_title"
+                        tools:text="Article source" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

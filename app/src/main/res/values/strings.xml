@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Tottenham Hotspur F.C.</string>
+    <string name="bottom_nav_news">News</string>
+    <string name="bottom_nav_saved_news">Saved</string>
+</resources>

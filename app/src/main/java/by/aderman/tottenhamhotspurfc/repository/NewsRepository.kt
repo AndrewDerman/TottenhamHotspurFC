@@ -7,7 +7,7 @@ import by.aderman.tottenhamhotspurfc.database.ArticleDao
 
 class NewsRepository(private val articleDao: ArticleDao) {
 
-    suspend fun getAllNews() = NewsApiClient.newsApi.getAllNews()
+    suspend fun getAllNews(page: Int) = NewsApiClient.newsApi.getAllNews(pageNumber = page)
 
     fun getAllSavedArticles(): LiveData<List<Article>> = articleDao.getAllSavedArticles()
 

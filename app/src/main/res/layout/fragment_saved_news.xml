@@ -12,10 +12,32 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragments.NewsFragment">
 
+        <LinearLayout
+            android:id="@+id/saved_news_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/th_background"
+            android:orientation="vertical"
+            android:padding="@dimen/saved_news_hint_padding"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/saved_news_hint"
+                android:textColor="@color/th_third_blue"
+                android:textSize="@dimen/saved_news_hint_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/saved_news_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,16 +1,12 @@
 package by.aderman.tottenhamhotspurfc.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import by.aderman.tottenhamhotspurfc.databinding.ArticleItemBinding
 import by.aderman.tottenhamhotspurfc.models.Article
-import by.aderman.tottenhamhotspurfc.ui.fragments.NewsFragmentDirections
 import com.bumptech.glide.Glide
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {

@@ -42,7 +42,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     fun getAllNews() = viewModelScope.launch(Dispatchers.IO) {
         _newsLiveData.postValue(Resource.Loading())
         if (hasInternetConnection()) {
-            val response = repository.getAllNews()
+            val response = repository.getAllNews(page = newsPage)
             _newsLiveData.postValue(checkResponse(response))
         } else {
             _newsLiveData.postValue(Resource.Error(Constants.NO_INTERNET_ERROR_MESSAGE))

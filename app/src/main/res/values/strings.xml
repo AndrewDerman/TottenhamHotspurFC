@@ -2,4 +2,5 @@
     <string name="app_name">Tottenham Hotspur F.C.</string>
     <string name="bottom_nav_news">News</string>
     <string name="bottom_nav_saved_news">Saved</string>
+    <string name="saved_news_hint">Swipe left or right to delete</string>
 </resources>

@@ -1,4 +1,4 @@
-package by.aderman.tottenhamhotspurfc.api
+package by.aderman.tottenhamhotspurfc.api.news
 
 import by.aderman.tottenhamhotspurfc.util.Constants
 import retrofit2.Retrofit

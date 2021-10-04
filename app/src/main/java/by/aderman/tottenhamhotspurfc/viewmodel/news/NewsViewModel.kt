@@ -1,4 +1,4 @@
-package by.aderman.tottenhamhotspurfc.viewmodel
+package by.aderman.tottenhamhotspurfc.viewmodel.news
 
 import android.app.Application
 import android.content.Context
@@ -9,33 +9,31 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import by.aderman.tottenhamhotspurfc.app.App
-import by.aderman.tottenhamhotspurfc.models.Article
-import by.aderman.tottenhamhotspurfc.models.NewsResponse
-import by.aderman.tottenhamhotspurfc.repository.NewsRepository
+import by.aderman.tottenhamhotspurfc.models.news.Article
+import by.aderman.tottenhamhotspurfc.models.news.NewsResponse
+import by.aderman.tottenhamhotspurfc.repository.Repository
 import by.aderman.tottenhamhotspurfc.util.Constants
 import by.aderman.tottenhamhotspurfc.util.Resource
+import by.aderman.tottenhamhotspurfc.viewmodel.BasicViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class NewsViewModel(application: Application) : AndroidViewModel(application) {
+class NewsViewModel(application: Application) : BasicViewModel(application) {
 
-    private val repository: NewsRepository
+    private val repository: Repository
     private var newsResponse: NewsResponse? = null
-    private var responseReceived = false
     var newsPage = 1
 
     private val _newsLiveData = MutableLiveData<Resource<NewsResponse>>()
     val newsLiveData: LiveData<Resource<NewsResponse>>
         get() = _newsLiveData
 
-    private val _responseReceivedLiveData = MutableLiveData<Boolean>()
-    val responseReceivedLiveData: LiveData<Boolean>
-        get() = _responseReceivedLiveData
-
     init {
         val articleDao = getApplication<App>().database.getArticleDao()
-        repository = NewsRepository(articleDao)
+        repository = Repository().also {
+            it.articleDao = articleDao
+        }
         getAllNews()
     }
 
@@ -77,25 +75,5 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         return Resource.Error(response.message())
-    }
-
-    fun changeResponseReceivedStatus(value: Boolean) {
-        responseReceived = value
-        _responseReceivedLiveData.postValue(responseReceived)
-    }
-
-    // проверка подключения к интернету начиная с 23 апи
-
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager =
-            getApplication<App>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-        return when {
-            capabilities.hasTransport(TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
     }
 }

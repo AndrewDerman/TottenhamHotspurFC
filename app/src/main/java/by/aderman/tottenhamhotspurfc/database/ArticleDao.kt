@@ -2,7 +2,7 @@ package by.aderman.tottenhamhotspurfc.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import by.aderman.tottenhamhotspurfc.models.Article
+import by.aderman.tottenhamhotspurfc.models.news.Article
 
 @Dao
 interface ArticleDao {

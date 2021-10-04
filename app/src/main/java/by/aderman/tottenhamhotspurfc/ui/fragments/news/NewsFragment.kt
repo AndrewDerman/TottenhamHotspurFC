@@ -1,4 +1,4 @@
-package by.aderman.tottenhamhotspurfc.ui.fragments
+package by.aderman.tottenhamhotspurfc.ui.fragments.news
 
 import android.os.Bundle
 import android.util.Log
@@ -11,11 +11,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import by.aderman.tottenhamhotspurfc.adapters.NewsAdapter
+import by.aderman.tottenhamhotspurfc.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.databinding.FragmentNewsBinding
+import by.aderman.tottenhamhotspurfc.ui.fragments.OnBottomScrollListener
 import by.aderman.tottenhamhotspurfc.util.Constants
 import by.aderman.tottenhamhotspurfc.util.Resource
-import by.aderman.tottenhamhotspurfc.viewmodel.NewsViewModel
+import by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class NewsFragment : Fragment() {
@@ -62,12 +63,7 @@ class NewsFragment : Fragment() {
                 is Resource.Error -> {
                     viewModel.changeResponseReceivedStatus(true)
                     isLoading = false
-                    it.message?.let { error ->
-                        {
-                            showSnackbar(error)
-                            Log.d(Constants.LOADING_NEWS_ERROR, error)
-                        }
-                    }
+                    it.message?.let { error -> showSnackbar(error) }
                 }
                 is Resource.Loading -> {
                     viewModel.changeResponseReceivedStatus(false)

@@ -8,11 +8,15 @@
     <color name="black">#FF000000</color>
 
     <color name="th_primary_white">#FFFFFFFF</color>
+    <color name="th_red">#FF1212</color>
     <color name="th_primary_blue">#132257</color>
     <color name="th_secondary_blue">#000040</color>
     <color name="th_third_blue">#182433</color>
     <color name="th_black">#101010</color>
     <color name="th_accent_green">#00c090</color>
     <color name="th_accent_yellow">#FFFF33</color>
-    <color name="th_background">#ECEDF1</color>
+    <color name="th_background">#F1F2F5</color>
+    <color name="th_background_2">#E3E4EB</color>
+    <color name="th_background_3">#D4D7E1</color>
+    <color name="th_background_4">#C6CAD7</color>
 </resources>

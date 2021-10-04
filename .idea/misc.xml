@@ -4,12 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/drawable/article_title_background.xml" value="0.24259259259259258" />
+        <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/drawable/ic_drag_handle.xml" value="0.2264840182648402" />
         <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/drawable/ic_news.xml" value="0.23981481481481481" />
+        <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/drawable/player_stats_red_card_background.xml" value="0.2264840182648402" />
+        <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/drawable/player_stats_yellow_card_background.xml" value="0.2264840182648402" />
         <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/layout/activity_main.xml" value="0.19722222222222222" />
         <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/layout/article_item.xml" value="0.17504187604690116" />
         <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/layout/fragment_article.xml" value="0.2" />
         <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/layout/fragment_news.xml" value="0.2421875" />
+        <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/layout/fragment_player.xml" value="0.19074074074074074" />
         <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/layout/fragment_saved_news.xml" value="0.2421875" />
+        <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/layout/fragment_team.xml" value="0.2421875" />
+        <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/layout/player_item.xml" value="0.18333333333333332" />
         <entry key="..\:/Projects/TottenhamHotspurFC/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2421875" />
       </map>
     </option>

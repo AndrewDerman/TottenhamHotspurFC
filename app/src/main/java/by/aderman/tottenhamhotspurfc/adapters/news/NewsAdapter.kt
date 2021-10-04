@@ -1,4 +1,4 @@
-package by.aderman.tottenhamhotspurfc.adapters
+package by.aderman.tottenhamhotspurfc.adapters.news
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import by.aderman.tottenhamhotspurfc.databinding.ArticleItemBinding
-import by.aderman.tottenhamhotspurfc.models.Article
+import by.aderman.tottenhamhotspurfc.models.news.Article
 import com.bumptech.glide.Glide
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {

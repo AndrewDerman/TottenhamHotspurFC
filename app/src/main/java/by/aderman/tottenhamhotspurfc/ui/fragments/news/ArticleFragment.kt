@@ -1,4 +1,4 @@
-package by.aderman.tottenhamhotspurfc.ui.fragments
+package by.aderman.tottenhamhotspurfc.ui.fragments.news
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import by.aderman.tottenhamhotspurfc.databinding.FragmentArticleBinding
 import by.aderman.tottenhamhotspurfc.util.Constants
-import by.aderman.tottenhamhotspurfc.viewmodel.NewsViewModel
+import by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class ArticleFragment : Fragment() {
@@ -29,8 +29,8 @@ class ArticleFragment : Fragment() {
 
         binding.webView.apply {
             webViewClient = WebViewClient()
-            args.currentArticle.url?.let {
-                loadUrl(it)
+            args.currentArticle.url?.let { url ->
+                loadUrl(url)
             }
         }
 

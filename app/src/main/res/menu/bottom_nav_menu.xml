@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_saved_news"
         android:title="@string/bottom_nav_saved_news" />
 
+    <item
+        android:id="@+id/teamFragment"
+        android:icon="@drawable/ic_team"
+        android:title="@string/bottom_nav_team" />
+
 </menu>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="player"
+            type="by.aderman.tottenhamhotspurfc.models.team.Player" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/player_photo"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/player_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{player.name}"
+                    android:textColor="@color/th_black"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@id/player_number"
+                    app:layout_constraintStart_toEndOf="@id/player_photo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Hugo Lloris" />
+
+                <TextView
+                    android:id="@+id/player_position"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{player.position}"
+                    android:textColor="@color/th_third_blue"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@id/player_number"
+                    app:layout_constraintStart_toEndOf="@id/player_photo"
+                    app:layout_constraintTop_toBottomOf="@id/player_name"
+                    tools:text="Goalkeeper" />
+
+                <TextView
+                    android:id="@+id/player_age"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{player.age.toString()}"
+                    android:textColor="@color/th_third_blue"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@id/player_photo"
+                    app:layout_constraintTop_toBottomOf="@id/player_position"
+                    tools:text="33" />
+
+                <TextView
+                    android:id="@+id/player_age_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/player_item_age_title"
+                    android:textColor="@color/th_third_blue"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@id/player_age"
+                    app:layout_constraintStart_toEndOf="@id/player_age"
+                    app:layout_constraintTop_toTopOf="@id/player_age" />
+
+                <TextView
+                    android:id="@+id/player_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{player.number.toString()}"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/th_primary_blue"
+                    android:textSize="60sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="44" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

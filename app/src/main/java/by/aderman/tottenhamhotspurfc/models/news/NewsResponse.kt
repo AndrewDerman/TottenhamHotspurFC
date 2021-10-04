@@ -1,4 +1,4 @@
-package by.aderman.tottenhamhotspurfc.models
+package by.aderman.tottenhamhotspurfc.models.news
 
 import com.google.gson.annotations.SerializedName
 

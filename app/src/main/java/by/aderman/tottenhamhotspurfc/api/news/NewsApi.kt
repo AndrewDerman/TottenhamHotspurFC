@@ -1,6 +1,6 @@
-package by.aderman.tottenhamhotspurfc.api
+package by.aderman.tottenhamhotspurfc.api.news
 
-import by.aderman.tottenhamhotspurfc.models.NewsResponse
+import by.aderman.tottenhamhotspurfc.models.news.NewsResponse
 import by.aderman.tottenhamhotspurfc.util.Constants
 import retrofit2.Response
 import retrofit2.http.GET

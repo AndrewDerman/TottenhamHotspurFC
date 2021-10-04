@@ -1,4 +1,4 @@
-package by.aderman.tottenhamhotspurfc.ui.fragments
+package by.aderman.tottenhamhotspurfc.ui.fragments.news
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import by.aderman.tottenhamhotspurfc.adapters.NewsAdapter
+import by.aderman.tottenhamhotspurfc.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.databinding.FragmentSavedNewsBinding
-import by.aderman.tottenhamhotspurfc.models.Article
+import by.aderman.tottenhamhotspurfc.models.news.Article
 import by.aderman.tottenhamhotspurfc.util.Constants
-import by.aderman.tottenhamhotspurfc.viewmodel.NewsViewModel
+import by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class SavedNewsFragment : Fragment() {

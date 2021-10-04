@@ -1,7 +1,7 @@
 package by.aderman.tottenhamhotspurfc.database
 
 import androidx.room.TypeConverter
-import by.aderman.tottenhamhotspurfc.models.Source
+import by.aderman.tottenhamhotspurfc.models.news.Source
 
 class Converters {
 

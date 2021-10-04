@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="by.aderman.tottenhamhotspurfc.viewmodel.NewsViewModel" />
+            type="by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel" />
 
         <import
             alias="view"
@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.NewsFragment">
+        tools:context=".ui.fragments.news.NewsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

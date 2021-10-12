@@ -1,14 +1,9 @@
 package by.aderman.tottenhamhotspurfc.viewmodel.news
 
 import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities.*
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import by.aderman.tottenhamhotspurfc.app.App
 import by.aderman.tottenhamhotspurfc.models.news.Article
 import by.aderman.tottenhamhotspurfc.models.news.NewsResponse
 import by.aderman.tottenhamhotspurfc.repository.Repository
@@ -19,9 +14,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class NewsViewModel(application: Application) : BasicViewModel(application) {
+class NewsViewModel(private val repository: Repository, application: Application) :
+    BasicViewModel(application) {
 
-    private val repository: Repository
     private var newsResponse: NewsResponse? = null
     var newsPage = 1
 
@@ -30,10 +25,6 @@ class NewsViewModel(application: Application) : BasicViewModel(application) {
         get() = _newsLiveData
 
     init {
-        val articleDao = getApplication<App>().database.getArticleDao()
-        repository = Repository().also {
-            it.articleDao = articleDao
-        }
         getAllNews()
     }
 

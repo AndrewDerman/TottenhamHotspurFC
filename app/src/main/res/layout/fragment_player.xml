@@ -23,9 +23,11 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_player_xml_constraintlayout4_scene"
         tools:context=".ui.fragments.team.PlayerFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,10 +65,10 @@
                 android:layout_marginStart="@dimen/fragment_player_margin_start"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/th_primary_white"
-                app:layout_constraintTop_toTopOf="@id/player_photo"
                 android:textSize="@dimen/fragment_player_number_text_size"
                 app:layout_constraintBottom_toTopOf="@id/player_first_name"
                 app:layout_constraintStart_toEndOf="@id/player_photo"
+                app:layout_constraintTop_toTopOf="@id/player_photo"
                 tools:text="13" />
 
             <TextView
@@ -246,11 +248,11 @@
             android:id="@+id/drag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/fragment_player_player_stats_drag_image_description"
             android:src="@drawable/ic_drag_handle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/player_stats_title"
-            android:contentDescription="@string/fragment_player_player_stats_drag_image_description"/>
+            app:layout_constraintTop_toTopOf="@id/player_stats_title" />
 
         <ScrollView
             android:id="@+id/player_scroll_view"
@@ -270,7 +272,7 @@
                     android:layout_marginHorizontal="@dimen/fragment_player_stats_card_margin_horizontal"
                     android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
                     app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/fragment_player_stats_card_corner_radius"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -282,6 +284,7 @@
                             style="@style/PlayerFragmentStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
                             android:text="@string/player_stats_general_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -302,12 +305,18 @@
                             <TextView
                                 android:id="@+id/player_stats_games"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.games.appearences.toString() ?? "0"}'
                                 tools:text="12" />
 
                             <TextView
                                 android:id="@+id/player_stats_games_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_games_title" />
 
                         </LinearLayout>
@@ -327,12 +336,18 @@
                             <TextView
                                 android:id="@+id/player_stats_minutes"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.games.minutes.toString() ?? "0"}'
                                 tools:text="1340" />
 
                             <TextView
                                 android:id="@+id/player_stats_minutes_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_minutes_title" />
 
                         </LinearLayout>
@@ -352,12 +367,18 @@
                             <TextView
                                 android:id="@+id/player_stats_rating"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.games.rating.substring(0, 4) ?? "0"}'
                                 tools:text="7.13" />
 
                             <TextView
                                 android:id="@+id/player_stats_rating_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_rating_title" />
 
                         </LinearLayout>
@@ -373,7 +394,7 @@
                     android:layout_margin="@dimen/fragment_player_stats_card_margin"
                     android:visibility="@{viewModel.isGoalkeeperLiveData() ? view.VISIBLE : view.GONE}"
                     app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/fragment_player_stats_card_corner_radius"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_general">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -385,6 +406,7 @@
                             style="@style/PlayerFragmentStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
                             android:text="@string/player_stats_goalkeeping_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -404,12 +426,18 @@
                             <TextView
                                 android:id="@+id/player_stats_saves"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.goals.saves.toString() ?? "0"}'
                                 tools:text="54" />
 
                             <TextView
                                 android:id="@+id/player_stats_saves_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_saves_title" />
 
                         </LinearLayout>
@@ -429,12 +457,18 @@
                             <TextView
                                 android:id="@+id/player_stats_conceded"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.goals.conceded.toString() ?? "0"}'
                                 tools:text="9" />
 
                             <TextView
                                 android:id="@+id/player_stats_conceded_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_conceded_goals_title" />
 
                         </LinearLayout>
@@ -454,12 +488,18 @@
                             <TextView
                                 android:id="@+id/player_stats_penalty_saved"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.penalty.saved.toString() ?? "0"}'
                                 tools:text="0" />
 
                             <TextView
                                 android:id="@+id/player_stats_penalty_saved_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_penalties_saved_title" />
 
                         </LinearLayout>
@@ -474,7 +514,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fragment_player_stats_card_margin"
                     app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/fragment_player_stats_card_corner_radius"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_goalkeeping">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -486,6 +526,7 @@
                             style="@style/PlayerFragmentStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
                             android:text="@string/player_stats_distribution_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -505,12 +546,18 @@
                             <TextView
                                 android:id="@+id/player_stats_total_passes"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.passes.total.toString() ?? "0"}'
                                 tools:text="469" />
 
                             <TextView
                                 android:id="@+id/player_stats_total_passes_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_total_passes_title" />
 
                         </LinearLayout>
@@ -529,12 +576,18 @@
                             <TextView
                                 android:id="@+id/player_stats_key_passes"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.passes.key.toString() ?? "0"}'
                                 tools:text="5" />
 
                             <TextView
                                 android:id="@+id/player_stats_key_passes_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_key_passes_title" />
 
                         </LinearLayout>
@@ -554,12 +607,18 @@
                             <TextView
                                 android:id="@+id/player_stats_successful_dribbles"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.dribbles.success.toString() ?? "0"}'
                                 tools:text="0" />
 
                             <TextView
                                 android:id="@+id/player_stats_successful_dribbles_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_successful_dribbles_title" />
 
                         </LinearLayout>
@@ -574,7 +633,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fragment_player_stats_card_margin"
                     app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/fragment_player_stats_card_corner_radius"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_distribution">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -586,6 +645,7 @@
                             style="@style/PlayerFragmentStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
                             android:text="@string/player_stats_defense_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -605,12 +665,18 @@
                             <TextView
                                 android:id="@+id/player_stats_tackles"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.tackles.total.toString() ?? "0"}'
                                 tools:text="34" />
 
                             <TextView
                                 android:id="@+id/player_stats_tackles_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_tackles_title" />
 
                         </LinearLayout>
@@ -629,12 +695,18 @@
                             <TextView
                                 android:id="@+id/player_stats_blocks"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.tackles.blocks.toString() ?? "0"}'
                                 tools:text="7" />
 
                             <TextView
                                 android:id="@+id/player_stats_blocks_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_blocks_title" />
 
                         </LinearLayout>
@@ -655,12 +727,18 @@
                             <TextView
                                 android:id="@+id/player_stats_interceptions"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.tackles.interceptions.toString() ?? "0"}'
                                 tools:text="0" />
 
                             <TextView
                                 android:id="@+id/player_stats_interceptions_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_interceptions_title" />
 
                         </LinearLayout>
@@ -681,12 +759,18 @@
                             <TextView
                                 android:id="@+id/player_stats_duels_won"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.duels.won.toString ?? "0"}'
                                 tools:text="0" />
 
                             <TextView
                                 android:id="@+id/player_stats_duels_won_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_duels_won_title" />
 
                         </LinearLayout>
@@ -701,7 +785,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fragment_player_stats_card_margin"
                     app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/fragment_player_stats_card_corner_radius"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_defense">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -713,6 +797,7 @@
                             style="@style/PlayerFragmentStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
                             android:text="@string/player_stats_attack_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -732,13 +817,19 @@
                             <TextView
                                 android:id="@+id/player_stats_goals"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.goals.total.toString() ?? "0"}'
                                 tools:text="11" />
 
                             <TextView
                                 android:id="@+id/player_stats_goals_title"
                                 style="@style/PlayerFragmentStatsTitleText"
-                                android:text="@string/fragment_player_goalstitle" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
+                                android:text="@string/fragment_player_goals_title" />
 
                         </LinearLayout>
 
@@ -756,12 +847,18 @@
                             <TextView
                                 android:id="@+id/player_stats_assists"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.goals.assists.toString() ?? "0"}'
                                 tools:text="3" />
 
                             <TextView
                                 android:id="@+id/player_stats_assists_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_assists_title" />
 
                         </LinearLayout>
@@ -782,12 +879,18 @@
                             <TextView
                                 android:id="@+id/player_stats_shots"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.shots.total.toString() ?? "0"}'
                                 tools:text="36" />
 
                             <TextView
                                 android:id="@+id/player_stats_shots_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_shots_title" />
 
                         </LinearLayout>
@@ -808,12 +911,18 @@
                             <TextView
                                 android:id="@+id/player_stats_on_target"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text='@{stats.shots.on.toString() ?? "0"}'
                                 tools:text="20" />
 
                             <TextView
                                 android:id="@+id/player_stats_on_target_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_on_target_title" />
 
                         </LinearLayout>
@@ -828,7 +937,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/fragment_player_stats_card_margin"
                     app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/fragment_player_stats_card_corner_radius"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_attack">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -840,6 +949,7 @@
                             style="@style/PlayerFragmentStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
                             android:text="@string/player_stats_discipline_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -860,6 +970,9 @@
                             <TextView
                                 android:id="@+id/player_stats_yellow_cards"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:background="@drawable/player_stats_yellow_card_background"
                                 android:padding="@dimen/fragment_player_discipline_text_padding"
                                 android:text='@{stats.cards.yellow.toString() ?? "0"}'
@@ -868,6 +981,9 @@
                             <TextView
                                 android:id="@+id/player_stats_yellow_cards_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_yellow_cards_title" />
 
                         </LinearLayout>
@@ -887,6 +1003,9 @@
                             <TextView
                                 android:id="@+id/player_stats_red_cards"
                                 style="@style/PlayerFragmentStatsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:background="@drawable/player_stats_red_card_background"
                                 android:padding="@dimen/fragment_player_discipline_text_padding"
                                 android:text='@{stats.cards.red.toString() ?? "0"}'
@@ -895,6 +1014,9 @@
                             <TextView
                                 android:id="@+id/player_stats_red_cards_title"
                                 style="@style/PlayerFragmentStatsTitleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|center"
                                 android:text="@string/fragment_player_red_cards_title" />
 
                         </LinearLayout>
@@ -917,5 +1039,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

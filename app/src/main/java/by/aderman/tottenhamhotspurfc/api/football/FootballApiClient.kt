@@ -2,16 +2,15 @@ package by.aderman.tottenhamhotspurfc.api.football
 
 import by.aderman.tottenhamhotspurfc.util.Constants
 import okhttp3.OkHttpClient
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object FootballApiClient {
+object FootballApiClient : KoinComponent {
 
-    private val client = OkHttpClient.Builder().apply {
-        addInterceptor(FootballInterceptor())
-        readTimeout(30, TimeUnit.SECONDS)
-    }.build()
+    private val client by inject<OkHttpClient>()
 
     val footballApi: FootballApi by lazy {
         Retrofit.Builder()

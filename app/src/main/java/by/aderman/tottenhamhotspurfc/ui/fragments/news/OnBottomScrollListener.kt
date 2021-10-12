@@ -1,4 +1,4 @@
-package by.aderman.tottenhamhotspurfc.ui.fragments
+package by.aderman.tottenhamhotspurfc.ui.fragments.news
 
 import androidx.recyclerview.widget.RecyclerView
 

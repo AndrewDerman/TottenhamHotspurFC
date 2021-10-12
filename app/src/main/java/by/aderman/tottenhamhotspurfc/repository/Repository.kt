@@ -1,16 +1,18 @@
 package by.aderman.tottenhamhotspurfc.repository
 
 import androidx.lifecycle.LiveData
-import by.aderman.tottenhamhotspurfc.api.football.FootballApiClient
-import by.aderman.tottenhamhotspurfc.api.news.NewsApiClient
-import by.aderman.tottenhamhotspurfc.models.news.Article
+import by.aderman.tottenhamhotspurfc.api.football.FootballApi
+import by.aderman.tottenhamhotspurfc.api.news.NewsApi
 import by.aderman.tottenhamhotspurfc.database.ArticleDao
+import by.aderman.tottenhamhotspurfc.models.news.Article
 
-class Repository {
+class Repository(
+    private val articleDao: ArticleDao,
+    private val newsApi: NewsApi,
+    private val footballApi: FootballApi
+) {
 
-    lateinit var articleDao: ArticleDao
-
-    suspend fun getAllNews(page: Int) = NewsApiClient.newsApi.getAllNews(pageNumber = page)
+    suspend fun getAllNews(page: Int) = newsApi.getAllNews(pageNumber = page)
 
     fun getAllSavedArticles(): LiveData<List<Article>> = articleDao.getAllSavedArticles()
 
@@ -18,8 +20,8 @@ class Repository {
 
     suspend fun deleteSavedArticle(article: Article) = articleDao.deleteSavedArticle(article)
 
-    suspend fun getTeamSquad() = FootballApiClient.footballApi.getTeamSquad()
+    suspend fun getTeamSquad() = footballApi.getTeamSquad()
 
     suspend fun getPlayerStatistics(playerId: Int) =
-        FootballApiClient.footballApi.getPlayerStatistics(playerId = playerId)
+        footballApi.getPlayerStatistics(playerId = playerId)
 }

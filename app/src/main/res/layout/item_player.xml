@@ -18,18 +18,22 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/th_primary_blue"
+            app:cardCornerRadius="@dimen/card_corner_radius"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="8dp">
+                android:paddingVertical="@dimen/player_item_padding">
 
                 <ImageView
                     android:id="@+id/player_photo"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="@dimen/player_item_photo_width"
+                    android:layout_height="@dimen/player_item_photo_height"
+                    android:contentDescription="@string/player_item_photo_description"
                     android:scaleType="centerCrop"
+                    android:layout_marginStart="@dimen/player_item_photo_margin_start"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -39,11 +43,12 @@
                     android:id="@+id/player_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/player_item_margin_start"
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="@{player.name}"
-                    android:textColor="@color/th_black"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@id/player_number"
+                    android:textColor="@color/th_primary_white"
+                    android:textSize="@dimen/player_item_name_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/player_photo"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Hugo Lloris" />
@@ -52,46 +57,49 @@
                     android:id="@+id/player_position"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/player_item_margin_start"
+                    android:fontFamily="@font/montserrat"
                     android:text="@{player.position}"
-                    android:textColor="@color/th_third_blue"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toStartOf="@id/player_number"
+                    android:textColor="@color/th_primary_white"
+                    android:textSize="@dimen/player_item_info_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/player_photo"
                     app:layout_constraintTop_toBottomOf="@id/player_name"
                     tools:text="Goalkeeper" />
 
-                <TextView
-                    android:id="@+id/player_age"
-                    android:layout_width="0dp"
+                <ImageView
+                    android:id="@+id/player_arrow"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@{player.age.toString()}"
-                    android:textColor="@color/th_third_blue"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@id/player_photo"
-                    app:layout_constraintTop_toBottomOf="@id/player_position"
-                    tools:text="33" />
+                    android:layout_marginStart="@dimen/player_item_margin_start"
+                    android:contentDescription="@string/player_item_arrow_description"
+                    android:src="@drawable/ic_arrow_circle_right"
+                    app:layout_constraintBottom_toBottomOf="@id/player_photo"
+                    app:layout_constraintStart_toEndOf="@id/player_photo" />
 
                 <TextView
-                    android:id="@+id/player_age_title"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/player_item_age_title"
-                    android:textColor="@color/th_third_blue"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@id/player_age"
-                    app:layout_constraintStart_toEndOf="@id/player_age"
-                    app:layout_constraintTop_toTopOf="@id/player_age" />
+                    android:layout_marginStart="@dimen/player_item_see_more_margin_start"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/player_item_see_more"
+                    android:textColor="@color/th_accent_yellow"
+                    android:textSize="@dimen/player_item_info_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/player_arrow"
+                    app:layout_constraintStart_toEndOf="@id/player_arrow"
+                    app:layout_constraintTop_toTopOf="@id/player_arrow" />
 
                 <TextView
                     android:id="@+id/player_number"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:alpha="0.3"
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="@{player.number.toString()}"
                     android:textAlignment="viewEnd"
-                    android:textColor="@color/th_primary_blue"
-                    android:textSize="60sp"
+                    android:layout_marginEnd="@dimen/player_item_number_margin_end"
+                    android:textColor="@color/th_primary_white"
+                    android:textSize="@dimen/player_item_number_text_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

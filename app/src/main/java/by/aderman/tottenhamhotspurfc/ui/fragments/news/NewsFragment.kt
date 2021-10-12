@@ -1,39 +1,42 @@
 package by.aderman.tottenhamhotspurfc.ui.fragments.news
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.databinding.FragmentNewsBinding
-import by.aderman.tottenhamhotspurfc.ui.fragments.OnBottomScrollListener
 import by.aderman.tottenhamhotspurfc.util.Constants
+import by.aderman.tottenhamhotspurfc.util.MarginItemDecoration
 import by.aderman.tottenhamhotspurfc.util.Resource
 import by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class NewsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsBinding
-    private lateinit var viewModel: NewsViewModel
-    private val newsAdapter by lazy { NewsAdapter() }
+    private val viewModel by viewModel<NewsViewModel> { parametersOf() }
+    private val newsAdapter by inject<NewsAdapter>()
+    private val itemDecoration by inject<MarginItemDecoration>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNewsBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         setRecyclerView()
+        setItemDecoration()
         observeNews()
 
         newsAdapter.setOnItemClickListener {
@@ -81,10 +84,17 @@ class NewsFragment : Fragment() {
         }
     }
 
+    private fun setItemDecoration() {
+        itemDecoration.margin = resources.getDimensionPixelSize(
+            R.dimen.fragment_news_recycler_margin
+        )
+        binding.recyclerView.addItemDecoration(itemDecoration)
+    }
+
     private fun showSnackbar(message: String) =
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
 
-    // далее идет пагинация + класс onBottomScrollListener
+    // далее идет пагинация + часть в классе onBottomScrollListener
 
     var isLoading = false
     var isLastPage = false

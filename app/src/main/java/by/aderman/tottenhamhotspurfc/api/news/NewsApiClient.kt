@@ -1,10 +1,11 @@
 package by.aderman.tottenhamhotspurfc.api.news
 
 import by.aderman.tottenhamhotspurfc.util.Constants
+import org.koin.core.KoinComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object NewsApiClient {
+object NewsApiClient{
 
     val newsApi: NewsApi by lazy {
         Retrofit.Builder()

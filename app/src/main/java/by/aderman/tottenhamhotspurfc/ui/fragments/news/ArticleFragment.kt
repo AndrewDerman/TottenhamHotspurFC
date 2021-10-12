@@ -7,17 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import by.aderman.tottenhamhotspurfc.databinding.FragmentArticleBinding
 import by.aderman.tottenhamhotspurfc.util.Constants
 import by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class ArticleFragment : Fragment() {
 
     private lateinit var binding: FragmentArticleBinding
-    private lateinit var viewModel: NewsViewModel
+    private val viewModel by viewModel<NewsViewModel> { parametersOf() }
     private val args by navArgs<ArticleFragmentArgs>()
 
     override fun onCreateView(
@@ -25,7 +26,6 @@ class ArticleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentArticleBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
 
         binding.webView.apply {
             webViewClient = WebViewClient()

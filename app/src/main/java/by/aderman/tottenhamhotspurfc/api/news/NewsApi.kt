@@ -1,5 +1,6 @@
 package by.aderman.tottenhamhotspurfc.api.news
 
+import by.aderman.tottenhamhotspurfc.BuildConfig
 import by.aderman.tottenhamhotspurfc.models.news.NewsResponse
 import by.aderman.tottenhamhotspurfc.util.Constants
 import retrofit2.Response
@@ -14,6 +15,6 @@ interface NewsApi {
         @Query("language") languageCode: String = Constants.NEWS_API_QUERY_LANGUAGE,
         @Query("sortBy") sortBy: String = Constants.NEWS_API_QUERY_SORT_BY,
         @Query("page") pageNumber: Int = Constants.NEWS_API_QUERY_PAGE,
-        @Query("apiKey") apiKey: String = Constants.NEWS_API_KEY,
-    ) : Response<NewsResponse>
+        @Query("apiKey") apiKey: String = BuildConfig.NEWS_API_KEY,
+    ): Response<NewsResponse>
 }

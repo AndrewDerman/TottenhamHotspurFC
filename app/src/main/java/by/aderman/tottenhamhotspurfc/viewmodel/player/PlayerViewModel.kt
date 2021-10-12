@@ -13,9 +13,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class PlayerViewModel(application: Application) : BasicViewModel(application) {
+class PlayerViewModel(private val repository: Repository, application: Application) :
+    BasicViewModel(application) {
 
-    private val repository = Repository()
     private var isGoalkeeper = false
 
     private val _playerLiveData = MutableLiveData<Resource<PlayerResponse>>()

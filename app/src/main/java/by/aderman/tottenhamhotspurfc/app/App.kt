@@ -1,17 +1,26 @@
 package by.aderman.tottenhamhotspurfc.app
 
 import android.app.Application
-import androidx.room.Room
-import by.aderman.tottenhamhotspurfc.database.Database
+import by.aderman.tottenhamhotspurfc.di.applicationModules
+import by.aderman.tottenhamhotspurfc.di.databaseModules
+import by.aderman.tottenhamhotspurfc.di.viewModelsModules
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class App : Application() {
 
-    lateinit var database: Database
-
     override fun onCreate() {
         super.onCreate()
-        database =
-            Room.databaseBuilder(applicationContext, Database::class.java, "Database")
-                .build()
+
+        startKoin {
+            androidContext(this@App)
+            modules(
+                listOf(
+                    databaseModules,
+                    applicationModules,
+                    viewModelsModules
+                )
+            )
+        }
     }
 }

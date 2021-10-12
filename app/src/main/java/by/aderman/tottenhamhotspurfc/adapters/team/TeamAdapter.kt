@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import by.aderman.tottenhamhotspurfc.databinding.PlayerItemBinding
+import by.aderman.tottenhamhotspurfc.databinding.ItemPlayerBinding
 import by.aderman.tottenhamhotspurfc.models.team.Player
 import com.bumptech.glide.Glide
 
 class TeamAdapter : RecyclerView.Adapter<TeamAdapter.PlayerViewHolder>() {
 
-    inner class PlayerViewHolder(val binding: PlayerItemBinding) :
+    inner class PlayerViewHolder(val binding: ItemPlayerBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = PlayerItemBinding.inflate(inflater, parent, false)
+        val binding = ItemPlayerBinding.inflate(inflater, parent, false)
         return PlayerViewHolder(binding)
     }
 

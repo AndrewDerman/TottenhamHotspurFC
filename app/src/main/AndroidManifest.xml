@@ -15,9 +15,14 @@
         android:theme="@style/Theme.TottenhamHotspurFC">
         <activity
             android:name=".ui.activities.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activities.SplashScreenActivity"
+            android:theme="@style/SplashScreenTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

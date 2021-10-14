@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentArticleBinding
 import by.aderman.tottenhamhotspurfc.util.Constants
+import by.aderman.tottenhamhotspurfc.util.showSnackbar
 import by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -36,7 +38,7 @@ class ArticleFragment : Fragment() {
 
         binding.bSaveArticle.setOnClickListener {
             viewModel.saveArticle(args.currentArticle)
-            showSnackbar()
+            showSnackbar(binding.root, getString(R.string.success_article_save))
         }
 
         binding.bShareArticle.setOnClickListener {
@@ -55,8 +57,4 @@ class ArticleFragment : Fragment() {
         val shareIntent = Intent.createChooser(sendIntent, null)
         startActivity(shareIntent)
     }
-
-    private fun showSnackbar() =
-        Snackbar.make(binding.root, Constants.SAVE_ARTICLE_SUCCESS_MESSAGE, Snackbar.LENGTH_SHORT)
-            .show()
 }

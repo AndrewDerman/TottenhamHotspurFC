@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import by.aderman.tottenhamhotspurfc.R
+import by.aderman.tottenhamhotspurfc.app.App
 import by.aderman.tottenhamhotspurfc.models.player.PlayerResponse
 import by.aderman.tottenhamhotspurfc.repository.Repository
 import by.aderman.tottenhamhotspurfc.util.Constants
@@ -33,7 +35,12 @@ class PlayerViewModel(private val repository: Repository, application: Applicati
             val response = repository.getPlayerStatistics(playerId)
             _playerLiveData.postValue(checkResponse(response))
         } else {
-            _playerLiveData.postValue(Resource.Error(Constants.NO_INTERNET_ERROR_MESSAGE))
+            _playerLiveData.postValue(
+                Resource.Error(
+                    getApplication<App>()
+                        .getString(R.string.error_no_internet_connection)
+                )
+            )
         }
     }
 

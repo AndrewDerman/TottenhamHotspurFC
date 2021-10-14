@@ -4,6 +4,9 @@
     <string name="bottom_nav_saved_news">Saved</string>
     <string name="bottom_nav_team">Team</string>
     <string name="saved_news_hint">Swipe left or right to delete</string>
+    <string name="error_no_internet_connection">No internet connection</string>
+    <string name="success_article_save">Article saved successfully.</string>
+    <string name="success_article_delete">Article deleted successfully.</string>
 
     <string name="player_stats_general_title">GENERAL</string>
     <string name="player_stats_goalkeeping_title">GOALKEEPING</string>

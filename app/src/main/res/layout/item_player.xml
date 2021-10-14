@@ -33,6 +33,8 @@
                     android:layout_height="@dimen/player_item_photo_height"
                     android:contentDescription="@string/player_item_photo_description"
                     android:scaleType="centerCrop"
+                    app:image="@{player.photo}"
+                    app:error="@{@drawable/no_image_placeholder}"
                     android:layout_marginStart="@dimen/player_item_photo_margin_start"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

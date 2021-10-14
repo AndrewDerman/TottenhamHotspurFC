@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import by.aderman.tottenhamhotspurfc.databinding.ItemPlayerBinding
 import by.aderman.tottenhamhotspurfc.models.team.Player
-import com.bumptech.glide.Glide
 
 class TeamAdapter : RecyclerView.Adapter<TeamAdapter.PlayerViewHolder>() {
 
@@ -24,7 +23,6 @@ class TeamAdapter : RecyclerView.Adapter<TeamAdapter.PlayerViewHolder>() {
         val currentPlayer = differ.currentList[position]
         with(holder.binding) {
             player = currentPlayer
-            Glide.with(root).load(currentPlayer.photo).into(playerPhoto)
             root.setOnClickListener {
                 onItemClickListener?.let { it(currentPlayer) }
             }

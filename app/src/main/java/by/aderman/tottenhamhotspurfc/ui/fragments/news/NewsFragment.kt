@@ -15,6 +15,7 @@ import by.aderman.tottenhamhotspurfc.databinding.FragmentNewsBinding
 import by.aderman.tottenhamhotspurfc.util.Constants
 import by.aderman.tottenhamhotspurfc.util.MarginItemDecoration
 import by.aderman.tottenhamhotspurfc.util.Resource
+import by.aderman.tottenhamhotspurfc.util.showSnackbar
 import by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
@@ -66,7 +67,7 @@ class NewsFragment : Fragment() {
                 is Resource.Error -> {
                     viewModel.changeResponseReceivedStatus(true)
                     isLoading = false
-                    it.message?.let { error -> showSnackbar(error) }
+                    it.message?.let { error -> showSnackbar(binding.root, error) }
                 }
                 is Resource.Loading -> {
                     viewModel.changeResponseReceivedStatus(false)
@@ -90,9 +91,6 @@ class NewsFragment : Fragment() {
         )
         binding.recyclerView.addItemDecoration(itemDecoration)
     }
-
-    private fun showSnackbar(message: String) =
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
 
     // далее идет пагинация + часть в классе onBottomScrollListener
 

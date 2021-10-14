@@ -10,6 +10,7 @@ import by.aderman.tottenhamhotspurfc.databinding.FragmentPlayerBinding
 import by.aderman.tottenhamhotspurfc.models.player.PlayerResponse
 import by.aderman.tottenhamhotspurfc.util.Constants
 import by.aderman.tottenhamhotspurfc.util.Resource
+import by.aderman.tottenhamhotspurfc.util.showSnackbar
 import by.aderman.tottenhamhotspurfc.viewmodel.player.PlayerViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -50,7 +51,7 @@ class PlayerFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     viewModel.changeResponseReceivedStatus(true)
-                    it.message?.let { error -> showSnackbar(error) }
+                    it.message?.let { error -> showSnackbar(binding.root, error) }
                 }
                 is Resource.Loading -> viewModel.changeResponseReceivedStatus(false)
             }
@@ -61,11 +62,7 @@ class PlayerFragment : Fragment() {
         with(binding) {
             player = response.data?.response?.get(0)?.player
             playerNumber.text = args.currentPlayer.number.toString()
-            Glide.with(root).load(args.currentPlayer.photo).into(playerPhoto)
             stats = response.data?.response?.get(0)?.statistics?.get(0)
         }
     }
-
-    private fun showSnackbar(message: String) =
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
 }

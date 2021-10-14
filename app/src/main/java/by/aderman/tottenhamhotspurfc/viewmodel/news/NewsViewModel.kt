@@ -4,10 +4,11 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import by.aderman.tottenhamhotspurfc.R
+import by.aderman.tottenhamhotspurfc.app.App
 import by.aderman.tottenhamhotspurfc.models.news.Article
 import by.aderman.tottenhamhotspurfc.models.news.NewsResponse
 import by.aderman.tottenhamhotspurfc.repository.Repository
-import by.aderman.tottenhamhotspurfc.util.Constants
 import by.aderman.tottenhamhotspurfc.util.Resource
 import by.aderman.tottenhamhotspurfc.viewmodel.BasicViewModel
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +35,12 @@ class NewsViewModel(private val repository: Repository, application: Application
             val response = repository.getAllNews(page = newsPage)
             _newsLiveData.postValue(checkResponse(response))
         } else {
-            _newsLiveData.postValue(Resource.Error(Constants.NO_INTERNET_ERROR_MESSAGE))
+            _newsLiveData.postValue(
+                Resource.Error(
+                    getApplication<App>()
+                        .getString(R.string.error_no_internet_connection)
+                )
+            )
         }
     }
 

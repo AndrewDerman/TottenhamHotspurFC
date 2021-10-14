@@ -92,7 +92,7 @@ class SavedNewsFragment : Fragment() {
     }
 
     private fun showSnackbar(currentArticle: Article) {
-        Snackbar.make(binding.root, Constants.DELETE_ARTICLE_SUCCESS_MESSAGE, Snackbar.LENGTH_LONG)
+        Snackbar.make(binding.root, getString(R.string.success_article_delete), Snackbar.LENGTH_LONG)
             .apply {
                 setAction("Undo") {
                     viewModel.saveArticle(currentArticle)

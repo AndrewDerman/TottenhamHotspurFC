@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="SplashScreenTheme" parent="Theme.TottenhamHotspurFC">
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
+
     <style name="PlayerFragmentStatsCardTitleText">
         <item name="fontFamily">@font/montserrat_bold</item>
         <item name="android:textSize">@dimen/fragment_player_stats_card_title_text_size</item>

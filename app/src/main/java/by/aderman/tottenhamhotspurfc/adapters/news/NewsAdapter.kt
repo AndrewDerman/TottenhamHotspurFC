@@ -24,7 +24,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         val currentArticle = differ.currentList[position]
         with(holder.binding) {
             article = currentArticle
-            Glide.with(root).load(currentArticle.urlToImage).into(ivArticleImage)
             root.setOnClickListener {
                 onItemClickListener?.let { it(currentArticle) }
             }

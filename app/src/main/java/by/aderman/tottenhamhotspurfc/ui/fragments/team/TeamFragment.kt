@@ -12,6 +12,7 @@ import by.aderman.tottenhamhotspurfc.adapters.team.TeamAdapter
 import by.aderman.tottenhamhotspurfc.databinding.FragmentTeamBinding
 import by.aderman.tottenhamhotspurfc.util.MarginItemDecoration
 import by.aderman.tottenhamhotspurfc.util.Resource
+import by.aderman.tottenhamhotspurfc.util.showSnackbar
 import by.aderman.tottenhamhotspurfc.viewmodel.team.TeamViewModel
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
@@ -56,7 +57,7 @@ class TeamFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     viewModel.changeResponseReceivedStatus(true)
-                    it.message?.let { error -> showSnackbar(error) }
+                    it.message?.let { error -> showSnackbar(binding.root, error) }
                 }
                 is Resource.Loading -> viewModel.changeResponseReceivedStatus(false)
             }
@@ -76,7 +77,4 @@ class TeamFragment : Fragment() {
         )
         binding.recyclerView.addItemDecoration(itemDecoration)
     }
-
-    private fun showSnackbar(message: String) =
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
 }

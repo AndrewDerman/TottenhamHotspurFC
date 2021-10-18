@@ -7,7 +7,7 @@
 
         <variable
             name="article"
-            type="by.aderman.tottenhamhotspurfc.models.news.Article" />
+            type="by.aderman.tottenhamhotspurfc.domain.models.news.Article" />
 
     </data>
 
@@ -90,7 +90,7 @@
                         android:fontFamily="@font/montserrat"
                         android:gravity="end"
                         android:maxLines="1"
-                        android:text="@{article.publishedAt.substring(0, 10)}"
+                        android:text="@{article.publishedAt}"
                         android:textColor="@color/th_third_blue"
                         android:textSize="@dimen/article_item_desc_text_size"
                         app:layout_constraintBottom_toBottomOf="parent"

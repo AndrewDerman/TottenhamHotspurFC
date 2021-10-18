@@ -7,15 +7,11 @@
 
         <variable
             name="player"
-            type="by.aderman.tottenhamhotspurfc.models.player.Player" />
-
-        <variable
-            name="stats"
-            type="by.aderman.tottenhamhotspurfc.models.player.Statistic" />
+            type="by.aderman.tottenhamhotspurfc.domain.models.team.PlayerWithStats" />
 
         <variable
             name="viewModel"
-            type="by.aderman.tottenhamhotspurfc.viewmodel.player.PlayerViewModel" />
+            type="by.aderman.tottenhamhotspurfc.presentation.viewmodels.team.TeamViewModel" />
 
         <import
             alias="view"
@@ -28,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_player_xml_constraintlayout4_scene"
-        tools:context=".ui.fragments.team.PlayerFragment">
+        tools:context=".presentation.ui.fragments.team.PlayerFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/player_header"
@@ -43,9 +39,9 @@
                 android:layout_height="@dimen/fragment_player_photo_height"
                 android:layout_marginStart="@dimen/fragment_player_margin_start"
                 android:layout_marginTop="@dimen/fragment_player_margin_top"
-                app:image="@{player.photo}"
-                app:error="@{@drawable/no_image_placeholder}"
                 android:contentDescription="@string/fragment_player_player_photo_description"
+                app:error="@{@drawable/no_image_placeholder}"
+                app:image="@{player.photo}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
@@ -120,7 +116,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/fragment_player_margin_start"
-                android:text="@{stats.games.position}"
+                android:text="@{player.statistic.games.position}"
                 android:textColor="@color/th_primary_white"
                 android:textSize="@dimen/fragment_player_header_info_text_size"
                 app:layout_constraintBottom_toBottomOf="@id/player_position_title"
@@ -178,7 +174,7 @@
                 android:id="@+id/player_age"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{player.age.toString()}"
+                android:text="@{Integer.toString(player.age)}"
                 android:textColor="@color/th_primary_white"
                 android:textSize="@dimen/fragment_player_header_info_text_size"
                 app:layout_constraintBottom_toBottomOf="@id/player_age_title"
@@ -201,7 +197,7 @@
                 android:id="@+id/player_height"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text='@{player.height ?? "-"}'
+                android:text='@{player.height}'
                 android:textColor="@color/th_primary_white"
                 android:textSize="@dimen/fragment_player_header_info_text_size"
                 app:layout_constraintBottom_toBottomOf="@id/player_height_title"
@@ -225,7 +221,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/fragment_player_margin_start"
-                android:text='@{player.weight ?? "-"}'
+                android:text='@{player.weight}'
                 android:textColor="@color/th_primary_white"
                 android:textSize="@dimen/fragment_player_header_info_text_size"
                 app:layout_constraintBottom_toBottomOf="@id/player_weight_title"
@@ -310,7 +306,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.games.appearences.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.games.appearences)}'
                                 tools:text="12" />
 
                             <TextView
@@ -341,7 +337,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.games.minutes.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.games.minutes)}'
                                 tools:text="1340" />
 
                             <TextView
@@ -372,7 +368,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.games.rating.substring(0, 4) ?? "0"}'
+                                android:text='@{player.statistic.games.rating}'
                                 tools:text="7.13" />
 
                             <TextView
@@ -431,7 +427,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.goals.saves.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.goals.saves)}'
                                 tools:text="54" />
 
                             <TextView
@@ -462,7 +458,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.goals.conceded.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.goals.conceded)}'
                                 tools:text="9" />
 
                             <TextView
@@ -493,7 +489,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.penalty.saved.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.penalty.saved)}'
                                 tools:text="0" />
 
                             <TextView
@@ -551,7 +547,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.passes.total.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.passes.total)}'
                                 tools:text="469" />
 
                             <TextView
@@ -581,7 +577,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.passes.key.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.passes.key)}'
                                 tools:text="5" />
 
                             <TextView
@@ -612,7 +608,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.dribbles.success.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.dribbles.success)}'
                                 tools:text="0" />
 
                             <TextView
@@ -670,7 +666,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.tackles.total.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.tackles.total)}'
                                 tools:text="34" />
 
                             <TextView
@@ -700,7 +696,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.tackles.blocks.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.tackles.blocks)}'
                                 tools:text="7" />
 
                             <TextView
@@ -732,7 +728,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.tackles.interceptions.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.tackles.interceptions)}'
                                 tools:text="0" />
 
                             <TextView
@@ -764,7 +760,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.duels.won.toString ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.duels.won)}'
                                 tools:text="0" />
 
                             <TextView
@@ -822,7 +818,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.goals.total.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.goals.total)}'
                                 tools:text="11" />
 
                             <TextView
@@ -852,7 +848,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.goals.assists.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.goals.assists)}'
                                 tools:text="3" />
 
                             <TextView
@@ -884,7 +880,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.shots.total.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.shots.total)}'
                                 tools:text="36" />
 
                             <TextView
@@ -916,7 +912,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
-                                android:text='@{stats.shots.on.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.shots.on)}'
                                 tools:text="20" />
 
                             <TextView
@@ -977,7 +973,7 @@
                                 android:layout_gravity="top|center"
                                 android:background="@drawable/player_stats_yellow_card_background"
                                 android:padding="@dimen/fragment_player_discipline_text_padding"
-                                android:text='@{stats.cards.yellow.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.cards.yellow)}'
                                 tools:text="2" />
 
                             <TextView
@@ -1010,7 +1006,7 @@
                                 android:layout_gravity="top|center"
                                 android:background="@drawable/player_stats_red_card_background"
                                 android:padding="@dimen/fragment_player_discipline_text_padding"
-                                android:text='@{stats.cards.red.toString() ?? "0"}'
+                                android:text='@{Integer.toString(player.statistic.cards.red)}'
                                 tools:text="0" />
 
                             <TextView

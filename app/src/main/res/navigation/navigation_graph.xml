@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="by.aderman.tottenhamhotspurfc.ui.fragments.news.NewsFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.NewsFragment"
         android:label="Spurs news"
         tools:layout="@layout/fragment_news" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/savedNewsFragment"
-        android:name="by.aderman.tottenhamhotspurfc.ui.fragments.news.SavedNewsFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.SavedNewsFragment"
         android:label="Your saved news"
         tools:layout="@layout/fragment_saved_news" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="by.aderman.tottenhamhotspurfc.ui.fragments.news.ArticleFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.ArticleFragment"
         android:label="Reading"
         tools:layout="@layout/fragment_article" >
         <action
@@ -36,11 +36,11 @@
             app:destination="@id/savedNewsFragment" />
         <argument
             android:name="currentArticle"
-            app:argType="by.aderman.tottenhamhotspurfc.models.news.Article" />
+            app:argType="by.aderman.tottenhamhotspurfc.domain.models.news.Article" />
     </fragment>
     <fragment
         android:id="@+id/teamFragment"
-        android:name="by.aderman.tottenhamhotspurfc.ui.fragments.team.TeamFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.team.TeamFragment"
         android:label="fragment_team"
         tools:layout="@layout/fragment_team" >
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/playerFragment"
-        android:name="by.aderman.tottenhamhotspurfc.ui.fragments.team.PlayerFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.team.PlayerFragment"
         android:label="fragment_player"
         tools:layout="@layout/fragment_player" >
         <action
@@ -57,6 +57,6 @@
             app:destination="@id/teamFragment" />
         <argument
             android:name="currentPlayer"
-            app:argType="by.aderman.tottenhamhotspurfc.models.team.Player" />
+            app:argType="by.aderman.tottenhamhotspurfc.domain.models.team.Player" />
     </fragment>
 </navigation>

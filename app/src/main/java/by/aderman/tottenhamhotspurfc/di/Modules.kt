@@ -2,18 +2,33 @@ package by.aderman.tottenhamhotspurfc.di
 
 import android.app.Application
 import androidx.room.Room
-import by.aderman.tottenhamhotspurfc.adapters.news.NewsAdapter
-import by.aderman.tottenhamhotspurfc.adapters.team.TeamAdapter
-import by.aderman.tottenhamhotspurfc.api.football.FootballApiClient
-import by.aderman.tottenhamhotspurfc.api.football.FootballInterceptor
-import by.aderman.tottenhamhotspurfc.api.news.NewsApiClient
-import by.aderman.tottenhamhotspurfc.database.ArticleDao
-import by.aderman.tottenhamhotspurfc.database.Database
-import by.aderman.tottenhamhotspurfc.repository.Repository
-import by.aderman.tottenhamhotspurfc.util.MarginItemDecoration
-import by.aderman.tottenhamhotspurfc.viewmodel.news.NewsViewModel
-import by.aderman.tottenhamhotspurfc.viewmodel.player.PlayerViewModel
-import by.aderman.tottenhamhotspurfc.viewmodel.team.TeamViewModel
+import by.aderman.tottenhamhotspurfc.data.api.football.FootballApiClient
+import by.aderman.tottenhamhotspurfc.data.api.football.FootballInterceptor
+import by.aderman.tottenhamhotspurfc.data.api.news.NewsApiClient
+import by.aderman.tottenhamhotspurfc.data.db.ArticleDao
+import by.aderman.tottenhamhotspurfc.data.db.Database
+import by.aderman.tottenhamhotspurfc.data.mappers.news.ArticleLocalMapper
+import by.aderman.tottenhamhotspurfc.data.mappers.news.NewsResponseMapper
+import by.aderman.tottenhamhotspurfc.data.mappers.team.PlayerResponseMapper
+import by.aderman.tottenhamhotspurfc.data.mappers.team.TeamResponseMapper
+import by.aderman.tottenhamhotspurfc.data.repositories.news.*
+import by.aderman.tottenhamhotspurfc.data.repositories.team.TeamRemoteDataSource
+import by.aderman.tottenhamhotspurfc.data.repositories.team.TeamRemoteDataSourceImpl
+import by.aderman.tottenhamhotspurfc.data.repositories.team.TeamRepositoryImpl
+import by.aderman.tottenhamhotspurfc.domain.repositories.NewsRepository
+import by.aderman.tottenhamhotspurfc.domain.repositories.TeamRepository
+import by.aderman.tottenhamhotspurfc.domain.usecases.news.DeleteArticleUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.news.GetBookmarksUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.news.GetNewsUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.news.SaveArticleUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetPlayerStatisticUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetTeamSquadUseCase
+import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
+import by.aderman.tottenhamhotspurfc.presentation.adapters.team.TeamAdapter
+import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
+import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
+import by.aderman.tottenhamhotspurfc.presentation.viewmodels.team.TeamViewModel
+import by.aderman.tottenhamhotspurfc.utils.Constants
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -23,7 +38,7 @@ import java.util.concurrent.TimeUnit
 val databaseModules = module {
 
     fun provideDatabase(application: Application): Database {
-        return Room.databaseBuilder(application, Database::class.java, "Database")
+        return Room.databaseBuilder(application, Database::class.java, Constants.DATABASE_NAME)
             .build()
     }
 
@@ -35,7 +50,7 @@ val databaseModules = module {
     single { provideArticleDao(get()) }
 }
 
-val applicationModules = module {
+val apiModules = module {
 
     single { FootballInterceptor() }
 
@@ -49,15 +64,79 @@ val applicationModules = module {
 
     single { NewsApiClient.newsApi }
     single { FootballApiClient.footballApi }
-    single { Repository(articleDao = get(), newsApi = get(), footballApi = get()) }
+}
+
+val repositoryModules = module {
+
+    factory { ArticleLocalMapper() }
+    factory { NewsResponseMapper() }
+    factory { PlayerResponseMapper() }
+    factory { TeamResponseMapper() }
+
+    single<NewsLocalDataSource> {
+        NewsLocalDataSourceImpl(
+            articleDao = get(),
+            mapper = get()
+        )
+    }
+
+    single<NewsRemoteDataSource> {
+        NewsRemoteDataSourceImpl(
+            api = get(),
+            mapper = get()
+        )
+    }
+
+    single<NewsRepository> {
+        NewsRepositoryImpl(
+            localDataSource = get(),
+            remoteDataSource = get()
+        )
+    }
+
+    single<TeamRemoteDataSource> {
+        TeamRemoteDataSourceImpl(
+            api = get(),
+            teamResponseMapper = get(),
+            playerResponseMapper = get()
+        )
+    }
+
+    single<TeamRepository> { TeamRepositoryImpl(get()) }
+}
+
+val applicationModules = module {
+
     factory { NewsAdapter() }
     factory { TeamAdapter() }
     factory { MarginItemDecoration() }
+
+    factory { DeleteArticleUseCase(get()) }
+    factory { GetBookmarksUseCase(get()) }
+    factory { GetNewsUseCase(get()) }
+    factory { SaveArticleUseCase(get()) }
+
+    factory { GetPlayerStatisticUseCase(get()) }
+    factory { GetTeamSquadUseCase(get()) }
 }
 
 val viewModelsModules = module {
 
-    viewModel { NewsViewModel(get(), androidApplication()) }
-    viewModel { TeamViewModel(get(), androidApplication()) }
-    viewModel { PlayerViewModel(get(), androidApplication()) }
+    viewModel {
+        NewsViewModel(
+            getNewsUseCase = get(),
+            getBookmarksUseCase = get(),
+            saveArticleUseCase = get(),
+            deleteArticleUseCase = get(),
+            androidApplication()
+        )
+    }
+
+    viewModel {
+        TeamViewModel(
+            getTeamSquadUseCase = get(),
+            getPlayerStatisticUseCase = get(),
+            application = androidApplication()
+        )
+    }
 }

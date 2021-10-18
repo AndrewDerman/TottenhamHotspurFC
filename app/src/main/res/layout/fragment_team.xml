@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="by.aderman.tottenhamhotspurfc.viewmodel.team.TeamViewModel" />
+            type="by.aderman.tottenhamhotspurfc.presentation.viewmodels.team.TeamViewModel" />
 
         <import
             alias="view"
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_team_xml_constraintlayout_scene"
-        tools:context=".ui.fragments.team.TeamFragment">
+        tools:context=".presentation.ui.fragments.team.TeamFragment">
 
 
         <ImageView

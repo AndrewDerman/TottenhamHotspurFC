@@ -7,7 +7,7 @@
 
         <variable
             name="player"
-            type="by.aderman.tottenhamhotspurfc.models.team.Player" />
+            type="by.aderman.tottenhamhotspurfc.domain.models.team.Player" />
 
     </data>
 
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:alpha="0.3"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="@{player.number.toString()}"
+                    android:text="@{Integer.toString(player.number)}"
                     android:textAlignment="viewEnd"
                     android:layout_marginEnd="@dimen/player_item_number_margin_end"
                     android:textColor="@color/th_primary_white"

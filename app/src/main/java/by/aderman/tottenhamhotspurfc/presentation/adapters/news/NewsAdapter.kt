@@ -38,6 +38,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     override fun getItemCount(): Int = differ.currentList.size
 
     private val diffCallback = object : DiffUtil.ItemCallback<Article>() {
+
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
         }

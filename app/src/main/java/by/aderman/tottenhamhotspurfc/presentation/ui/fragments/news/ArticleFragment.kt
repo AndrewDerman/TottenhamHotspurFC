@@ -30,9 +30,7 @@ class ArticleFragment : Fragment() {
 
         binding.webView.apply {
             webViewClient = WebViewClient()
-            args.currentArticle.url?.let { url ->
-                loadUrl(url)
-            }
+            loadUrl(args.currentArticle.url)
         }
 
         binding.bSaveArticle.setOnClickListener {

@@ -7,13 +7,13 @@
         android:title="@string/bottom_nav_news" />
 
     <item
-        android:id="@+id/savedNewsFragment"
-        android:icon="@drawable/ic_saved_news"
-        android:title="@string/bottom_nav_saved_news" />
-
-    <item
         android:id="@+id/teamFragment"
         android:icon="@drawable/ic_team"
         android:title="@string/bottom_nav_team" />
+
+    <item
+        android:id="@+id/seasonFragment"
+        android:icon="@drawable/ic_season"
+        android:title="@string/bottom_nav_season" />
 
 </menu>

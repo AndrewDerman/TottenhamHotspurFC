@@ -4,6 +4,7 @@ import by.aderman.tottenhamhotspurfc.data.dto.news.NewsResponse
 import by.aderman.tottenhamhotspurfc.domain.models.news.Article
 import by.aderman.tottenhamhotspurfc.domain.models.news.Source
 import by.aderman.tottenhamhotspurfc.utils.Constants
+import by.aderman.tottenhamhotspurfc.utils.toLocalTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,7 +16,7 @@ class NewsResponseMapper {
                 author = it.author.orEmpty(),
                 content = it.content.orEmpty(),
                 description = it.description.orEmpty(),
-                publishedAt = toLocalTime(it.publishedAt).orEmpty(),
+                publishedAt = toLocalTime(it.publishedAt, Constants.ARTICLE_INPUT_TIME_FORMAT).orEmpty(),
                 source = Source(it.source?.id.orEmpty(), it.source?.name.orEmpty()),
                 title = it.title.orEmpty(),
                 url = it.url.orEmpty(),
@@ -24,22 +25,22 @@ class NewsResponseMapper {
         }
     }
 
-    private fun toLocalTime(inputTime: String?): String? {
-        val inputFormat =
-            SimpleDateFormat(Constants.ARTICLE_INPUT_TIME_FORMAT, Locale.getDefault()).also {
-                it.timeZone = TimeZone.getTimeZone(Constants.ARTICLE_TIMEZONE_UTC)
-            }
-        val outputFormat =
-            SimpleDateFormat(Constants.ARTICLE_OUTPUT_TIME_FORMAT, Locale.getDefault()).also {
-                it.timeZone = TimeZone.getDefault()
-            }
-
-        if (inputTime != null) {
-            val date = inputFormat.parse(inputTime)
-            date?.let {
-                return outputFormat.format(it)
-            }
-        }
-        return null
-    }
+//    private fun toLocalTime(inputTime: String?): String? {
+//        val inputFormat =
+//            SimpleDateFormat(Constants.ARTICLE_INPUT_TIME_FORMAT, Locale.getDefault()).also {
+//                it.timeZone = TimeZone.getTimeZone(Constants.ARTICLE_TIMEZONE_UTC)
+//            }
+//        val outputFormat =
+//            SimpleDateFormat(Constants.ARTICLE_OUTPUT_TIME_FORMAT, Locale.getDefault()).also {
+//                it.timeZone = TimeZone.getDefault()
+//            }
+//
+//        if (inputTime != null) {
+//            val date = inputFormat.parse(inputTime)
+//            date?.let {
+//                return outputFormat.format(it)
+//            }
+//        }
+//        return null
+//    }
 }

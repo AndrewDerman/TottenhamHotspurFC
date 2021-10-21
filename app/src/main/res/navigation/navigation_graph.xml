@@ -8,55 +8,75 @@
     <fragment
         android:id="@+id/newsFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.NewsFragment"
-        android:label="Spurs news"
+        android:label="News"
         tools:layout="@layout/fragment_news" >
         <action
             android:id="@+id/action_newsFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/latestNewsFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.LatestNewsFragment"
+        android:label="News"
+        tools:layout="@layout/fragment_latest_news"/>
     <fragment
         android:id="@+id/savedNewsFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.SavedNewsFragment"
-        android:label="Your saved news"
-        tools:layout="@layout/fragment_saved_news" >
-        <action
-            android:id="@+id/action_savedNewsFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
-    </fragment>
+        android:label="Bookmarks"
+        tools:layout="@layout/fragment_saved_news"/>
     <fragment
         android:id="@+id/articleFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.ArticleFragment"
         android:label="Reading"
-        tools:layout="@layout/fragment_article" >
-        <action
-            android:id="@+id/action_articleFragment_to_newsFragment"
-            app:destination="@id/newsFragment" />
-        <action
-            android:id="@+id/action_articleFragment_to_savedNewsFragment"
-            app:destination="@id/savedNewsFragment" />
+        tools:layout="@layout/fragment_article">
         <argument
             android:name="currentArticle"
             app:argType="by.aderman.tottenhamhotspurfc.domain.models.news.Article" />
+        <action
+            android:id="@+id/action_articleFragment_to_newsFragment"
+            app:destination="@id/newsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/teamFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.team.TeamFragment"
-        android:label="fragment_team"
-        tools:layout="@layout/fragment_team" >
+        android:label="Team"
+        tools:layout="@layout/fragment_team">
         <action
             android:id="@+id/action_teamFragment_to_playerFragment"
-            app:destination="@id/playerFragment" />
+            app:destination="@id/playerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/playerFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.team.PlayerFragment"
         android:label="fragment_player"
-        tools:layout="@layout/fragment_player" >
+        tools:layout="@layout/fragment_player">
         <action
             android:id="@+id/action_playerFragment_to_teamFragment"
-            app:destination="@id/teamFragment" />
+            app:destination="@id/teamFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="currentPlayer"
             app:argType="by.aderman.tottenhamhotspurfc.domain.models.team.Player" />
     </fragment>
+    <fragment
+        android:id="@+id/seasonFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.season.SeasonFragment"
+        android:label="Season"
+        tools:layout="@layout/fragment_season" />
+
 </navigation>

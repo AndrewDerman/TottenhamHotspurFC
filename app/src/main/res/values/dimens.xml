@@ -48,4 +48,10 @@
     <dimen name="fragment_news_recycler_margin">16dp</dimen>
     <dimen name="fragment_team_image_height">150dp</dimen>
 
+    <dimen name="standing_item_text_size">12sp</dimen>
+    <dimen name="standing_item_margin">2dp</dimen>
+    <dimen name="standing_item_height">40dp</dimen>
+    <dimen name="standing_item_logo_width_height">30dp</dimen>
+    <dimen name="fragment_table_padding">8dp</dimen>
+
 </resources>

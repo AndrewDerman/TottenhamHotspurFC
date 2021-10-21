@@ -43,7 +43,7 @@ class NewsViewModel(
                     _newsLiveData.postValue(Result.Success(articlesList.toList()))
                 }
                 is Result.Error -> {
-                    _newsLiveData.postValue(response)
+                    _newsLiveData.postValue(response.message?.let { Result.Error(it) })
                 }
             }
         } else {

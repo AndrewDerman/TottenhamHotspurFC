@@ -39,7 +39,10 @@ class TeamViewModel(
     fun getTeamSquad() = viewModelScope.launch(Dispatchers.IO) {
         _teamLiveData.postValue(Result.Loading())
         if (hasInternetConnection()) {
-            _teamLiveData.postValue(getTeamSquadUseCase.invoke())
+            when (val response = getTeamSquadUseCase.invoke()) {
+                is Result.Success -> _teamLiveData.postValue(response)
+                is Result.Error -> _teamLiveData.postValue(response.message?.let { Result.Error(it) })
+            }
         } else {
             _teamLiveData.postValue(
                 Result.Error(
@@ -53,7 +56,11 @@ class TeamViewModel(
     fun getPlayerStatistic(playerId: Int) = viewModelScope.launch(Dispatchers.IO) {
         _playerLiveData.postValue(Result.Loading())
         if (hasInternetConnection()) {
-            _playerLiveData.postValue(getPlayerStatisticUseCase.invoke(playerId))
+            when(val response = getPlayerStatisticUseCase.invoke(playerId)){
+                is Result.Success -> _playerLiveData.postValue(response)
+                is Result.Error -> _playerLiveData.postValue(response.message?.let { Result.Error(it) })
+            }
+
         } else {
             _playerLiveData.postValue(
                 Result.Error(

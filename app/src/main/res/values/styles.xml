@@ -25,7 +25,22 @@
         <item name="android:textColor">@color/th_black</item>
     </style>
 
+    <style name="SeasonTablesStyle">
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textSize">@dimen/standing_item_text_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:layout_marginStart">@dimen/standing_item_margin</item>
+        <item name="android:layout_marginEnd">@dimen/standing_item_margin</item>
+        <item name="android:textColor">@color/th_black</item>
+    </style>
+
+
     <style name="BottomNavigationViewTextStyle">
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
         <item name="android:fontFamily">@font/montserrat</item>
     </style>
 

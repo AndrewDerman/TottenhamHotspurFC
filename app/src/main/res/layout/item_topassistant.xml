@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="topAssistant"
+            type="by.aderman.tottenhamhotspurfc.domain.models.season.PlayerTopAssistant" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rank"
+            style="@style/SeasonTablesStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/standing_item_height"
+            android:layout_weight="1"
+            android:text="@{Integer.toString(topAssistant.rank)}"
+            tools:text="1" />
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/standing_item_logo_width_height"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:contentDescription="@string/item_topassistant_player_photo_description"
+            android:scaleType="centerInside"
+            app:error="@{@drawable/no_image_placeholder}"
+            app:image="@{topAssistant.photo}"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/SeasonTablesStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/standing_item_height"
+            android:layout_weight="5"
+            android:text="@{topAssistant.name}"
+            tools:text="Harry Kane" />
+
+        <TextView
+            android:id="@+id/team"
+            style="@style/SeasonTablesStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/standing_item_height"
+            android:layout_weight="5"
+            android:text="@{topAssistant.team.name}"
+            tools:text="Tottenham" />
+
+        <TextView
+            android:id="@+id/goals"
+            style="@style/SeasonTablesStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/standing_item_height"
+            android:layout_weight="2"
+            android:textAlignment="center"
+            android:text="@{Integer.toString(topAssistant.assists)}"
+            android:textStyle="bold"
+            tools:text="6" />
+
+    </LinearLayout>
+</layout>

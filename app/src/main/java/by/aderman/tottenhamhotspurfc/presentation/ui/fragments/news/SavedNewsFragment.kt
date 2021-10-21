@@ -1,21 +1,23 @@
 package by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.aderman.tottenhamhotspurfc.R
-import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.databinding.FragmentSavedNewsBinding
 import by.aderman.tottenhamhotspurfc.domain.models.news.Article
-import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
+import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
+import by.aderman.tottenhamhotspurfc.presentation.ui.activities.MainActivity
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
-import by.aderman.tottenhamhotspurfc.utils.Constants
+import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -41,7 +43,7 @@ class SavedNewsFragment : Fragment() {
 
         newsAdapter.setOnItemClickListener {
             val action =
-                SavedNewsFragmentDirections.actionSavedNewsFragmentToArticleFragment(it)
+                NewsFragmentDirections.actionNewsFragmentToArticleFragment(it)
             Navigation.findNavController(binding.root).navigate(action)
         }
 
@@ -102,6 +104,8 @@ class SavedNewsFragment : Fragment() {
                 setAction(getString(R.string.operation_undo)) {
                     viewModel.saveArticle(currentArticle)
                 }
-            }.show()
+            }
+            .setAnchorView(R.id.bottom_nav_view)
+            .show()
     }
 }

@@ -20,7 +20,6 @@ class NewsLocalDataSourceImpl(
         }
     }
 
-
     override suspend fun saveArticle(article: Article) =
         articleDao.saveArticle(mapper.toArticleLocal(article))
 

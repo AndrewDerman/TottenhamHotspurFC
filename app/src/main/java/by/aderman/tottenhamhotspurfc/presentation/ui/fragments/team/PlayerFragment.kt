@@ -26,12 +26,16 @@ class PlayerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlayerBinding.inflate(inflater, container, false)
-        viewModel.getPlayerStatistic(args.currentPlayer.id)
+        loadData()
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         checkGoalkeeperStatus()
         observeData()
         return binding.root
+    }
+
+    private fun loadData() {
+        viewModel.getPlayerStatistic(args.currentPlayer.id)
     }
 
     private fun checkGoalkeeperStatus() {

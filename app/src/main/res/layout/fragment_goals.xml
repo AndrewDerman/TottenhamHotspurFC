@@ -31,7 +31,7 @@
                 android:id="@+id/rank_title"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="1"
                 android:text="@string/item_topscorer_rank_title" />
 
@@ -39,7 +39,7 @@
                 android:id="@+id/name"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="6"
                 android:text="@string/item_topscorer_player_title" />
 
@@ -47,7 +47,7 @@
                 android:id="@+id/team"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="5"
                 android:text="@string/item_topscorer_club_title" />
 
@@ -55,7 +55,7 @@
                 android:id="@+id/goals"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="2"
                 android:text="@string/item_topscorer_goals_title"
                 android:textStyle="bold" />

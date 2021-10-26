@@ -1,6 +1,6 @@
 package by.aderman.tottenhamhotspurfc.data.mappers.team
 
-import by.aderman.tottenhamhotspurfc.data.dto.team.TeamResponse
+import by.aderman.tottenhamhotspurfc.data.dto.football.responses.TeamResponse
 import by.aderman.tottenhamhotspurfc.domain.models.team.Player
 
 class TeamResponseMapper {
@@ -11,7 +11,7 @@ class TeamResponseMapper {
                 id = it.id ?: -1,
                 name = it.name.orEmpty(),
                 age = it.age ?: -1,
-                number = it.number ?: -1,
+                number = it.number,
                 position = it.position.orEmpty(),
                 photo = it.photo.orEmpty()
             )

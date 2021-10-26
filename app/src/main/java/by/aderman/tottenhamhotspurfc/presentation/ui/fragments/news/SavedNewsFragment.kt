@@ -1,13 +1,11 @@
 package by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +13,6 @@ import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentSavedNewsBinding
 import by.aderman.tottenhamhotspurfc.domain.models.news.Article
 import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
-import by.aderman.tottenhamhotspurfc.presentation.ui.activities.MainActivity
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
 import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
 import com.google.android.material.snackbar.Snackbar
@@ -37,14 +34,13 @@ class SavedNewsFragment : Fragment() {
         binding = FragmentSavedNewsBinding.inflate(inflater, container, false)
         viewModel.getBookmarks()
         setRecyclerView()
-        setItemDecoration()
         observeData()
         setDeletionWithSwipe()
 
         newsAdapter.setOnItemClickListener {
-            val action =
+            findNavController().navigate(
                 NewsFragmentDirections.actionNewsFragmentToArticleFragment(it)
-            Navigation.findNavController(binding.root).navigate(action)
+            )
         }
 
         return binding.root
@@ -60,14 +56,12 @@ class SavedNewsFragment : Fragment() {
         with(binding.recyclerView) {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(itemDecoration.also {
+                it.margin = resources.getDimensionPixelSize(
+                    R.dimen.fragment_news_recycler_margin
+                )
+            })
         }
-    }
-
-    private fun setItemDecoration() {
-        itemDecoration.margin = resources.getDimensionPixelSize(
-            R.dimen.fragment_news_recycler_margin
-        )
-        binding.recyclerView.addItemDecoration(itemDecoration)
     }
 
     private fun setDeletionWithSwipe() {

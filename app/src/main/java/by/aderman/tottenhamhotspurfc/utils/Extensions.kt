@@ -2,6 +2,8 @@ package by.aderman.tottenhamhotspurfc.utils
 
 import android.view.View
 import by.aderman.tottenhamhotspurfc.R
+import by.aderman.tottenhamhotspurfc.domain.models.fixtures.Fixture
+import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureStatus
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,4 +31,18 @@ fun toLocalTime(inputTime: String?, inputFormat: String): String? {
         }
     }
     return null
+}
+
+fun getCurrentDateForApiRequest(): String {
+    val dateFormat =
+        SimpleDateFormat(Constants.FIXTURES_REQUEST_DATE_FORMAT, Locale.getDefault())
+    return dateFormat.format(Date())
+}
+
+fun isFixtureInProgress(fixture: Fixture): Boolean {
+    if (fixture.status.longValue == FixtureStatus.FH.value
+        || fixture.status.longValue == FixtureStatus.HT.value
+        || fixture.status.longValue == FixtureStatus.SH.value
+    ) return true
+    return false
 }

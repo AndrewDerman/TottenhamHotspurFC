@@ -20,7 +20,7 @@
             android:id="@+id/rank"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="1"
             android:text="@{Integer.toString(standing.rank)}"
             tools:text="1" />
@@ -28,7 +28,7 @@
         <ImageView
             android:id="@+id/team_logo"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_logo_width_height"
+            android:layout_height="@dimen/item_standing_logo_width_height"
             android:layout_weight="2"
             android:contentDescription="@string/item_standing_team_logo_description"
             android:scaleType="centerInside"
@@ -41,7 +41,7 @@
             android:id="@+id/team_name"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="8"
             android:text="@{standing.team.name}"
             tools:text="Tottenham Hotspur" />
@@ -50,7 +50,7 @@
             android:id="@+id/games_played"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="1"
             android:text="@{Integer.toString(standing.all.played)}"
             tools:text="10" />
@@ -59,7 +59,7 @@
             android:id="@+id/games_won"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="1"
             android:text="@{Integer.toString(standing.all.win)}"
             tools:text="6" />
@@ -68,7 +68,7 @@
             android:id="@+id/games_draw"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="1"
             android:text="@{Integer.toString(standing.all.draw)}"
             tools:text="2" />
@@ -77,7 +77,7 @@
             android:id="@+id/games_lost"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="1"
             android:text="@{Integer.toString(standing.all.lose)}"
             tools:text="2" />
@@ -86,7 +86,7 @@
             android:id="@+id/goals_dif"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="2"
             android:text="@{Integer.toString(standing.goalsDiff)}"
             tools:text="12" />
@@ -95,7 +95,7 @@
             android:id="@+id/points"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="2"
             android:text="@{Integer.toString(standing.points)}"
             android:textStyle="bold"

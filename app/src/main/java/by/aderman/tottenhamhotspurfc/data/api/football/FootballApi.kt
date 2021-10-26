@@ -1,10 +1,6 @@
 package by.aderman.tottenhamhotspurfc.data.api.football
 
-import by.aderman.tottenhamhotspurfc.data.dto.player.PlayerResponse
-import by.aderman.tottenhamhotspurfc.data.dto.season.StandingsResponse
-import by.aderman.tottenhamhotspurfc.data.dto.team.TeamResponse
-import by.aderman.tottenhamhotspurfc.data.dto.topassists.TopAssistsResponse
-import by.aderman.tottenhamhotspurfc.data.dto.topscorer.TopScorersResponse
+import by.aderman.tottenhamhotspurfc.data.dto.football.responses.*
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import retrofit2.Response
 import retrofit2.http.GET
@@ -37,5 +33,28 @@ interface FootballApi {
     suspend fun getTopAssists(
         @Query("league") leagueId: Int = Constants.FOOTBALL_LEAGUE_ID,
         @Query("season") season: Int = Constants.FOOTBALL_CURRENT_SEASON
-    ) : Response<TopAssistsResponse>
+    ): Response<TopAssistsResponse>
+
+    @GET("fixtures")
+    suspend fun getFixtures(
+        @Query("league") leagueId: Int = Constants.FOOTBALL_LEAGUE_ID,
+        @Query("season") season: Int = Constants.FOOTBALL_CURRENT_SEASON,
+        @Query("team") teamId: Int = Constants.FOOTBALL_TEAM_ID,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String = Constants.FIXTURES_END_SEASON_DATE
+    ): Response<FixturesResponse>
+
+    @GET("fixtures")
+    suspend fun getResults(
+        @Query("league") leagueId: Int = Constants.FOOTBALL_LEAGUE_ID,
+        @Query("season") season: Int = Constants.FOOTBALL_CURRENT_SEASON,
+        @Query("team") teamId: Int = Constants.FOOTBALL_TEAM_ID,
+        @Query("from") fromDate: String = Constants.FIXTURES_START_SEASON_DATE,
+        @Query("to") toDate: String
+    ): Response<FixturesResponse>
+
+    @GET("fixtures")
+    suspend fun getFixtureInfo(
+        @Query("id") fixtureId: Int
+    ): Response<FixtureInfoResponse>
 }

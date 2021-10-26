@@ -7,6 +7,8 @@ import by.aderman.tottenhamhotspurfc.data.api.football.FootballInterceptor
 import by.aderman.tottenhamhotspurfc.data.api.news.NewsApiClient
 import by.aderman.tottenhamhotspurfc.data.db.ArticleDao
 import by.aderman.tottenhamhotspurfc.data.db.Database
+import by.aderman.tottenhamhotspurfc.data.mappers.fixtures.FixtureInfoResponseMapper
+import by.aderman.tottenhamhotspurfc.data.mappers.fixtures.FixturesResponseMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.news.ArticleLocalMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.news.NewsResponseMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.season.StandingsResponseMapper
@@ -14,6 +16,9 @@ import by.aderman.tottenhamhotspurfc.data.mappers.season.TopAssistsResponseMappe
 import by.aderman.tottenhamhotspurfc.data.mappers.season.TopScorersResponseMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.team.PlayerResponseMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.team.TeamResponseMapper
+import by.aderman.tottenhamhotspurfc.data.repositories.fixtures.FixturesRemoteDataSource
+import by.aderman.tottenhamhotspurfc.data.repositories.fixtures.FixturesRemoteDataSourceImpl
+import by.aderman.tottenhamhotspurfc.data.repositories.fixtures.FixturesRepositoryImpl
 import by.aderman.tottenhamhotspurfc.data.repositories.news.*
 import by.aderman.tottenhamhotspurfc.data.repositories.season.SeasonRemoteDataSource
 import by.aderman.tottenhamhotspurfc.data.repositories.season.SeasonRemoteDataSourceImpl
@@ -21,9 +26,13 @@ import by.aderman.tottenhamhotspurfc.data.repositories.season.SeasonRepositoryIm
 import by.aderman.tottenhamhotspurfc.data.repositories.team.TeamRemoteDataSource
 import by.aderman.tottenhamhotspurfc.data.repositories.team.TeamRemoteDataSourceImpl
 import by.aderman.tottenhamhotspurfc.data.repositories.team.TeamRepositoryImpl
+import by.aderman.tottenhamhotspurfc.domain.repositories.FixturesRepository
 import by.aderman.tottenhamhotspurfc.domain.repositories.NewsRepository
 import by.aderman.tottenhamhotspurfc.domain.repositories.SeasonRepository
 import by.aderman.tottenhamhotspurfc.domain.repositories.TeamRepository
+import by.aderman.tottenhamhotspurfc.domain.usecases.fixtures.GetFixtureInfoUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.fixtures.GetFixturesUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.fixtures.GetResultsUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.news.DeleteArticleUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.news.GetBookmarksUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.news.GetNewsUseCase
@@ -33,11 +42,13 @@ import by.aderman.tottenhamhotspurfc.domain.usecases.season.GetTopAssistsUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.season.GetTopScorersUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetPlayerStatisticUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetTeamSquadUseCase
+import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.FixturesAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.AssistsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.GoalsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.TableAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.team.TeamAdapter
+import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
 import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.season.SeasonViewModel
@@ -71,8 +82,8 @@ val apiModules = module {
     single {
         OkHttpClient.Builder().apply {
             addInterceptor(get<FootballInterceptor>())
-            connectTimeout(30, TimeUnit.SECONDS)
-            readTimeout(30, TimeUnit.SECONDS)
+            connectTimeout(Constants.API_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
+            readTimeout(Constants.API_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
         }.build()
     }
 
@@ -89,6 +100,8 @@ val repositoryModules = module {
     factory { StandingsResponseMapper() }
     factory { TopScorersResponseMapper() }
     factory { TopAssistsResponseMapper() }
+    factory { FixturesResponseMapper() }
+    factory { FixtureInfoResponseMapper() }
 
     single<NewsLocalDataSource> {
         NewsLocalDataSourceImpl(
@@ -131,6 +144,16 @@ val repositoryModules = module {
     }
 
     single<SeasonRepository> { SeasonRepositoryImpl(get()) }
+
+    single<FixturesRemoteDataSource> {
+        FixturesRemoteDataSourceImpl(
+            api = get(),
+            fixturesResponseMapper = get(),
+            fixtureInfoResponseMapper = get()
+        )
+    }
+
+    single<FixturesRepository> { FixturesRepositoryImpl(get()) }
 }
 
 val applicationModules = module {
@@ -140,6 +163,7 @@ val applicationModules = module {
     factory { TableAdapter() }
     factory { GoalsAdapter() }
     factory { AssistsAdapter() }
+    factory { FixturesAdapter() }
     factory { MarginItemDecoration() }
 
     factory { DeleteArticleUseCase(get()) }
@@ -153,6 +177,10 @@ val applicationModules = module {
     factory { GetLeagueTableUseCase(get()) }
     factory { GetTopScorersUseCase(get()) }
     factory { GetTopAssistsUseCase(get()) }
+
+    factory { GetFixturesUseCase(get()) }
+    factory { GetResultsUseCase(get()) }
+    factory { GetFixtureInfoUseCase(get()) }
 }
 
 val viewModelsModules = module {
@@ -180,6 +208,15 @@ val viewModelsModules = module {
             getLeagueTableUseCase = get(),
             getTopScorersUseCase = get(),
             getTopAssistsUseCase = get(),
+            application = androidApplication()
+        )
+    }
+
+    viewModel {
+        FixturesViewModel(
+            getFixturesUseCase = get(),
+            getResultsUseCase = get(),
+            getFixtureInfoUseCase = get(),
             application = androidApplication()
         )
     }

@@ -3,6 +3,7 @@
     <string name="bottom_nav_news">News</string>
     <string name="bottom_nav_team">Team</string>
     <string name="bottom_nav_season">Season</string>
+    <string name="bottom_nav_matches">Matches</string>
     <string name="saved_news_hint">Swipe left or right to delete</string>
     <string name="error_no_internet_connection">No internet connection</string>
     <string name="success_article_save">Saved to bookmarks</string>
@@ -57,6 +58,9 @@
     <string name="fragment_news_latest_tab">Latest news</string>
     <string name="fragment_news_saved_tab">Bookmarks</string>
 
+    <string name="fragment_matches_fixtures_tab">Fixtures</string>
+    <string name="fragment_matches_results_tab">Results</string>
+
     <string name="item_standing_team_logo_description">Team logo</string>
     <string name="item_standing_number_title">№</string>
     <string name="item_standing_team_name_title">Club</string>
@@ -79,7 +83,10 @@
     <string name="item_topassistant_player_title">Player</string>
     <string name="item_topassistant_club_title">Club</string>
     <string name="item_topassistant_assists_title">Assists</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="item_fixture_score_divider">-</string>
+    <string name="item_fixture_league_logo_description">League logo</string>
+    <string name="item_fixture_team_logo_description">Team logo</string>
+    <string name="fragment_fixture_info_referee_title">Referee:</string>
 
 </resources>

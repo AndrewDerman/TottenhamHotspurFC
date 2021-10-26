@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fixture"
+            type="by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureInfo" />
+
+        <variable
+            name="viewModel"
+            type="by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel" />
+
+        <import
+            alias="view"
+            type="android.view.View" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.ui.fragments.matches.FixtureInfoFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fixture_info_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/th_primary_blue"
+                android:padding="@dimen/fragment_fixture_ingo_header_padding"
+                app:layout_constraintBottom_toTopOf="@id/tab_layout"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/league_logo"
+                    android:layout_width="@dimen/item_fixture_league_logo_width_height"
+                    android:layout_height="@dimen/item_fixture_league_logo_width_height"
+                    android:contentDescription="@string/item_fixture_league_logo_description"
+                    app:error="@{@drawable/no_image_placeholder}"
+                    app:image="@{fixture.league.logo}"
+                    app:layout_constraintEnd_toStartOf="@id/league_name"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/league_name"
+                    style="@style/FragmentFixtureInfoTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/fragment_fixture_info_margin"
+                    android:text="@{fixture.league.name}"
+                    app:layout_constraintBottom_toBottomOf="@id/league_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/league_logo"
+                    app:layout_constraintTop_toTopOf="@id/league_logo"
+                    tools:text="Premier League" />
+
+                <TextView
+                    android:id="@+id/league_round"
+                    style="@style/FragmentFixtureInfoTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{fixture.league.round}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/league_logo"
+                    tools:text="Round 28" />
+
+                <LinearLayout
+                    android:id="@+id/teams_score_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/league_round">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/home_logo"
+                            android:layout_width="@dimen/fragment_fixture_info_team_logo_width_height"
+                            android:layout_height="@dimen/fragment_fixture_info_team_logo_width_height"
+                            android:layout_gravity="center_horizontal"
+                            android:contentDescription="@string/item_fixture_team_logo_description"
+                            app:error="@{@drawable/no_image_placeholder}"
+                            app:image="@{fixture.teams.home.logo}"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/home_name"
+                            style="@style/FragmentFixtureInfoMainTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:text="@{fixture.teams.home.name}"
+                            android:textAlignment="center"
+                            tools:text="Tottenham Hotspur" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/fragment_fixture_info_center_margin_horizontal"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/home_score"
+                                style="@style/FragmentFixtureInfoScoreTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{Integer.toString(fixture.goals.home)}"
+                                app:layout_constraintEnd_toStartOf="@id/score_divider"
+                                app:layout_constraintHorizontal_chainStyle="packed"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="2" />
+
+                            <TextView
+                                android:id="@+id/score_divider"
+                                style="@style/FragmentFixtureInfoScoreTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/item_fixture_score_divider"
+                                app:layout_constraintEnd_toStartOf="@+id/away_score"
+                                app:layout_constraintStart_toEndOf="@id/home_score"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="-" />
+
+                            <TextView
+                                android:id="@+id/away_score"
+                                style="@style/FragmentFixtureInfoScoreTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{Integer.toString(fixture.goals.away)}"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/score_divider"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="0" />
+
+                            <TextView
+                                android:id="@+id/fixture_status"
+                                style="@style/FragmentFixtureInfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{fixture.status.longValue}"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/home_score"
+                                tools:text="Match Finished" />
+
+                            <TextView
+                                android:id="@+id/stadium"
+                                style="@style/FragmentFixtureInfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/fragment_fixture_info_margin"
+                                android:text="@{fixture.venue.name}"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/fixture_status"
+                                tools:text="Tottenham Hotspur Stadium" />
+
+                            <TextView
+                                android:id="@+id/city"
+                                style="@style/FragmentFixtureInfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{fixture.venue.city}"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/stadium"
+                                tools:text="London" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/away_logo"
+                            android:layout_width="@dimen/fragment_fixture_info_team_logo_width_height"
+                            android:layout_height="@dimen/fragment_fixture_info_team_logo_width_height"
+                            android:layout_gravity="center_horizontal"
+                            android:contentDescription="@string/item_fixture_team_logo_description"
+                            app:error="@{@drawable/no_image_placeholder}"
+                            app:image="@{fixture.teams.away.logo}"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/away_name"
+                            style="@style/FragmentFixtureInfoMainTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:text="@{fixture.teams.away.name}"
+                            android:textAlignment="center"
+                            tools:text="Manchester United" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/teams_score_layout">
+
+                    <TextView
+                        android:id="@+id/referee_title"
+                        style="@style/FragmentFixtureInfoTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_fixture_info_margin"
+                        android:text="@string/fragment_fixture_info_referee_title"
+                        app:layout_constraintEnd_toStartOf="@id/referee"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/referee"
+                        style="@style/FragmentFixtureInfoTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_fixture_info_margin_start"
+                        android:layout_marginTop="@dimen/fragment_fixture_info_margin"
+                        android:text="@{fixture.referee}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/referee_title"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Mike Deen" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        style="@style/FragmentFixtureInfoMainTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{fixture.date}"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/referee"
+                        tools:text="12.10.2021 19:30" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fixture_info_header" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.responseReceivedLiveData ? view.GONE : view.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

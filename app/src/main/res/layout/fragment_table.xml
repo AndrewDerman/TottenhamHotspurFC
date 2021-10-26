@@ -31,7 +31,7 @@
                 android:id="@+id/rank"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="1"
                 android:text="@string/item_standing_number_title" />
 
@@ -39,7 +39,7 @@
                 android:id="@+id/team_name"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="10"
                 android:text="@string/item_standing_team_name_title" />
 
@@ -47,7 +47,7 @@
                 android:id="@+id/games_played"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="1"
                 android:text="@string/item_standing_played_title" />
 
@@ -55,7 +55,7 @@
                 android:id="@+id/games_won"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="1"
                 android:text="@string/item_standing_won_title" />
 
@@ -63,7 +63,7 @@
                 android:id="@+id/games_draw"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="1"
                 android:text="@string/item_standing_draw_title" />
 
@@ -71,7 +71,7 @@
                 android:id="@+id/games_lost"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="1"
                 android:text="@string/item_standing_lost_title" />
 
@@ -79,7 +79,7 @@
                 android:id="@+id/goals_dif"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="2"
                 android:text="@string/item_standing_goals_dif_title" />
 
@@ -87,7 +87,7 @@
                 android:id="@+id/points"
                 style="@style/SeasonTablesStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/standing_item_height"
+                android:layout_height="@dimen/item_standing_height"
                 android:layout_weight="2"
                 android:text="@string/item_standing_points_title"
                 android:textStyle="bold" />

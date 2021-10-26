@@ -27,7 +27,7 @@ class AssistsFragment : Fragment() {
     ): View? {
         binding = FragmentAssistsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         viewModel.getTopAssists()
         observeData()
         setRecyclerView()

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.aderman.tottenhamhotspurfc.R
@@ -34,16 +34,15 @@ class LatestNewsFragment : Fragment() {
     ): View? {
         binding = FragmentLatestNewsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         viewModel.getNews()
         setRecyclerView()
-        setItemDecoration()
         observeData()
 
         newsAdapter.setOnItemClickListener {
-            val action =
+            findNavController().navigate(
                 NewsFragmentDirections.actionNewsFragmentToArticleFragment(it)
-            findNavController(binding.root).navigate(action)
+            )
         }
 
         return binding.root
@@ -75,14 +74,12 @@ class LatestNewsFragment : Fragment() {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(requireContext())
             addOnScrollListener(scrollListener)
+            addItemDecoration(itemDecoration.also {
+                it.margin = resources.getDimensionPixelSize(
+                    R.dimen.fragment_news_recycler_margin
+                )
+            })
         }
-    }
-
-    private fun setItemDecoration() {
-        itemDecoration.margin = resources.getDimensionPixelSize(
-            R.dimen.fragment_news_recycler_margin
-        )
-        binding.recyclerView.addItemDecoration(itemDecoration)
     }
 
 // далее идет пагинация + часть в классе onBottomScrollListener

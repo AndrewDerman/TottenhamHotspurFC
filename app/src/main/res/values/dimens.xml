@@ -2,12 +2,12 @@
 <resources>
     <dimen name="card_corner_radius">8dp</dimen>
 
-    <dimen name="article_item_image_height">200dp</dimen>
-    <dimen name="article_item_title_text_size">16sp</dimen>
-    <dimen name="article_item_desc_text_size">12sp</dimen>
-    <dimen name="article_item_text_margin_horizontal">12dp</dimen>
-    <dimen name="article_item_text_margin_vertical">12dp</dimen>
-    <dimen name="article_item_desc_margin_top">6dp</dimen>
+    <dimen name="item_article_image_height">200dp</dimen>
+    <dimen name="item_article_title_text_size">16sp</dimen>
+    <dimen name="item_article_desc_text_size">12sp</dimen>
+    <dimen name="item_article_text_margin_horizontal">12dp</dimen>
+    <dimen name="item_article_text_margin_vertical">12dp</dimen>
+    <dimen name="item_article_desc_margin_top">6dp</dimen>
 
     <dimen name="fragment_article_floating_button_margin">8dp</dimen>
     <dimen name="saved_news_hint_text_size">11sp</dimen>
@@ -33,25 +33,44 @@
     <dimen name="fragment_player_discipline_text_padding">8dp</dimen>
     <dimen name="fragment_player_stats_card_title_text_size">32sp</dimen>
 
-    <dimen name="player_item_padding">24dp</dimen>
-    <dimen name="player_item_photo_width">120dp</dimen>
-    <dimen name="player_item_photo_height">120dp</dimen>
-    <dimen name="player_item_margin_start">16dp</dimen>
-    <dimen name="player_item_name_text_size">20sp</dimen>
-    <dimen name="player_item_info_text_size">14sp</dimen>
-    <dimen name="player_item_see_more_margin_start">8dp</dimen>
-    <dimen name="player_item_number_text_size">70sp</dimen>
-    <dimen name="player_item_photo_margin_start">24dp</dimen>
-    <dimen name="player_item_number_margin_end">8dp</dimen>
+    <dimen name="item_player_padding">24dp</dimen>
+    <dimen name="item_player_photo_width">120dp</dimen>
+    <dimen name="item_player_photo_height">120dp</dimen>
+    <dimen name="item_player_margin_start">16dp</dimen>
+    <dimen name="item_player_name_text_size">20sp</dimen>
+    <dimen name="item_player_info_text_size">14sp</dimen>
+    <dimen name="item_player_see_more_margin_start">8dp</dimen>
+    <dimen name="item_player_number_text_size">70sp</dimen>
+    <dimen name="item_player_photo_margin_start">24dp</dimen>
+    <dimen name="item_player_number_margin_end">8dp</dimen>
 
     <dimen name="fragment_team_recycler_margin">16dp</dimen>
-    <dimen name="fragment_news_recycler_margin">16dp</dimen>
     <dimen name="fragment_team_image_height">150dp</dimen>
 
-    <dimen name="standing_item_text_size">12sp</dimen>
-    <dimen name="standing_item_margin">2dp</dimen>
-    <dimen name="standing_item_height">40dp</dimen>
-    <dimen name="standing_item_logo_width_height">30dp</dimen>
+    <dimen name="fragment_news_recycler_margin">16dp</dimen>
+
+    <dimen name="item_standing_text_size">12sp</dimen>
+    <dimen name="item_standing_margin">2dp</dimen>
+    <dimen name="item_standing_height">40dp</dimen>
+    <dimen name="item_standing_logo_width_height">30dp</dimen>
+
     <dimen name="fragment_table_padding">8dp</dimen>
+
+    <dimen name="item_fixture_card_padding">8dp</dimen>
+    <dimen name="item_fixture_league_logo_width_height">20dp</dimen>
+    <dimen name="item_fixture_margin">8dp</dimen>
+    <dimen name="item_fixture_text_size">11sp</dimen>
+    <dimen name="item_fixture_main_text_size">12sp</dimen>
+    <dimen name="item_fixture_score_text_size">40sp</dimen>
+    <dimen name="item_fixture_team_logo_width_height">70dp</dimen>
+    <dimen name="item_fixture_center_margin_horizontal">4dp</dimen>
+
+    <dimen name="fragment_fixture_ingo_header_padding">8dp</dimen>
+    <dimen name="fragment_fixture_info_margin">8dp</dimen>
+    <dimen name="fragment_fixture_info_team_logo_width_height">70dp</dimen>
+    <dimen name="fragment_fixture_info_teams_text_size">12sp</dimen>
+    <dimen name="fragment_fixture_info_score_text_size">50sp</dimen>
+    <dimen name="fragment_fixture_info_center_margin_horizontal">4dp</dimen>
+    <dimen name="fragment_fixture_info_margin_start">4dp</dimen>
 
 </resources>

@@ -24,23 +24,4 @@ class NewsResponseMapper {
             )
         }
     }
-
-//    private fun toLocalTime(inputTime: String?): String? {
-//        val inputFormat =
-//            SimpleDateFormat(Constants.ARTICLE_INPUT_TIME_FORMAT, Locale.getDefault()).also {
-//                it.timeZone = TimeZone.getTimeZone(Constants.ARTICLE_TIMEZONE_UTC)
-//            }
-//        val outputFormat =
-//            SimpleDateFormat(Constants.ARTICLE_OUTPUT_TIME_FORMAT, Locale.getDefault()).also {
-//                it.timeZone = TimeZone.getDefault()
-//            }
-//
-//        if (inputTime != null) {
-//            val date = inputFormat.parse(inputTime)
-//            date?.let {
-//                return outputFormat.format(it)
-//            }
-//        }
-//        return null
-//    }
 }

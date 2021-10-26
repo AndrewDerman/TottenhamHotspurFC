@@ -19,7 +19,7 @@
             android:id="@+id/rank"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="1"
             android:text="@{Integer.toString(topScorer.rank)}"
             tools:text="1" />
@@ -27,7 +27,7 @@
         <ImageView
             android:id="@+id/photo"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_logo_width_height"
+            android:layout_height="@dimen/item_standing_logo_width_height"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:contentDescription="@string/item_topscorer_player_photo_description"
@@ -40,7 +40,7 @@
             android:id="@+id/name"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="5"
             android:text="@{topScorer.name}"
             tools:text="Harry Kane" />
@@ -49,7 +49,7 @@
             android:id="@+id/team"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="5"
             android:text="@{topScorer.team.name}"
             tools:text="Tottenham" />
@@ -58,7 +58,7 @@
             android:id="@+id/goals"
             style="@style/SeasonTablesStyle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/standing_item_height"
+            android:layout_height="@dimen/item_standing_height"
             android:layout_weight="2"
             android:textAlignment="center"
             android:text="@{Integer.toString(topScorer.goals)}"

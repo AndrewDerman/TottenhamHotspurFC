@@ -78,5 +78,42 @@
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.season.SeasonFragment"
         android:label="Season"
         tools:layout="@layout/fragment_season" />
+    <fragment
+        android:id="@+id/matchesFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.MatchesFragment"
+        android:label="fragment_matches"
+        tools:layout="@layout/fragment_matches" >
+        <action
+            android:id="@+id/action_matchesFragment_to_fixtureInfoFragment"
+            app:destination="@id/fixtureInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/fixturesFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.FixturesFragment"
+        android:label="FixturesFragment" />
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.ResultsFragment"
+        android:label="ResultsFragment" />
+    <fragment
+        android:id="@+id/fixtureInfoFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.FixtureInfoFragment"
+        android:label="FixtureInfoFragment"
+        tools:layout="@layout/fragment_fixture_info" >
+        <argument
+            android:name="currentFixtureId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_fixtureInfoFragment_to_matchesFragment"
+            app:destination="@id/matchesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
 </navigation>

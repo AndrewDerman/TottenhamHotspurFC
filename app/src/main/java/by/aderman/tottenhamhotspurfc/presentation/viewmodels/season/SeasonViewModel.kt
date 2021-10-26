@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.app.App
 import by.aderman.tottenhamhotspurfc.domain.common.Result
-import by.aderman.tottenhamhotspurfc.domain.models.news.Article
 import by.aderman.tottenhamhotspurfc.domain.models.season.PlayerTopAssistant
 import by.aderman.tottenhamhotspurfc.domain.models.season.PlayerTopScorer
 import by.aderman.tottenhamhotspurfc.domain.models.season.Standing

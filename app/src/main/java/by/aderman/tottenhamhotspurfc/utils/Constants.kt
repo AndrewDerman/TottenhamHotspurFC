@@ -6,6 +6,7 @@ object Constants {
     const val DATABASE_NAME = "Database"
     const val TIMEZONE_UTC = "UTC"
     const val OUTPUT_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss"
+    const val API_TIMEOUT_IN_SECONDS = 30L
 
     //News
     const val NEWS_BASE_URL = "https://newsapi.org/v2/"
@@ -23,5 +24,10 @@ object Constants {
     const val FOOTBALL_CURRENT_SEASON = 2021
     const val FOOTBALL_GOALKEEPER = "Goalkeeper"
     const val FOOTBALL_LEAGUE_ID = 39
-    const val STANDING_INPUT_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssX"
+    const val FOOTBALL_API_INPUT_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssX"
+    const val FIXTURES_END_SEASON_DATE = "2022-12-31"
+    const val FIXTURES_START_SEASON_DATE = "2021-01-01"
+    const val FIXTURES_REQUEST_DATE_FORMAT = "yyyy-MM-dd"
+    const val FOOTBALL_COUNTRY_NAME = "England"
+    const val FOOTBALL_LEAGUE_NAME = "Premier League"
 }

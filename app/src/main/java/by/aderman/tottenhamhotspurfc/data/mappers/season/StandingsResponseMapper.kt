@@ -1,6 +1,6 @@
 package by.aderman.tottenhamhotspurfc.data.mappers.season
 
-import by.aderman.tottenhamhotspurfc.data.dto.season.StandingsResponse
+import by.aderman.tottenhamhotspurfc.data.dto.football.responses.StandingsResponse
 import by.aderman.tottenhamhotspurfc.domain.models.season.*
 import by.aderman.tottenhamhotspurfc.domain.models.team.Team
 import by.aderman.tottenhamhotspurfc.utils.Constants
@@ -50,7 +50,7 @@ class StandingsResponseMapper {
                     )
                 ),
                 form = it.form.orEmpty(),
-                update = toLocalTime(it.update, Constants.STANDING_INPUT_TIME_FORMAT).orEmpty()
+                update = toLocalTime(it.update, Constants.FOOTBALL_API_INPUT_TIME_FORMAT).orEmpty()
             )
         }
     }

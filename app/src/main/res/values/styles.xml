@@ -27,14 +27,13 @@
 
     <style name="SeasonTablesStyle">
         <item name="fontFamily">@font/montserrat</item>
-        <item name="android:textSize">@dimen/standing_item_text_size</item>
+        <item name="android:textSize">@dimen/item_standing_text_size</item>
         <item name="android:gravity">center</item>
         <item name="android:textAlignment">viewStart</item>
-        <item name="android:layout_marginStart">@dimen/standing_item_margin</item>
-        <item name="android:layout_marginEnd">@dimen/standing_item_margin</item>
+        <item name="android:layout_marginStart">@dimen/item_standing_margin</item>
+        <item name="android:layout_marginEnd">@dimen/item_standing_margin</item>
         <item name="android:textColor">@color/th_black</item>
     </style>
-
 
     <style name="BottomNavigationViewTextStyle">
         <item name="android:fontFamily">@font/montserrat</item>
@@ -42,6 +41,32 @@
 
     <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
         <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="ItemFixtureTextStyle">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">@dimen/item_fixture_text_size</item>
+        <item name="android:textColor">@color/th_black</item>
+    </style>
+
+    <style name="ItemFixtureMainTextStyle" parent="ItemFixtureTextStyle">
+        <item name="android:textSize">@dimen/item_fixture_main_text_size</item>
+    </style>
+
+    <style name="ItemFixtureScoreTextStyle" parent="ItemFixtureTextStyle">
+        <item name="android:textSize">@dimen/item_fixture_score_text_size</item>
+    </style>
+
+    <style name="FragmentFixtureInfoTextStyle" parent="ItemFixtureTextStyle">
+        <item name="android:textColor">@color/th_primary_white</item>
+    </style>
+
+    <style name="FragmentFixtureInfoMainTextStyle" parent="FragmentFixtureInfoTextStyle">
+        <item name="android:textSize">@dimen/fragment_fixture_info_teams_text_size</item>
+    </style>
+
+    <style name="FragmentFixtureInfoScoreTextStyle" parent="FragmentFixtureInfoTextStyle">
+        <item name="android:textSize">@dimen/fragment_fixture_info_score_text_size</item>
     </style>
 
 </resources>

@@ -27,7 +27,7 @@ class TableFragment : Fragment() {
     ): View? {
         binding = FragmentTableBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         viewModel.getLeagueTable()
         setRecyclerView()
         observeData()

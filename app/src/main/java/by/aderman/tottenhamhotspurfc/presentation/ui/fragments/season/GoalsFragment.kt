@@ -27,7 +27,7 @@ class GoalsFragment : Fragment() {
     ): View? {
         binding = FragmentGoalsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         viewModel.getTopScorers()
         setRecyclerView()
         observeData()

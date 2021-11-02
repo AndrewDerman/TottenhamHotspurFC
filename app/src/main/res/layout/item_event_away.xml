@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="event"
+            type="by.aderman.tottenhamhotspurfc.domain.models.fixtures.Event" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/item_event_padding">
+
+        <TextView
+            android:id="@+id/event_time"
+            style="@style/ItemEventTimeTextStyle"
+            elapsed="@{event.time.elapsed}"
+            extra="@{event.time.extra}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="35'" />
+
+        <ImageView
+            android:id="@+id/event_image"
+            eventDetail="@{event.detail}"
+            eventType="@{event.type}"
+            android:layout_width="@dimen/item_event_image_size"
+            android:layout_height="@dimen/item_event_image_size"
+            android:layout_marginEnd="@dimen/item_event_margin"
+            android:contentDescription="@string/item_event_image_description"
+            app:layout_constraintBottom_toBottomOf="@id/event_time"
+            app:layout_constraintEnd_toStartOf="@id/event_time"
+            app:layout_constraintTop_toTopOf="@id/event_time"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/event_type"
+            style="@style/ItemEventTypeTextStyle"
+            eventDetail="@{event.detail}"
+            eventType="@{event.type}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/item_event_margin"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toStartOf="@id/event_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="GOAL" />
+
+        <TextView
+            android:id="@+id/event_player"
+            style="@style/ItemEventPlayerTextStyle"
+            color="@{@color/th_red}"
+            eventType="@{event.type}"
+            playerName="@{event.player.name}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toEndOf="@id/event_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/event_type"
+            tools:text="H.Kane" />
+
+        <TextView
+            android:id="@+id/event_assistant_title"
+            style="@style/ItemEventPlayerTitleTextStyle"
+            eventDetail="@{event.detail}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/item_event_player_margin"
+            android:text="@string/item_event_assist_title"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@id/event_assistant"
+            app:layout_constraintEnd_toStartOf="@id/event_assistant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/event_assistant" />
+
+        <TextView
+            android:id="@+id/event_assistant"
+            style="@style/ItemEventPlayerTextStyle"
+            assistant="@{event.assist.name}"
+            color="@{@color/th_accent_green}"
+            eventType="@{event.type}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toEndOf="@id/event_type"
+            app:layout_constraintTop_toBottomOf="@id/event_player"
+            tools:text="H-M.Son" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

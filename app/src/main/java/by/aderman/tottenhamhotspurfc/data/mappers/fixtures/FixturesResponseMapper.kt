@@ -1,6 +1,6 @@
 package by.aderman.tottenhamhotspurfc.data.mappers.fixtures
 
-import by.aderman.tottenhamhotspurfc.data.dto.football.responses.FixturesResponse
+import by.aderman.tottenhamhotspurfc.data.dto.fixtures.FixturesResponse
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.*
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import by.aderman.tottenhamhotspurfc.utils.toLocalTime

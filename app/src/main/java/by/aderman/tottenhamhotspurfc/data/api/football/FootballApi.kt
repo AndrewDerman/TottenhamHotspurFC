@@ -1,6 +1,12 @@
 package by.aderman.tottenhamhotspurfc.data.api.football
 
-import by.aderman.tottenhamhotspurfc.data.dto.football.responses.*
+import by.aderman.tottenhamhotspurfc.data.dto.fixtureinfo.FixtureInfoResponse
+import by.aderman.tottenhamhotspurfc.data.dto.fixtures.FixturesResponse
+import by.aderman.tottenhamhotspurfc.data.dto.player.PlayerResponse
+import by.aderman.tottenhamhotspurfc.data.dto.standings.StandingsResponse
+import by.aderman.tottenhamhotspurfc.data.dto.team.TeamResponse
+import by.aderman.tottenhamhotspurfc.data.dto.topassists.TopAssistsResponse
+import by.aderman.tottenhamhotspurfc.data.dto.topscorers.TopScorersResponse
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import retrofit2.Response
 import retrofit2.http.GET

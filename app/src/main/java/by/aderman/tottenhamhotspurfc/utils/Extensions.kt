@@ -38,11 +38,3 @@ fun getCurrentDateForApiRequest(): String {
         SimpleDateFormat(Constants.FIXTURES_REQUEST_DATE_FORMAT, Locale.getDefault())
     return dateFormat.format(Date())
 }
-
-fun isFixtureInProgress(fixture: Fixture): Boolean {
-    if (fixture.status.longValue == FixtureStatus.FH.value
-        || fixture.status.longValue == FixtureStatus.HT.value
-        || fixture.status.longValue == FixtureStatus.SH.value
-    ) return true
-    return false
-}

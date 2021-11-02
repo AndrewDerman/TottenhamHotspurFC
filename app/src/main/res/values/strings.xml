@@ -61,6 +61,10 @@
     <string name="fragment_matches_fixtures_tab">Fixtures</string>
     <string name="fragment_matches_results_tab">Results</string>
 
+    <string name="fragment_fixture_info_events_tab">Events</string>
+    <string name="fragment_fixture_info_stats_tab">Stats</string>
+    <string name="fragment_fixture_info_lineups_tab">Line-up</string>
+
     <string name="item_standing_team_logo_description">Team logo</string>
     <string name="item_standing_number_title">№</string>
     <string name="item_standing_team_name_title">Club</string>
@@ -87,6 +91,37 @@
     <string name="item_fixture_score_divider">-</string>
     <string name="item_fixture_league_logo_description">League logo</string>
     <string name="item_fixture_team_logo_description">Team logo</string>
+
     <string name="fragment_fixture_info_referee_title">Referee:</string>
 
+    <string name="fragment_stats_no_content_message">Statistics are not available yet.\nCheck back later!</string>
+    <string name="fragment_stats_total_shots_title">Total Shots</string>
+    <string name="fragment_stats_shots_on_goal_title">Shots on Goal</string>
+    <string name="fragment_stats_shots_off_goal_title">Shots off Goal</string>
+    <string name="fragment_stats_shots_insidebox_title">Shots insidebox</string>
+    <string name="fragment_stats_shots_outsidebox_title">Shots outsidebox</string>
+    <string name="fragment_stats_blocked_shots_title">Blocked Shots</string>
+    <string name="fragment_stats_corner_kicks_title">Corner Kicks</string>
+    <string name="fragment_stats_offsides_title">Offsides</string>
+    <string name="fragment_stats_goalkeeper_saves_title">Goalkeeper Saves</string>
+    <string name="fragment_stats_ball_possession_title">Ball Possession</string>
+    <string name="fragment_stats_fouls_title">Fouls</string>
+    <string name="fragment_stats_yellow_cards_title">Yellow Cards</string>
+    <string name="fragment_stats_red_cards_title">Red Cards</string>
+    <string name="fragment_stats_total_passes_title">Total passes</string>
+    <string name="fragment_stats_passes_accurate_title">Passes accurate</string>
+    <string name="fragment_stats_passes_title">Passes %</string>
+
+    <string name="fragment_lineups_formation_title">Formation</string>
+    <string name="fragment_lineups_coach_title">Coach</string>
+    <string name="fragment_lineups_starting_xi_title">Starting XI</string>
+    <string name="fragment_lineups_substitutes_title">Substitutes</string>
+    <string name="fragment_lineups_no_content_message">Line-ups are not available yet.\nCheck back later!</string>
+
+    <string name="fragment_events_time_elapsed">%d\'</string>
+    <string name="fragment_events_time_elapsed_plus_extra">%d + %d\'</string>
+    <string name="fragment_events_no_content_message">Events are not available yet.\nCheck back later!</string>
+
+    <string name="item_event_image_description">Event image</string>
+    <string name="item_event_assist_title">Assist:</string>
 </resources>

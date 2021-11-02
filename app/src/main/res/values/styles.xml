@@ -69,4 +69,61 @@
         <item name="android:textSize">@dimen/fragment_fixture_info_score_text_size</item>
     </style>
 
+    <style name="FragmentStatsValuesTextStyle">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">@dimen/fragment_stats_text_size</item>
+        <item name="android:textColor">@color/th_black</item>
+    </style>
+
+    <style name="FragmentStatsTitlesTextStyle" parent="FragmentStatsValuesTextStyle">
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="FragmentLineupsValuesTextStyle">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">@dimen/fragment_lineups_text_size</item>
+        <item name="android:textColor">@color/th_black</item>
+    </style>
+
+    <style name="FragmentLineupsTitlesTextStyle" parent="FragmentLineupsValuesTextStyle">
+        <item name="textAllCaps">true</item>
+        <item name="android:padding">@dimen/fragment_lineups_titles_padding</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">@color/th_background</item>
+    </style>
+
+    <style name="ItemLineupTextStyle">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">@dimen/fragment_lineups_text_size</item>
+        <item name="android:textColor">@color/th_black</item>
+    </style>
+
+    <style name="ItemLineupNumbersTextStyle" parent="ItemLineupTextStyle">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="ItemEventTextStyle">
+        <item name="android:textColor">@color/th_black</item>
+    </style>
+
+    <style name="ItemEventTimeTextStyle" parent="ItemEventTextStyle">
+        <item name="android:textSize">@dimen/item_event_text_size</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="ItemEventTypeTextStyle" parent="ItemEventTextStyle">
+        <item name="android:textSize">@dimen/item_event_text_size</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="ItemEventPlayerTextStyle" parent="ItemEventTextStyle">
+        <item name="android:textSize">@dimen/item_event_player_text_size</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="ItemEventPlayerTitleTextStyle" parent="ItemEventPlayerTextStyle">
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
 </resources>

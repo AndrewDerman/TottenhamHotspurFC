@@ -1,6 +1,6 @@
 package by.aderman.tottenhamhotspurfc.data.mappers.season
 
-import by.aderman.tottenhamhotspurfc.data.dto.football.responses.TopAssistsResponse
+import by.aderman.tottenhamhotspurfc.data.dto.topassists.TopAssistsResponse
 import by.aderman.tottenhamhotspurfc.domain.models.season.PlayerTopAssistant
 import by.aderman.tottenhamhotspurfc.domain.models.team.Team
 

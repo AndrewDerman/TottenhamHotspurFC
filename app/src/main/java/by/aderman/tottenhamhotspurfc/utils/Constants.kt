@@ -7,6 +7,7 @@ object Constants {
     const val TIMEZONE_UTC = "UTC"
     const val OUTPUT_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss"
     const val API_TIMEOUT_IN_SECONDS = 30L
+    const val FRAGMENTS_ID_KEY = "id"
 
     //News
     const val NEWS_BASE_URL = "https://newsapi.org/v2/"

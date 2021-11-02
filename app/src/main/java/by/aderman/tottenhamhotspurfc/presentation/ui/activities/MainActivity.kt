@@ -2,6 +2,7 @@ package by.aderman.tottenhamhotspurfc.presentation.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import by.aderman.tottenhamhotspurfc.R

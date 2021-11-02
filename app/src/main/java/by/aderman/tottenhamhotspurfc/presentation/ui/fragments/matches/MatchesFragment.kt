@@ -23,7 +23,7 @@ class MatchesFragment : Fragment() {
         val fragments = arrayListOf(FixturesFragment(), ResultsFragment())
 
         val viewPagerAdapter =
-            ViewPagerAdapter(fragments, requireActivity().supportFragmentManager, lifecycle)
+            ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
 
         with(binding) {
             viewPager.adapter = viewPagerAdapter

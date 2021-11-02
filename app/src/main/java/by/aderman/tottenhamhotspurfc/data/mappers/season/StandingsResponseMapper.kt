@@ -1,6 +1,6 @@
 package by.aderman.tottenhamhotspurfc.data.mappers.season
 
-import by.aderman.tottenhamhotspurfc.data.dto.football.responses.StandingsResponse
+import by.aderman.tottenhamhotspurfc.data.dto.standings.StandingsResponse
 import by.aderman.tottenhamhotspurfc.domain.models.season.*
 import by.aderman.tottenhamhotspurfc.domain.models.team.Team
 import by.aderman.tottenhamhotspurfc.utils.Constants

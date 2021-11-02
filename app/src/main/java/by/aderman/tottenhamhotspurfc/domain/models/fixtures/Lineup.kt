@@ -4,6 +4,6 @@ data class Lineup(
     val team: Team,
     val coach: Coach,
     val formation: String?,
-    val startXI: List<StartXI>?,
-    val substitutes: List<Substitute>?
+    val startXI: List<LineupPlayer>?,
+    val substitutes: List<LineupPlayer>?
 )

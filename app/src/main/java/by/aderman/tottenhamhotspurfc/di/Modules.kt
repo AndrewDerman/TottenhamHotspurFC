@@ -42,7 +42,7 @@ import by.aderman.tottenhamhotspurfc.domain.usecases.season.GetTopAssistsUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.season.GetTopScorersUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetPlayerStatisticUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetTeamSquadUseCase
-import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.FixturesAdapter
+import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.*
 import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.AssistsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.GoalsAdapter
@@ -164,6 +164,9 @@ val applicationModules = module {
     factory { GoalsAdapter() }
     factory { AssistsAdapter() }
     factory { FixturesAdapter() }
+    factory { HomeLineupAdapter() }
+    factory { AwayLineupAdapter() }
+    factory { EventsAdapter() }
     factory { MarginItemDecoration() }
 
     factory { DeleteArticleUseCase(get()) }

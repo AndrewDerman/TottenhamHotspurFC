@@ -19,16 +19,6 @@
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/latestNewsFragment"
-        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.LatestNewsFragment"
-        android:label="News"
-        tools:layout="@layout/fragment_latest_news"/>
-    <fragment
-        android:id="@+id/savedNewsFragment"
-        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.SavedNewsFragment"
-        android:label="Bookmarks"
-        tools:layout="@layout/fragment_saved_news"/>
-    <fragment
         android:id="@+id/articleFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.ArticleFragment"
         android:label="Reading"
@@ -91,14 +81,6 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment
-        android:id="@+id/fixturesFragment"
-        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.FixturesFragment"
-        android:label="FixturesFragment" />
-    <fragment
-        android:id="@+id/resultsFragment"
-        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.ResultsFragment"
-        android:label="ResultsFragment" />
     <fragment
         android:id="@+id/fixtureInfoFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.FixtureInfoFragment"

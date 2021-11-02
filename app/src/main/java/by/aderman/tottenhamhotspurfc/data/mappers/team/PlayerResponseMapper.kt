@@ -1,6 +1,6 @@
 package by.aderman.tottenhamhotspurfc.data.mappers.team
 
-import by.aderman.tottenhamhotspurfc.data.dto.football.responses.PlayerResponse
+import by.aderman.tottenhamhotspurfc.data.dto.player.PlayerResponse
 import by.aderman.tottenhamhotspurfc.domain.models.team.*
 
 class PlayerResponseMapper {

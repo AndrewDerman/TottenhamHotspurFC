@@ -30,7 +30,7 @@ class NewsFragment : Fragment() {
         )
 
         val viewPagerAdapter =
-            ViewPagerAdapter(fragments, requireActivity().supportFragmentManager, lifecycle)
+            ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
 
         with(binding) {
             viewPager.adapter = viewPagerAdapter

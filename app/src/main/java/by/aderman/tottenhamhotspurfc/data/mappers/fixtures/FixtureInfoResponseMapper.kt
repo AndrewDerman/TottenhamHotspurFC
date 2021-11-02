@@ -1,6 +1,6 @@
 package by.aderman.tottenhamhotspurfc.data.mappers.fixtures
 
-import by.aderman.tottenhamhotspurfc.data.dto.football.responses.FixtureInfoResponse
+import by.aderman.tottenhamhotspurfc.data.dto.fixtureinfo.FixtureInfoResponse
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.*
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import by.aderman.tottenhamhotspurfc.utils.toLocalTime
@@ -94,10 +94,11 @@ class FixtureInfoResponseMapper {
                     type = it.type.orEmpty(),
                     detail = it.detail.orEmpty(),
                     comments = it.comments,
-                    team = Team(
+                    team = EventTeam(
                         id = it.team?.id ?: -1,
                         name = it.team?.name.orEmpty(),
-                        logo = it.team?.logo.orEmpty()
+                        logo = it.team?.logo.orEmpty(),
+                        isHome = it.team?.id == teams?.home?.id
                     ),
                     player = EventPlayer(
                         id = it.player?.id ?: -1,
@@ -123,30 +124,27 @@ class FixtureInfoResponseMapper {
                     ),
                     formation = it.formation,
                     startXI = it.startXI?.map { startXI ->
-                        StartXI(
-                            LineupPlayer(
-                                id = startXI.player?.id,
-                                name = startXI.player?.name,
-                                number = startXI.player?.number,
-                                pos = startXI.player?.pos,
-                                grid = startXI.player?.grid
-                            )
+                        LineupPlayer(
+                            id = startXI.player?.id,
+                            name = startXI.player?.name,
+                            number = startXI.player?.number,
+                            pos = startXI.player?.pos,
+                            grid = startXI.player?.grid,
                         )
                     },
                     substitutes = it.substitutes?.map { substitute ->
-                        Substitute(
-                            LineupPlayer(
-                                id = substitute.player?.id,
-                                name = substitute.player?.name,
-                                number = substitute.player?.number,
-                                pos = substitute.player?.pos,
-                                grid = substitute.player?.grid
-                            )
+                        LineupPlayer(
+                            id = substitute.player?.id,
+                            name = substitute.player?.name,
+                            number = substitute.player?.number,
+                            pos = substitute.player?.pos,
+                            grid = substitute.player?.grid,
                         )
                     }
                 )
             },
-            statistics = statistics?.map {
+            statistics = statistics?.map
+            {
                 Statistic(
                     team = Team(
                         id = it.team?.id ?: -1,

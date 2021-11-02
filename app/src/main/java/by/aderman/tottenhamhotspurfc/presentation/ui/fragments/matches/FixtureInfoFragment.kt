@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentFixtureInfoBinding
 import by.aderman.tottenhamhotspurfc.domain.common.Result
+import by.aderman.tottenhamhotspurfc.presentation.adapters.ViewPagerAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
 import by.aderman.tottenhamhotspurfc.utils.showSnackbar
+import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -29,9 +32,28 @@ class FixtureInfoFragment : Fragment() {
         loadData()
         observeData()
 
+        val fragments = arrayListOf(
+            EventsFragment.getNewInstance(args.currentFixtureId),
+            StatsFragment.getNewInstance(args.currentFixtureId),
+            LineupsFragment.getNewInstance(args.currentFixtureId)
+        )
+
+        val viewPagerAdapter =
+            ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
+
+        with(binding) {
+            viewPager.adapter = viewPagerAdapter
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                when (position) {
+                    0 -> tab.text = getString(R.string.fragment_fixture_info_events_tab)
+                    1 -> tab.text = getString(R.string.fragment_fixture_info_stats_tab)
+                    2 -> tab.text = getString(R.string.fragment_fixture_info_lineups_tab)
+                }
+            }.attach()
+        }
+
         return binding.root
     }
-
 
     private fun loadData() {
         viewModel.getFixtureInfo(args.currentFixtureId)

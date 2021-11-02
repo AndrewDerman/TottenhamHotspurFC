@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="homeLineup"
+            type="by.aderman.tottenhamhotspurfc.domain.models.fixtures.Lineup" />
+
+        <variable
+            name="awayLineup"
+            type="by.aderman.tottenhamhotspurfc.domain.models.fixtures.Lineup" />
+
+        <variable
+            name="viewModel"
+            type="by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel" />
+
+        <import
+            alias="view"
+            type="android.view.View" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.ui.fragments.matches.LineupsFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/no_content_message"
+                style="@style/FragmentStatsTitlesTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_lineups_no_content_message"
+                android:textAlignment="center"
+                android:visibility="@{viewModel.lineupsAvailableLiveData ? view.GONE : view.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.lineupsAvailableLiveData ? view.VISIBLE : view.GONE}">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/formation_title"
+                        style="@style/FragmentLineupsTitlesTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_lineups_formation_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/formation_home"
+                        style="@style/FragmentLineupsValuesTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_lineups_margin"
+                        android:text="@{homeLineup.formation}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/formation_title"
+                        tools:text="4-3-3" />
+
+                    <TextView
+                        android:id="@+id/formation_away"
+                        style="@style/FragmentLineupsValuesTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/fragment_lineups_margin"
+                        android:text="@{awayLineup.formation}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/formation_title"
+                        tools:text="4-2-3-1" />
+
+                    <TextView
+                        android:id="@+id/coach_title"
+                        style="@style/FragmentLineupsTitlesTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_lineups_coach_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/formation_home" />
+
+                    <ImageView
+                        android:id="@+id/coach_home_photo"
+                        android:layout_width="@dimen/fragment_lineups_coach_photo_size"
+                        android:layout_height="@dimen/fragment_lineups_coach_photo_size"
+                        android:layout_marginStart="@dimen/fragment_lineups_margin"
+                        android:layout_marginTop="@dimen/fragment_lineups_coach_margin"
+                        android:scaleType="centerCrop"
+                        app:error="@{@drawable/no_image_placeholder}"
+                        app:image="@{homeLineup.coach.photo}"
+                        app:layout_constraintBottom_toTopOf="@id/start_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/coach_title"
+                        tools:src="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/coach_home_name"
+                        style="@style/FragmentLineupsValuesTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_lineups_coach_margin"
+                        android:text="@{homeLineup.coach.name}"
+                        app:layout_constraintBottom_toBottomOf="@id/coach_home_photo"
+                        app:layout_constraintStart_toEndOf="@id/coach_home_photo"
+                        app:layout_constraintTop_toTopOf="@id/coach_home_photo"
+                        tools:text="Nunu Espirito Santo" />
+
+                    <ImageView
+                        android:id="@+id/coach_away_photo"
+                        android:layout_width="@dimen/fragment_lineups_coach_photo_size"
+                        android:layout_height="@dimen/fragment_lineups_coach_photo_size"
+                        android:layout_marginVertical="@dimen/fragment_lineups_coach_margin"
+                        android:layout_marginEnd="@dimen/fragment_lineups_margin"
+                        android:scaleType="centerCrop"
+                        app:error="@{@drawable/no_image_placeholder}"
+                        app:image="@{awayLineup.coach.photo}"
+                        app:layout_constraintBottom_toBottomOf="@id/coach_home_photo"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/coach_home_photo"
+                        tools:src="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/coach_away_name"
+                        style="@style/FragmentLineupsValuesTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/fragment_lineups_coach_margin"
+                        android:text="@{awayLineup.coach.name}"
+                        app:layout_constraintBottom_toBottomOf="@id/coach_away_photo"
+                        app:layout_constraintEnd_toStartOf="@id/coach_away_photo"
+                        app:layout_constraintTop_toTopOf="@id/coach_away_photo"
+                        tools:text="Jurgen Klopp" />
+
+                    <TextView
+                        android:id="@+id/start_title"
+                        style="@style/FragmentLineupsTitlesTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_lineups_coach_margin"
+                        android:text="@string/fragment_lineups_starting_xi_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/coach_home_photo" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_start_home"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_lineups_margin"
+                        app:layout_constraintBottom_toTopOf="@id/substitutes_title"
+                        app:layout_constraintEnd_toStartOf="@id/recycler_view_start_away"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/start_title" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_start_away"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/fragment_lineups_margin"
+                        app:layout_constraintBottom_toTopOf="@id/substitutes_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/recycler_view_start_home"
+                        app:layout_constraintTop_toBottomOf="@id/start_title" />
+
+                    <TextView
+                        android:id="@+id/substitutes_title"
+                        style="@style/FragmentLineupsTitlesTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_lineups_substitutes_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recycler_view_start_home" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_substitutes_home"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_lineups_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/recycler_view_substitutes_away"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/substitutes_title" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_substitutes_away"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/fragment_lineups_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/recycler_view_substitutes_home"
+                        app:layout_constraintTop_toBottomOf="@id/substitutes_title" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

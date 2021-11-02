@@ -75,13 +75,4 @@ class TeamViewModel(
         isGoalkeeper = value
         _isGoalkeeperLiveData.postValue(isGoalkeeper)
     }
-
-//    private fun checkResponse(response: Response<TeamResponse>): Result<TeamResponse> {
-//        if (response.isSuccessful) {
-//            response.body()?.let {
-//                return Result.Success(it)
-//            }
-//        }
-//        return Result.Error(response.message())
-//    }
 }

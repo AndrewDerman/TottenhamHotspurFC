@@ -35,6 +35,18 @@ class FixturesViewModel(
     val fixtureInfoLiveData: LiveData<Result<FixtureInfo>>
         get() = _fixtureInfoLiveData
 
+    private val _statisticAvailableLiveData = MutableLiveData(false)
+    val statisticAvailableLiveData: LiveData<Boolean>
+        get() = _statisticAvailableLiveData
+
+    private val _lineupsAvailableLiveData = MutableLiveData(false)
+    val lineupsAvailableLiveData: LiveData<Boolean>
+        get() = _lineupsAvailableLiveData
+
+    private val _eventsAvailableLiveData = MutableLiveData(false)
+    val eventsAvailableLiveData: LiveData<Boolean>
+        get() = _eventsAvailableLiveData
+
     fun getFixtures(fromDate: String) = viewModelScope.launch(Dispatchers.IO) {
         _fixturesLiveData.postValue(Result.Loading())
         if (hasInternetConnection()) {
@@ -109,4 +121,8 @@ class FixturesViewModel(
             )
         }
     }
+
+    fun changeStatisticStatus(value: Boolean) = _statisticAvailableLiveData.postValue(value)
+    fun changeLineupsStatus(value: Boolean) = _lineupsAvailableLiveData.postValue(value)
+    fun changeEventsStatus(value: Boolean) = _eventsAvailableLiveData.postValue(value)
 }

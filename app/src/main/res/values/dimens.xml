@@ -73,4 +73,22 @@
     <dimen name="fragment_fixture_info_center_margin_horizontal">4dp</dimen>
     <dimen name="fragment_fixture_info_margin_start">4dp</dimen>
 
+    <dimen name="fragment_stats_titles_margin_top">8dp</dimen>
+    <dimen name="fragment_stats_text_size">11sp</dimen>
+    <dimen name="fragment_stats_padding">16dp</dimen>
+    <dimen name="fragment_stats_progress_bar_heigth">8dp</dimen>
+
+    <dimen name="fragment_lineups_text_size">11sp</dimen>
+    <dimen name="fragment_lineups_coach_photo_size">30dp</dimen>
+    <dimen name="fragment_lineups_margin">16dp</dimen>
+    <dimen name="fragment_lineups_coach_margin">4dp</dimen>
+    <dimen name="fragment_lineups_titles_padding">4dp</dimen>
+
+    <dimen name="item_event_padding">16dp</dimen>
+    <dimen name="item_event_image_size">30dp</dimen>
+    <dimen name="item_event_text_size">14sp</dimen>
+    <dimen name="item_event_player_text_size">12sp</dimen>
+    <dimen name="item_event_margin">12dp</dimen>
+    <dimen name="item_event_player_margin">4dp</dimen>
+
 </resources>

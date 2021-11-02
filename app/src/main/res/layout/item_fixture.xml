@@ -104,9 +104,10 @@
                             <TextView
                                 android:id="@+id/home_score"
                                 style="@style/ItemFixtureScoreTextStyle"
+                                goals="@{fixture.goals.home}"
+                                status="@{fixture.status.longValue}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{Integer.toString(fixture.goals.home)}"
                                 app:layout_constraintEnd_toStartOf="@id/score_divider"
                                 app:layout_constraintHorizontal_chainStyle="packed"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -127,9 +128,10 @@
                             <TextView
                                 android:id="@+id/away_score"
                                 style="@style/ItemFixtureScoreTextStyle"
+                                goals="@{fixture.goals.away}"
+                                status="@{fixture.status.longValue}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{Integer.toString(fixture.goals.away)}"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/score_divider"
                                 app:layout_constraintTop_toTopOf="parent"

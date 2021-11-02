@@ -5,7 +5,7 @@ data class Event(
     val type: String,
     val detail: String,
     val comments: String?,
-    val team: Team,
+    val team: EventTeam,
     val player: EventPlayer,
     val assist: EventAssistant,
 )

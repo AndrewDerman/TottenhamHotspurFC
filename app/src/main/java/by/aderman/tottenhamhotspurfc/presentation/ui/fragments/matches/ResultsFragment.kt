@@ -35,7 +35,7 @@ class ResultsFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         setRecyclerView()
-        viewModel.getResults(getCurrentDateForApiRequest())
+        loadData()
         observeData()
 
         resultsAdapter.setOnItemClickListener {
@@ -44,7 +44,13 @@ class ResultsFragment : Fragment() {
             )
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener { loadData() }
+
         return binding.root
+    }
+
+    private fun loadData() {
+        viewModel.getResults(getCurrentDateForApiRequest())
     }
 
     private fun observeData() {
@@ -59,10 +65,12 @@ class ResultsFragment : Fragment() {
                                 || fixture.status.shortValue == FixtureStatus.WO.name
                     })
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Error -> {
                     it.message?.let { error -> showSnackbar(binding.root, error) }
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Loading -> viewModel.changeResponseReceivedStatus(false)
             }

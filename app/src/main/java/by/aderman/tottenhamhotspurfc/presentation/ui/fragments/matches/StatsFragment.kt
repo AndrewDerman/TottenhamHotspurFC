@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import by.aderman.tottenhamhotspurfc.databinding.FragmentStatsBinding
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
 import by.aderman.tottenhamhotspurfc.utils.Constants
-import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
+import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class StatsFragment : Fragment() {
 
     private lateinit var binding: FragmentStatsBinding
-    private val viewModel by viewModel<FixturesViewModel> { parametersOf() }
+    private val viewModel by lazy { requireParentFragment().getViewModel<FixturesViewModel>() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +23,7 @@ class StatsFragment : Fragment() {
         binding = FragmentStatsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        loadData()
+        //loadData()
         observeData()
 
         return binding.root

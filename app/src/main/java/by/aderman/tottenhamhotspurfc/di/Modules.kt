@@ -48,6 +48,7 @@ import by.aderman.tottenhamhotspurfc.presentation.adapters.season.AssistsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.GoalsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.TableAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.team.TeamAdapter
+import by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.MatchesFragment
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
 import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel

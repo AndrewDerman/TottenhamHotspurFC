@@ -28,11 +28,17 @@ class TableFragment : Fragment() {
         binding = FragmentTableBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.getLeagueTable()
+        loadData()
         setRecyclerView()
         observeData()
 
+        binding.swipeRefreshLayout.setOnRefreshListener { loadData() }
+
         return binding.root
+    }
+
+    private fun loadData() {
+        viewModel.getLeagueTable()
     }
 
     private fun observeData() {
@@ -41,10 +47,12 @@ class TableFragment : Fragment() {
                 is Result.Success -> {
                     tableAdapter.differ.submitList(it.data)
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Error -> {
                     it.message?.let { error -> showSnackbar(binding.root, error) }
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Loading -> viewModel.changeResponseReceivedStatus(false)
             }

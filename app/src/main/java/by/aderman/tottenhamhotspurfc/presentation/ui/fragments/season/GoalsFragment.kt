@@ -28,11 +28,17 @@ class GoalsFragment : Fragment() {
         binding = FragmentGoalsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.getTopScorers()
+        loadData()
         setRecyclerView()
         observeData()
 
+        binding.swipeRefreshLayout.setOnRefreshListener { loadData() }
+
         return binding.root
+    }
+
+    private fun loadData() {
+        viewModel.getTopScorers()
     }
 
     private fun observeData() {
@@ -41,10 +47,12 @@ class GoalsFragment : Fragment() {
                 is Result.Success -> {
                     goalsAdapter.differ.submitList(it.data)
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Error -> {
                     it.message?.let { error -> showSnackbar(binding.root, error) }
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Loading -> viewModel.changeResponseReceivedStatus(false)
             }

@@ -65,4 +65,9 @@ class NewsViewModel(
     fun deleteArticle(article: Article) = viewModelScope.launch(Dispatchers.IO) {
         deleteArticleUseCase.invoke(article)
     }
+
+    fun resetNewsList(){
+        newsPage = Constants.NEWS_API_QUERY_PAGE
+        articlesList.clear()
+    }
 }

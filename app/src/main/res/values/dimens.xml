@@ -65,6 +65,7 @@
     <dimen name="item_fixture_team_logo_width_height">70dp</dimen>
     <dimen name="item_fixture_center_margin_horizontal">4dp</dimen>
 
+    <dimen name="fragment_fixture_info_header_height">230dp</dimen>
     <dimen name="fragment_fixture_ingo_header_padding">8dp</dimen>
     <dimen name="fragment_fixture_info_margin">8dp</dimen>
     <dimen name="fragment_fixture_info_team_logo_width_height">70dp</dimen>

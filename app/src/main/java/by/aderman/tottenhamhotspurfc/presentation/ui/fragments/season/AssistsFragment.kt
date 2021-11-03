@@ -28,10 +28,17 @@ class AssistsFragment : Fragment() {
         binding = FragmentAssistsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.getTopAssists()
+        loadData()
         observeData()
         setRecyclerView()
+
+        binding.swipeRefreshLayout.setOnRefreshListener { loadData() }
+
         return binding.root
+    }
+
+    private fun loadData() {
+        viewModel.getTopAssists()
     }
 
     private fun observeData() {
@@ -40,10 +47,12 @@ class AssistsFragment : Fragment() {
                 is Result.Success -> {
                     assistsAdapter.differ.submitList(it.data)
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Error -> {
                     it.message?.let { error -> showSnackbar(binding.root, error) }
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Loading -> viewModel.changeResponseReceivedStatus(false)
             }

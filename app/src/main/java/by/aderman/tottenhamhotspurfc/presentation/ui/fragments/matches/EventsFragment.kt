@@ -11,13 +11,12 @@ import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.EventsAdapte
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
+import org.koin.android.viewmodel.ext.android.getViewModel
 
 class EventsFragment : Fragment() {
 
     private lateinit var binding: FragmentEventsBinding
-    private val viewModel by viewModel<FixturesViewModel> { parametersOf() }
+    private val viewModel by lazy { requireParentFragment().getViewModel<FixturesViewModel>() }
     private val eventsAdapter by inject<EventsAdapter>()
 
     override fun onCreateView(
@@ -28,7 +27,6 @@ class EventsFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         setRecyclerView()
-        loadData()
         observeData()
 
         return binding.root
@@ -46,10 +44,6 @@ class EventsFragment : Fragment() {
         })
     }
 
-    private fun loadData() {
-        arguments?.let { viewModel.getFixtureInfo(it.getInt(Constants.FRAGMENTS_ID_KEY)) }
-    }
-
     private fun setRecyclerView() {
         with(binding.recyclerView) {
             adapter = eventsAdapter
@@ -62,5 +56,9 @@ class EventsFragment : Fragment() {
             val args = Bundle().also { it.putInt(Constants.FRAGMENTS_ID_KEY, id) }
             return EventsFragment().also { it.arguments = args }
         }
+    }
+
+    private fun loadData() {
+        arguments?.let { viewModel.getFixtureInfo(it.getInt(Constants.FRAGMENTS_ID_KEY)) }
     }
 }

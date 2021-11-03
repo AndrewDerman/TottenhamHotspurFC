@@ -33,9 +33,9 @@ class FixtureInfoFragment : Fragment() {
         observeData()
 
         val fragments = arrayListOf(
-            EventsFragment.getNewInstance(args.currentFixtureId),
-            StatsFragment.getNewInstance(args.currentFixtureId),
-            LineupsFragment.getNewInstance(args.currentFixtureId)
+            EventsFragment(),
+            StatsFragment(),
+            LineupsFragment()
         )
 
         val viewPagerAdapter =
@@ -52,6 +52,8 @@ class FixtureInfoFragment : Fragment() {
             }.attach()
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener { loadData() }
+
         return binding.root
     }
 
@@ -65,10 +67,12 @@ class FixtureInfoFragment : Fragment() {
                 is Result.Success -> {
                     binding.fixture = it.data
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Error -> {
                     it.message?.let { error -> showSnackbar(binding.root, error) }
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Loading -> viewModel.changeResponseReceivedStatus(false)
             }

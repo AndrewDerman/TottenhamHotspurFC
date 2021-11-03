@@ -35,8 +35,8 @@ class LatestNewsFragment : Fragment() {
         binding = FragmentLatestNewsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.getNews()
         setRecyclerView()
+        loadData()
         observeData()
 
         newsAdapter.setOnItemClickListener {
@@ -45,7 +45,16 @@ class LatestNewsFragment : Fragment() {
             )
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.resetNewsList()
+            loadData()
+        }
+
         return binding.root
+    }
+
+    private fun loadData() {
+        viewModel.getNews()
     }
 
     private fun observeData() {
@@ -53,11 +62,13 @@ class LatestNewsFragment : Fragment() {
             when (it) {
                 is Result.Success -> {
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                     isLoading = false
                     newsAdapter.differ.submitList(it.data)
                 }
                 is Result.Error -> {
                     viewModel.changeResponseReceivedStatus(true)
+                    binding.swipeRefreshLayout.isRefreshing = false
                     isLoading = false
                     it.message?.let { error -> showSnackbar(binding.root, error) }
                 }
@@ -98,7 +109,7 @@ class LatestNewsFragment : Fragment() {
 
         override fun onBottomReached() {
             if (!isLoading) {
-                viewModel.getNews()
+                loadData()
                 isScrolling = false
             }
         }

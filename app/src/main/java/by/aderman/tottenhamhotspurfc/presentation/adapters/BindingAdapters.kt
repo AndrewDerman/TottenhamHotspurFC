@@ -185,10 +185,10 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter(value = ["color", "eventType", "playerName"], requireAll = true)
     fun setEventPlayerText(view: TextView, color: Int, eventType: String, playerName: String) {
+        view.text = playerName
         if (eventType == EventTypes.SUBST.value) {
-            view.text = playerName
             view.setTextColor(color)
-        } else view.text = playerName
+        }
     }
 
     @JvmStatic
@@ -202,11 +202,11 @@ object BindingAdapters {
     fun setEventAssistText(view: TextView, assistant: String?, eventType: String, color: Int) {
         if (assistant == null) {
             view.visibility = View.GONE
-        } else if (eventType == EventTypes.SUBST.value) {
-            view.text = assistant
-            view.setTextColor(color)
         } else {
             view.text = assistant
+        }
+        if (eventType == EventTypes.SUBST.value) {
+            view.setTextColor(color)
         }
     }
 }

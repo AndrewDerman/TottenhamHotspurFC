@@ -58,7 +58,7 @@
         <TextView
             android:id="@+id/event_player"
             style="@style/ItemEventPlayerTextStyle"
-            color="@{@color/th_red}"
+            color="@{@color/th_accent_green}"
             eventType="@{event.type}"
             playerName="@{event.player.name}"
             android:layout_width="0dp"
@@ -87,7 +87,7 @@
             android:id="@+id/event_assistant"
             style="@style/ItemEventPlayerTextStyle"
             assistant="@{event.assist.name}"
-            color="@{@color/th_accent_green}"
+            color="@{@color/th_red}"
             eventType="@{event.type}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentFixturesBinding
 import by.aderman.tottenhamhotspurfc.domain.common.Result
+import by.aderman.tottenhamhotspurfc.domain.models.fixtures.Fixture
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureStatus
+import by.aderman.tottenhamhotspurfc.notifications.AlarmScheduler
 import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.FixturesAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
 import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
@@ -57,7 +59,8 @@ class FixturesFragment : Fragment() {
         viewModel.fixturesLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is Result.Success -> {
-                    fixturesAdapter.differ.submitList(it.data?.filter { fixture ->
+                    val fixtures = it.data
+                    fixturesAdapter.differ.submitList(fixtures?.filter { fixture ->
                         fixture.status.shortValue != FixtureStatus.FT.name
                                 && fixture.status.shortValue != FixtureStatus.AET.name
                                 && fixture.status.shortValue != FixtureStatus.PEN.name
@@ -66,6 +69,7 @@ class FixturesFragment : Fragment() {
                     })
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
+                    scheduleAlarms(fixtures)
                 }
                 is Result.Error -> {
                     it.message?.let { error -> showSnackbar(binding.root, error) }
@@ -75,6 +79,17 @@ class FixturesFragment : Fragment() {
                 is Result.Loading -> viewModel.changeResponseReceivedStatus(false)
             }
         })
+    }
+
+    private fun scheduleAlarms(fixtures: List<Fixture>?) {
+        val fixturesToAlarm = fixtures?.filter { fixture ->
+            fixture.status.shortValue == FixtureStatus.NS.name
+                    || fixture.status.shortValue == FixtureStatus.PST.name
+        }
+        if (!fixturesToAlarm.isNullOrEmpty()) {
+            for (fixture in fixturesToAlarm)
+                AlarmScheduler.scheduleAlarm(requireContext(), fixture)
+        }
     }
 
     private fun setRecyclerView() {

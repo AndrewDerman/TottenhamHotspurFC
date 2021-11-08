@@ -124,4 +124,8 @@
 
     <string name="item_event_image_description">Event image</string>
     <string name="item_event_assist_title">Assist:</string>
+
+    <string name="notifications_fixtures_title">The match starts!</string>
+    <string name="notifications_fixtures_message">%s - %s at %s.</string>
+    <string name="notifications_intent_type">%d-%d-%d</string>
 </resources>

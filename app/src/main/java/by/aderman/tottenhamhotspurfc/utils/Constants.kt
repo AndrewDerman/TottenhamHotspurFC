@@ -31,4 +31,14 @@ object Constants {
     const val FIXTURES_REQUEST_DATE_FORMAT = "yyyy-MM-dd"
     const val FOOTBALL_COUNTRY_NAME = "England"
     const val FOOTBALL_LEAGUE_NAME = "Premier League"
+
+    //Notifications
+    const val NOTIFICATIONS_CHANNEL_ID = "THFC_01"
+    const val NOTIFICATIONS_CHANNEL_NAME = "Tottenham Hotspur notifications channel"
+    const val NOTIFICATIONS_CHANNEL_DESC = "Matches starting notifications"
+    const val NOTIFICATIONS_ID = 1882
+    const val NOTIFICATIONS_REQUEST_CODE = 0
+    const val NOTIFICATIONS_ACTION = "Notifications action"
+    const val NOTIFICATIONS_TITLE = "Notification title"
+    const val NOTIFICATIONS_MESSAGE = "Notification message"
 }

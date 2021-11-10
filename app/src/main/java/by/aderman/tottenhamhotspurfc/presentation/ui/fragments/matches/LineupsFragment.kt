@@ -13,9 +13,6 @@ import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesVi
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.getViewModel
-import org.koin.android.viewmodel.ext.android.sharedViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 
 class LineupsFragment : Fragment() {
 
@@ -70,16 +67,5 @@ class LineupsFragment : Fragment() {
             recyclerViewSubstitutesAway.adapter = awaySubstitutesAdapter
             recyclerViewSubstitutesAway.layoutManager = LinearLayoutManager(requireContext())
         }
-    }
-
-    companion object {
-        fun getNewInstance(id: Int): LineupsFragment {
-            val args = Bundle().also { it.putInt(Constants.FRAGMENTS_ID_KEY, id) }
-            return LineupsFragment().also { it.arguments = args }
-        }
-    }
-
-    private fun loadData() {
-        arguments?.let { viewModel.getFixtureInfo(it.getInt(Constants.FRAGMENTS_ID_KEY)) }
     }
 }

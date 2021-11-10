@@ -15,11 +15,15 @@ import by.aderman.tottenhamhotspurfc.utils.showSnackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import org.koin.android.ext.android.inject
 
 class FixtureInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentFixtureInfoBinding
     private val viewModel by viewModel<FixturesViewModel> { parametersOf() }
+    private val eventsFragment by inject<EventsFragment>()
+    private val statsFragment by inject<StatsFragment>()
+    private val lineupsFragment by inject<LineupsFragment>()
     private val args by navArgs<FixtureInfoFragmentArgs>()
 
     override fun onCreateView(
@@ -33,9 +37,9 @@ class FixtureInfoFragment : Fragment() {
         observeData()
 
         val fragments = arrayListOf(
-            EventsFragment(),
-            StatsFragment(),
-            LineupsFragment()
+            eventsFragment,
+            statsFragment,
+            lineupsFragment
         )
 
         val viewPagerAdapter =

@@ -9,7 +9,6 @@ import by.aderman.tottenhamhotspurfc.databinding.FragmentStatsBinding
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import org.koin.android.viewmodel.ext.android.getViewModel
-import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class StatsFragment : Fragment() {
 
@@ -23,14 +22,9 @@ class StatsFragment : Fragment() {
         binding = FragmentStatsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        //loadData()
         observeData()
 
         return binding.root
-    }
-
-    private fun loadData() {
-        arguments?.let { viewModel.getFixtureInfo(it.getInt(Constants.FRAGMENTS_ID_KEY)) }
     }
 
     private fun observeData() {
@@ -44,12 +38,5 @@ class StatsFragment : Fragment() {
                 viewModel.changeStatisticStatus(false)
             }
         })
-    }
-
-    companion object {
-        fun getNewInstance(id: Int): StatsFragment {
-            val args = Bundle().also { it.putInt(Constants.FRAGMENTS_ID_KEY, id) }
-            return StatsFragment().also { it.arguments = args }
-        }
     }
 }

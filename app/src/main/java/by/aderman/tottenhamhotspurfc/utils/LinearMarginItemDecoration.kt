@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class MarginItemDecoration : RecyclerView.ItemDecoration() {
+class LinearMarginItemDecoration : RecyclerView.ItemDecoration() {
 
     var margin: Int = 0
 

@@ -1,9 +1,5 @@
 package by.aderman.tottenhamhotspurfc.domain.models.fixtures
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class League(
     val id: Int,
     val country: String,
@@ -12,4 +8,4 @@ data class League(
     val name: String,
     val season: Int,
     val round: String
-) : Parcelable
+)

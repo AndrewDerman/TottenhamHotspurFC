@@ -24,7 +24,7 @@
                 motion:framePosition="100"
                 motion:motionTarget="@+id/image_view" />
         </KeyFrameSet>
-        <OnSwipe motion:touchAnchorId="@+id/recycler_view" />
+        <OnSwipe motion:touchAnchorId="@+id/swipe_refresh_layout" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

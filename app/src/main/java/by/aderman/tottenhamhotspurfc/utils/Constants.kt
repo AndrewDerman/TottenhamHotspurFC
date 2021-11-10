@@ -7,7 +7,12 @@ object Constants {
     const val TIMEZONE_UTC = "UTC"
     const val OUTPUT_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss"
     const val API_TIMEOUT_IN_SECONDS = 30L
-    const val FRAGMENTS_ID_KEY = "id"
+    const val FIXTURES_ID_KEY = "fixture id"
+    const val GRID_SPAN_COUNT = 2
+    const val PREFERENCES_FILE_KEY = "by.aderman.shared_preferences"
+    const val PLAYERS_UPDATE_TIME_KEY = "by.aderman.players_last_time_loading_from_remote"
+    const val WEEK_TIME_IN_MILLIS = 604800000L
+    const val PLAYERS_UPDATE_TIME_DEFAULT_VALUE = 0L
 
     //News
     const val NEWS_BASE_URL = "https://newsapi.org/v2/"
@@ -31,14 +36,16 @@ object Constants {
     const val FIXTURES_REQUEST_DATE_FORMAT = "yyyy-MM-dd"
     const val FOOTBALL_COUNTRY_NAME = "England"
     const val FOOTBALL_LEAGUE_NAME = "Premier League"
+    const val FIXTURE_ENTITY_TABLE_NAME = "fixtures"
+    const val RESULT_ENTITY_TABLE_NAME = "results"
+    const val PLAYER_ENTITY_TABLE_NAME = "players"
 
     //Notifications
     const val NOTIFICATIONS_CHANNEL_ID = "THFC_01"
     const val NOTIFICATIONS_CHANNEL_NAME = "Tottenham Hotspur notifications channel"
     const val NOTIFICATIONS_CHANNEL_DESC = "Matches starting notifications"
-    const val NOTIFICATIONS_ID = 1882
     const val NOTIFICATIONS_REQUEST_CODE = 0
     const val NOTIFICATIONS_ACTION = "Notifications action"
-    const val NOTIFICATIONS_TITLE = "Notification title"
-    const val NOTIFICATIONS_MESSAGE = "Notification message"
+    const val NOTIFICATIONS_KEY_ID = "Fixture id"
+    const val ACTION_BOOT_COMPLETED = "android.intent.action.BOOT_COMPLETED"
 }

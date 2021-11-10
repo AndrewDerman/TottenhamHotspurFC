@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import by.aderman.tottenhamhotspurfc.R
+import by.aderman.tottenhamhotspurfc.data.dto.fixtures.FixtureLocal
 import by.aderman.tottenhamhotspurfc.presentation.ui.activities.MainActivity
 import by.aderman.tottenhamhotspurfc.utils.Constants
 
@@ -33,13 +34,19 @@ object NotificationHelper {
         }
     }
 
-    fun createNotification(context: Context, title: String, message: String) {
-        val notificationId = Constants.NOTIFICATIONS_ID
+    fun createNotificationForFixture(context: Context, fixture: FixtureLocal) {
         val builder =
             NotificationCompat.Builder(context, Constants.NOTIFICATIONS_CHANNEL_ID).apply {
                 setSmallIcon(R.mipmap.ic_launcher)
-                setContentTitle(title)
-                setContentText(message)
+                setContentTitle(context.getString(R.string.notifications_fixtures_title))
+                setContentText(
+                    context.getString(
+                        R.string.notifications_fixtures_message,
+                        fixture.homeTeamName,
+                        fixture.awayTeamName,
+                        fixture.venueName
+                    )
+                )
                 setAutoCancel(false)
 
                 val intent = Intent(context, MainActivity::class.java)
@@ -56,7 +63,6 @@ object NotificationHelper {
 
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val notification = builder.build()
-        notificationManager.notify(notificationId, notification)
+        notificationManager.notify(fixture.id, builder.build())
     }
 }

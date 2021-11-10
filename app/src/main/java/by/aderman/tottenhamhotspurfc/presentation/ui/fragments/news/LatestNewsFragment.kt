@@ -14,7 +14,7 @@ import by.aderman.tottenhamhotspurfc.databinding.FragmentLatestNewsBinding
 import by.aderman.tottenhamhotspurfc.domain.common.Result
 import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
-import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
+import by.aderman.tottenhamhotspurfc.utils.LinearMarginItemDecoration
 import by.aderman.tottenhamhotspurfc.utils.OnBottomScrollListener
 import by.aderman.tottenhamhotspurfc.utils.showSnackbar
 import org.koin.android.ext.android.inject
@@ -26,7 +26,7 @@ class LatestNewsFragment : Fragment() {
     private lateinit var binding: FragmentLatestNewsBinding
     private val viewModel by viewModel<NewsViewModel> { parametersOf() }
     private val newsAdapter by inject<NewsAdapter>()
-    private val itemDecoration by inject<MarginItemDecoration>()
+    private val itemDecoration by inject<LinearMarginItemDecoration>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

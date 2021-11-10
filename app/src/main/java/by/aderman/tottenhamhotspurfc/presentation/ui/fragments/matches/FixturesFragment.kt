@@ -15,7 +15,7 @@ import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureStatus
 import by.aderman.tottenhamhotspurfc.notifications.AlarmScheduler
 import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.FixturesAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
-import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
+import by.aderman.tottenhamhotspurfc.utils.LinearMarginItemDecoration
 import by.aderman.tottenhamhotspurfc.utils.getCurrentDateForApiRequest
 import by.aderman.tottenhamhotspurfc.utils.showSnackbar
 import org.koin.android.ext.android.inject
@@ -27,7 +27,8 @@ class FixturesFragment : Fragment() {
     private lateinit var binding: FragmentFixturesBinding
     private val viewModel by viewModel<FixturesViewModel> { parametersOf() }
     private val fixturesAdapter by inject<FixturesAdapter>()
-    private val itemDecoration by inject<MarginItemDecoration>()
+    private val itemDecoration by inject<LinearMarginItemDecoration>()
+    private val fixturesFromRemote = mutableListOf<Fixture>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,17 +60,20 @@ class FixturesFragment : Fragment() {
         viewModel.fixturesLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is Result.Success -> {
-                    val fixtures = it.data
-                    fixturesAdapter.differ.submitList(fixtures?.filter { fixture ->
-                        fixture.status.shortValue != FixtureStatus.FT.name
-                                && fixture.status.shortValue != FixtureStatus.AET.name
-                                && fixture.status.shortValue != FixtureStatus.PEN.name
-                                && fixture.status.shortValue != FixtureStatus.AWD.name
-                                && fixture.status.shortValue != FixtureStatus.WO.name
-                    })
+                    it.data?.let { fixturesList ->
+                        fixturesFromRemote.addAll(fixturesList.filter { fixture ->
+                            fixture.status.shortValue != FixtureStatus.FT.name
+                                    && fixture.status.shortValue != FixtureStatus.AET.name
+                                    && fixture.status.shortValue != FixtureStatus.PEN.name
+                                    && fixture.status.shortValue != FixtureStatus.AWD.name
+                                    && fixture.status.shortValue != FixtureStatus.WO.name
+                        })
+                    }
+                    fixturesAdapter.differ.submitList(fixturesFromRemote)
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
-                    scheduleAlarms(fixtures)
+                    viewModel.getSavedFixtures()
+                    observeSavedFixtures()
                 }
                 is Result.Error -> {
                     it.message?.let { error -> showSnackbar(binding.root, error) }
@@ -81,15 +85,32 @@ class FixturesFragment : Fragment() {
         })
     }
 
-    private fun scheduleAlarms(fixtures: List<Fixture>?) {
-        val fixturesToAlarm = fixtures?.filter { fixture ->
-            fixture.status.shortValue == FixtureStatus.NS.name
-                    || fixture.status.shortValue == FixtureStatus.PST.name
-        }
-        if (!fixturesToAlarm.isNullOrEmpty()) {
-            for (fixture in fixturesToAlarm)
-                AlarmScheduler.scheduleAlarm(requireContext(), fixture)
-        }
+    private fun observeSavedFixtures() {
+        viewModel.savedFixturesLiveData.observe(viewLifecycleOwner, { savedFixtures ->
+            if (savedFixtures.isNullOrEmpty()) {
+                viewModel.saveFixtures(fixturesFromRemote.filter { fixture ->
+                    fixture.status.shortValue == FixtureStatus.NS.name
+                            || fixture.status.shortValue == FixtureStatus.PST.name
+                })
+                viewModel.getSavedFixtures()
+            } else {
+                for (savedFixture in savedFixtures) {
+                    if (!savedFixture.hasAlarm) {
+                        AlarmScheduler.scheduleAlarm(requireContext(), savedFixture)
+                        savedFixture.hasAlarm = true
+                        viewModel.updateFixture(savedFixture)
+                    } else {
+                        val fixtureFromRemote =
+                            fixturesFromRemote.first { it.id == savedFixture.id }
+                        if (savedFixture.timestamp != fixtureFromRemote.timestamp) {
+                            savedFixture.timestamp = fixtureFromRemote.timestamp
+                            AlarmScheduler.scheduleAlarm(requireContext(), savedFixture)
+                            viewModel.updateFixture(savedFixture)
+                        }
+                    }
+                }
+            }
+        })
     }
 
     private fun setRecyclerView() {

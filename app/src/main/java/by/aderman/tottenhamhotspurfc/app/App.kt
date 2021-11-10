@@ -8,6 +8,7 @@ import by.aderman.tottenhamhotspurfc.di.*
 import by.aderman.tottenhamhotspurfc.notifications.NotificationHelper
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
 
 
@@ -15,9 +16,14 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initKoin()
+        createNotificationsChannel()
+    }
 
+    private fun initKoin() {
         startKoin {
             androidContext(this@App)
+            fragmentFactory()
             modules(
                 listOf(
                     databaseModules,
@@ -28,7 +34,9 @@ class App : Application() {
                 )
             )
         }
+    }
 
+    private fun createNotificationsChannel() {
         NotificationHelper.createNotificationChannel(
             this,
             Constants.NOTIFICATIONS_CHANNEL_ID,

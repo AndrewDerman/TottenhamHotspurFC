@@ -13,7 +13,7 @@ import by.aderman.tottenhamhotspurfc.domain.common.Result
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureStatus
 import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.FixturesAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
-import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
+import by.aderman.tottenhamhotspurfc.utils.LinearMarginItemDecoration
 import by.aderman.tottenhamhotspurfc.utils.getCurrentDateForApiRequest
 import by.aderman.tottenhamhotspurfc.utils.showSnackbar
 import org.koin.android.ext.android.inject
@@ -25,7 +25,7 @@ class ResultsFragment : Fragment() {
     private lateinit var binding: FragmentResultsBinding
     private val viewModel by viewModel<FixturesViewModel> { parametersOf() }
     private val resultsAdapter by inject<FixturesAdapter>()
-    private val itemDecoration by inject<MarginItemDecoration>()
+    private val itemDecoration by inject<LinearMarginItemDecoration>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +36,7 @@ class ResultsFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         setRecyclerView()
         loadData()
-        observeData()
+        observeSavedResults()
 
         resultsAdapter.setOnItemClickListener {
             findNavController().navigate(
@@ -49,23 +49,40 @@ class ResultsFragment : Fragment() {
         return binding.root
     }
 
-    private fun loadData() {
-        viewModel.getResults(getCurrentDateForApiRequest())
+    private fun loadData() = viewModel.getSavedResults()
+
+    private fun observeSavedResults() {
+        viewModel.savedResultsLiveData.observe(viewLifecycleOwner, { savedResults ->
+            if (!savedResults.isNullOrEmpty()) {
+                resultsAdapter.differ.submitList(savedResults.reversed())
+                viewModel.changeResponseReceivedStatus(true)
+                binding.swipeRefreshLayout.isRefreshing = false
+            } else {
+                viewModel.getResults(getCurrentDateForApiRequest())
+                observeResultsFromRemote()
+            }
+        })
     }
 
-    private fun observeData() {
+    private fun observeResultsFromRemote() {
         viewModel.resultsLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is Result.Success -> {
-                    resultsAdapter.differ.submitList(it.data?.reversed()?.filter { fixture ->
+                    val fixtures = it.data?.reversed()?.filter { fixture ->
                         fixture.status.shortValue == FixtureStatus.FT.name
                                 || fixture.status.shortValue == FixtureStatus.AET.name
                                 || fixture.status.shortValue == FixtureStatus.PEN.name
                                 || fixture.status.shortValue == FixtureStatus.AWD.name
                                 || fixture.status.shortValue == FixtureStatus.WO.name
-                    })
+                    }
+                    resultsAdapter.differ.submitList(fixtures)
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
+
+                    if (fixtures != null) {
+                        for (fixture in fixtures)
+                            viewModel.saveResult(fixture)
+                    }
                 }
                 is Result.Error -> {
                     it.message?.let { error -> showSnackbar(binding.root, error) }

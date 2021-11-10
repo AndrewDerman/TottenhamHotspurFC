@@ -16,7 +16,8 @@ import org.koin.android.ext.android.inject
 class NewsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsBinding
-    private val newsAdapter by inject<NewsAdapter>()
+    private val latestNewsFragment by inject<LatestNewsFragment>()
+    private val savedNewsFragment by inject<SavedNewsFragment>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +25,7 @@ class NewsFragment : Fragment() {
     ): View? {
         binding = FragmentNewsBinding.inflate(inflater, container, false)
 
-        val fragments = arrayListOf(
-            LatestNewsFragment(),
-            SavedNewsFragment()
-        )
+        val fragments = arrayListOf(latestNewsFragment, savedNewsFragment)
 
         val viewPagerAdapter =
             ViewPagerAdapter(fragments, childFragmentManager, lifecycle)

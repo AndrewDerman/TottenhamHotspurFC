@@ -10,7 +10,9 @@ import by.aderman.tottenhamhotspurfc.domain.common.Result
 import by.aderman.tottenhamhotspurfc.domain.models.team.Player
 import by.aderman.tottenhamhotspurfc.domain.models.team.PlayerWithStats
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetPlayerStatisticUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetSavedTeamSquadUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetTeamSquadUseCase
+import by.aderman.tottenhamhotspurfc.domain.usecases.team.SavePlayerUseCase
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.BasicViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +20,8 @@ import kotlinx.coroutines.launch
 class TeamViewModel(
     private val getTeamSquadUseCase: GetTeamSquadUseCase,
     private val getPlayerStatisticUseCase: GetPlayerStatisticUseCase,
+    private val getSavedTeamSquadUseCase: GetSavedTeamSquadUseCase,
+    private val savePlayerUseCase: SavePlayerUseCase,
     application: Application
 ) :
     BasicViewModel(application) {
@@ -28,6 +32,10 @@ class TeamViewModel(
     val teamLiveData: LiveData<Result<List<Player>>>
         get() = _teamLiveData
 
+    private val _savedTeamLiveData = MutableLiveData<List<Player>>()
+    val savedTeamLiveData: LiveData<List<Player>>
+        get() = _savedTeamLiveData
+
     private val _playerLiveData = MutableLiveData<Result<PlayerWithStats>>()
     val playerLiveData: LiveData<Result<PlayerWithStats>>
         get() = _playerLiveData
@@ -36,7 +44,7 @@ class TeamViewModel(
     val isGoalkeeperLiveData: LiveData<Boolean>
         get() = _isGoalkeeperLiveData
 
-    fun getTeamSquad() = viewModelScope.launch(Dispatchers.IO) {
+    fun getRemoteTeamSquad() = viewModelScope.launch(Dispatchers.IO) {
         _teamLiveData.postValue(Result.Loading())
         if (hasInternetConnection()) {
             when (val response = getTeamSquadUseCase.invoke()) {
@@ -56,7 +64,7 @@ class TeamViewModel(
     fun getPlayerStatistic(playerId: Int) = viewModelScope.launch(Dispatchers.IO) {
         _playerLiveData.postValue(Result.Loading())
         if (hasInternetConnection()) {
-            when(val response = getPlayerStatisticUseCase.invoke(playerId)){
+            when (val response = getPlayerStatisticUseCase.invoke(playerId)) {
                 is Result.Success -> _playerLiveData.postValue(response)
                 is Result.Error -> _playerLiveData.postValue(response.message?.let { Result.Error(it) })
             }
@@ -74,5 +82,13 @@ class TeamViewModel(
     fun changeGoalkeeperStatus(value: Boolean) {
         isGoalkeeper = value
         _isGoalkeeperLiveData.postValue(isGoalkeeper)
+    }
+
+    fun getSavedTeamSquad() = viewModelScope.launch(Dispatchers.IO) {
+        _savedTeamLiveData.postValue(getSavedTeamSquadUseCase.invoke())
+    }
+
+    fun savePlayer(player: Player) = viewModelScope.launch(Dispatchers.IO) {
+        savePlayerUseCase.invoke(player)
     }
 }

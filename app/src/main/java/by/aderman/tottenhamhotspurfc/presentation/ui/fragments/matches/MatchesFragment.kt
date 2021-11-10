@@ -9,10 +9,13 @@ import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentMatchesBinding
 import by.aderman.tottenhamhotspurfc.presentation.adapters.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import org.koin.android.ext.android.inject
 
 class MatchesFragment : Fragment() {
 
     private lateinit var binding: FragmentMatchesBinding
+    private val fixturesFragment by inject<FixturesFragment>()
+    private val resultsFragment by inject<ResultsFragment>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,7 +23,7 @@ class MatchesFragment : Fragment() {
     ): View? {
         binding = FragmentMatchesBinding.inflate(inflater, container, false)
 
-        val fragments = arrayListOf(FixturesFragment(), ResultsFragment())
+        val fragments = arrayListOf(fixturesFragment, resultsFragment)
 
         val viewPagerAdapter =
             ViewPagerAdapter(fragments, childFragmentManager, lifecycle)

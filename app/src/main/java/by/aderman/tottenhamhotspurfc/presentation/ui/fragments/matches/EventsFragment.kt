@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.aderman.tottenhamhotspurfc.databinding.FragmentEventsBinding
 import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.EventsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
-import by.aderman.tottenhamhotspurfc.utils.Constants
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.getViewModel
 
@@ -49,16 +48,5 @@ class EventsFragment : Fragment() {
             adapter = eventsAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-    }
-
-    companion object {
-        fun getNewInstance(id: Int): EventsFragment {
-            val args = Bundle().also { it.putInt(Constants.FRAGMENTS_ID_KEY, id) }
-            return EventsFragment().also { it.arguments = args }
-        }
-    }
-
-    private fun loadData() {
-        arguments?.let { viewModel.getFixtureInfo(it.getInt(Constants.FRAGMENTS_ID_KEY)) }
     }
 }

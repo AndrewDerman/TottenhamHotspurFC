@@ -14,7 +14,7 @@ import by.aderman.tottenhamhotspurfc.databinding.FragmentSavedNewsBinding
 import by.aderman.tottenhamhotspurfc.domain.models.news.Article
 import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
-import by.aderman.tottenhamhotspurfc.utils.MarginItemDecoration
+import by.aderman.tottenhamhotspurfc.utils.LinearMarginItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -25,7 +25,7 @@ class SavedNewsFragment : Fragment() {
     private lateinit var binding: FragmentSavedNewsBinding
     private val viewModel by viewModel<NewsViewModel> { parametersOf() }
     private val newsAdapter by inject<NewsAdapter>()
-    private val itemDecoration by inject<MarginItemDecoration>()
+    private val itemDecoration by inject<LinearMarginItemDecoration>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -7,6 +7,7 @@ import by.aderman.tottenhamhotspurfc.domain.models.team.PlayerWithStats
 interface TeamRepository {
 
     suspend fun getTeamSquad(): Result<List<Player>>
-
     suspend fun getPlayerStatistic(playerId: Int): Result<PlayerWithStats>
+    suspend fun getSavedTeamSquad(): List<Player>
+    suspend fun savePlayer(player: Player)
 }

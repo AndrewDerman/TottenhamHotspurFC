@@ -1,6 +1,5 @@
 package by.aderman.tottenhamhotspurfc.data.dto.fixtureinfo
 
-
 import com.google.gson.annotations.SerializedName
 
 data class FixtureInfoResponse(

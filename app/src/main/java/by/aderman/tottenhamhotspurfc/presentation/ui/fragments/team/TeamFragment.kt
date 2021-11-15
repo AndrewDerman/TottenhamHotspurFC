@@ -31,7 +31,7 @@ class TeamFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTeamBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -45,14 +45,15 @@ class TeamFragment : Fragment() {
             )
         }
 
-        binding.swipeRefreshLayout.setOnRefreshListener { loadData() }
+        binding.swipeRefreshLayout.apply {
+            setColorSchemeResources(R.color.th_secondary_blue)
+            setOnRefreshListener { loadData() }
+        }
 
         return binding.root
     }
 
-    private fun loadData() {
-        viewModel.getSavedTeamSquad()
-    }
+    private fun loadData() = viewModel.getSavedTeamSquad()
 
     private fun observeSavedData() {
         viewModel.savedTeamLiveData.observe(viewLifecycleOwner, { playersList ->
@@ -73,10 +74,10 @@ class TeamFragment : Fragment() {
     }
 
     private fun observeRemoteData() {
-        viewModel.teamLiveData.observe(viewLifecycleOwner, {
-            when (it) {
+        viewModel.teamLiveData.observe(viewLifecycleOwner, { result ->
+            when (result) {
                 is Result.Success -> {
-                    val remotePlayers = it.data?.filter { player ->
+                    val remotePlayers = result.data?.filter { player ->
                         player.number != null
                     }
                     teamAdapter.differ.submitList(remotePlayers?.sortedBy { player ->
@@ -97,7 +98,7 @@ class TeamFragment : Fragment() {
                     }
                 }
                 is Result.Error -> {
-                    it.message?.let { error -> showSnackbar(binding.root, error) }
+                    result.message?.let { error -> showSnackbar(binding.root, error) }
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
                 }

@@ -11,7 +11,7 @@ import by.aderman.tottenhamhotspurfc.domain.models.news.Article
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(val binding: ItemArticleBinding) :
-            RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -39,13 +39,11 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Article>() {
 
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.url == newItem.url
-        }
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =
+            oldItem.url == newItem.url
 
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
+            oldItem == newItem
     }
 
     val differ = AsyncListDiffer(this, diffCallback)

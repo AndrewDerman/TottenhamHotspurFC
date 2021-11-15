@@ -7,7 +7,7 @@ import androidx.room.Room
 import by.aderman.tottenhamhotspurfc.data.api.football.FootballApiClient
 import by.aderman.tottenhamhotspurfc.data.api.football.FootballInterceptor
 import by.aderman.tottenhamhotspurfc.data.api.news.NewsApiClient
-import by.aderman.tottenhamhotspurfc.data.db.*
+import by.aderman.tottenhamhotspurfc.data.db.Database
 import by.aderman.tottenhamhotspurfc.data.mappers.fixtures.FixtureInfoResponseMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.fixtures.FixturesLocalMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.fixtures.FixturesResponseMapper
@@ -42,7 +42,10 @@ import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetPlayerStatisticUseC
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetSavedTeamSquadUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetTeamSquadUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.SavePlayerUseCase
-import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.*
+import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.AwayLineupAdapter
+import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.EventsAdapter
+import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.FixturesAdapter
+import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.HomeLineupAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.AssistsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.GoalsAdapter
@@ -51,13 +54,16 @@ import by.aderman.tottenhamhotspurfc.presentation.adapters.team.TeamAdapter
 import by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.*
 import by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.LatestNewsFragment
 import by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.SavedNewsFragment
+import by.aderman.tottenhamhotspurfc.presentation.ui.fragments.season.AssistsFragment
+import by.aderman.tottenhamhotspurfc.presentation.ui.fragments.season.GoalsFragment
+import by.aderman.tottenhamhotspurfc.presentation.ui.fragments.season.TableFragment
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
-import by.aderman.tottenhamhotspurfc.utils.LinearMarginItemDecoration
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.season.SeasonViewModel
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.team.TeamViewModel
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import by.aderman.tottenhamhotspurfc.utils.GridMarginItemDecoration
+import by.aderman.tottenhamhotspurfc.utils.LinearMarginItemDecoration
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -72,21 +78,10 @@ val databaseModules = module {
             .build()
     }
 
-    fun provideArticleDao(database: Database): ArticleDao {
-        return database.getArticleDao()
-    }
-
-    fun provideFixtureDao(database: Database): FixtureDao {
-        return database.getFixtureDao()
-    }
-
-    fun provideResultDao(database: Database): ResultDao {
-        return database.getResultDao()
-    }
-
-    fun providePlayerDao(database: Database): PlayerDao {
-        return database.getPlayerDao()
-    }
+    fun provideArticleDao(database: Database) = database.getArticleDao()
+    fun provideFixtureDao(database: Database) = database.getFixtureDao()
+    fun provideResultDao(database: Database) = database.getResultDao()
+    fun providePlayerDao(database: Database) = database.getPlayerDao()
 
     single { provideDatabase(androidApplication()) }
     single { provideArticleDao(get()) }
@@ -232,6 +227,8 @@ val applicationModules = module {
 
     factory { GetPlayerStatisticUseCase(get()) }
     factory { GetTeamSquadUseCase(get()) }
+    factory { GetSavedTeamSquadUseCase(get()) }
+    factory { SavePlayerUseCase(get()) }
 
     factory { GetLeagueTableUseCase(get()) }
     factory { GetTopScorersUseCase(get()) }
@@ -247,8 +244,6 @@ val applicationModules = module {
     factory { UpdateFixtureUseCase(get()) }
     factory { GetSavedResultsUseCase(get()) }
     factory { SaveResultUseCase(get()) }
-    factory { GetSavedTeamSquadUseCase(get()) }
-    factory { SavePlayerUseCase(get()) }
 
     fragment { FixturesFragment() }
     fragment { ResultsFragment() }
@@ -257,14 +252,15 @@ val applicationModules = module {
     fragment { LineupsFragment() }
     fragment { LatestNewsFragment() }
     fragment { SavedNewsFragment() }
+    fragment { TableFragment() }
+    fragment { GoalsFragment() }
+    fragment { AssistsFragment() }
 
     fun provideSharedPreferences(app: Application): SharedPreferences =
         app.getSharedPreferences(Constants.PREFERENCES_FILE_KEY, Context.MODE_PRIVATE)
 
     single { provideSharedPreferences(androidApplication()) }
-
 }
-
 
 val viewModelsModules = module {
 

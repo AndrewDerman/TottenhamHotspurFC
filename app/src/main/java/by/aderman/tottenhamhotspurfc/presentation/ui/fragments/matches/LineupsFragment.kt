@@ -10,7 +10,6 @@ import by.aderman.tottenhamhotspurfc.databinding.FragmentLineupsBinding
 import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.AwayLineupAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.HomeLineupAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
-import by.aderman.tottenhamhotspurfc.utils.Constants
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.getViewModel
 
@@ -26,19 +25,18 @@ class LineupsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLineupsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         setRecyclerViews()
         observeData()
-
         return binding.root
     }
 
     private fun observeData() {
-        viewModel.fixtureInfoLiveData.observe(viewLifecycleOwner, {
-            val lineups = it.data?.lineups
+        viewModel.fixtureInfoLiveData.observe(viewLifecycleOwner, { result ->
+            val lineups = result.data?.lineups
             if (!lineups.isNullOrEmpty()) {
                 viewModel.changeLineupsStatus(true)
                 homeStartXIAdapter.differ.submitList(lineups[0].startXI)

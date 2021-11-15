@@ -31,46 +31,47 @@ class LatestNewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLatestNewsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         setRecyclerView()
+        viewModel.resetNewsList()
         loadData()
         observeData()
 
-        newsAdapter.setOnItemClickListener {
+        newsAdapter.setOnItemClickListener { article ->
             findNavController().navigate(
-                NewsFragmentDirections.actionNewsFragmentToArticleFragment(it)
+                NewsFragmentDirections.actionNewsFragmentToArticleFragment(article)
             )
         }
 
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.resetNewsList()
-            loadData()
+        binding.swipeRefreshLayout.apply {
+            setColorSchemeResources(R.color.th_secondary_blue)
+            setOnRefreshListener {
+                viewModel.resetNewsList()
+                loadData()
+            }
         }
-
         return binding.root
     }
 
-    private fun loadData() {
-        viewModel.getNews()
-    }
+    private fun loadData() = viewModel.getNews()
 
     private fun observeData() {
-        viewModel.newsLiveData.observe(viewLifecycleOwner, {
-            when (it) {
+        viewModel.newsLiveData.observe(viewLifecycleOwner, { result ->
+            when (result) {
                 is Result.Success -> {
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
                     isLoading = false
-                    newsAdapter.differ.submitList(it.data)
+                    newsAdapter.differ.submitList(result.data)
                 }
                 is Result.Error -> {
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
                     isLoading = false
-                    it.message?.let { error -> showSnackbar(binding.root, error) }
+                    result.message?.let { error -> showSnackbar(binding.root, error) }
                 }
                 is Result.Loading -> {
                     viewModel.changeResponseReceivedStatus(false)

@@ -12,6 +12,11 @@
         android:title="@string/bottom_nav_matches" />
 
     <item
+        android:id="@+id/mediaFragment"
+        android:icon="@drawable/ic_media"
+        android:title="@string/bottom_nav_media" />
+
+    <item
         android:id="@+id/seasonFragment"
         android:icon="@drawable/ic_season"
         android:title="@string/bottom_nav_season" />

@@ -5,8 +5,6 @@ import by.aderman.tottenhamhotspurfc.domain.models.news.Article
 import by.aderman.tottenhamhotspurfc.domain.models.news.Source
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import by.aderman.tottenhamhotspurfc.utils.toLocalTime
-import java.text.SimpleDateFormat
-import java.util.*
 
 class NewsResponseMapper {
 
@@ -16,7 +14,10 @@ class NewsResponseMapper {
                 author = it.author.orEmpty(),
                 content = it.content.orEmpty(),
                 description = it.description.orEmpty(),
-                publishedAt = toLocalTime(it.publishedAt, Constants.ARTICLE_INPUT_TIME_FORMAT).orEmpty(),
+                publishedAt = toLocalTime(
+                    it.publishedAt,
+                    Constants.ARTICLE_INPUT_TIME_FORMAT
+                ).orEmpty(),
                 source = Source(it.source?.id.orEmpty(), it.source?.name.orEmpty()),
                 title = it.title.orEmpty(),
                 url = it.url.orEmpty(),

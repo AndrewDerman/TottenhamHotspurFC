@@ -40,13 +40,11 @@ class FixturesAdapter : RecyclerView.Adapter<FixturesAdapter.FixturesViewHolder>
     }
 
     private val diffCallback = object : DiffUtil.ItemCallback<Fixture>() {
-        override fun areItemsTheSame(oldItem: Fixture, newItem: Fixture): Boolean {
-            return oldItem.id == newItem.id
-        }
+        override fun areItemsTheSame(oldItem: Fixture, newItem: Fixture): Boolean =
+            oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Fixture, newItem: Fixture): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: Fixture, newItem: Fixture): Boolean =
+            oldItem == newItem
     }
 
     val differ = AsyncListDiffer(this, diffCallback)

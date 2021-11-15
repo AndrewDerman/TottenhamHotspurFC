@@ -4,7 +4,7 @@ import by.aderman.tottenhamhotspurfc.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object NewsApiClient{
+object NewsApiClient {
 
     val newsApi: NewsApi by lazy {
         Retrofit.Builder()

@@ -1,6 +1,5 @@
 package by.aderman.tottenhamhotspurfc.data.dto.topscorers
 
-
 import com.google.gson.annotations.SerializedName
 
 data class TopScorersResponse(

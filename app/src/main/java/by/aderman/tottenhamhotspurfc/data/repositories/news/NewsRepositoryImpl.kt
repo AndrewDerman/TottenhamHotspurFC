@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import by.aderman.tottenhamhotspurfc.domain.common.Result
 import by.aderman.tottenhamhotspurfc.domain.models.news.Article
 import by.aderman.tottenhamhotspurfc.domain.repositories.NewsRepository
-import kotlinx.coroutines.flow.Flow
 
 class NewsRepositoryImpl(
     private val localDataSource: NewsLocalDataSource,

@@ -31,9 +31,10 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = differ.currentList[position]
         when (holder) {
-            is HomeEventsViewHolder -> holder.binding.event = differ.currentList[position]
-            is AwayEventsViewHolder -> holder.binding.event = differ.currentList[position]
+            is HomeEventsViewHolder -> holder.binding.event = item
+            is AwayEventsViewHolder -> holder.binding.event = item
         }
     }
 
@@ -42,13 +43,10 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private val diffCallback = object : DiffUtil.ItemCallback<Event>() {
-        override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
-            return false
-        }
+        override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean = false
 
-        override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean =
+            oldItem == newItem
     }
 
     val differ = AsyncListDiffer(this, diffCallback)

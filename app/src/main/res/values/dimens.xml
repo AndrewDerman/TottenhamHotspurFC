@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="toolbar_text_size">14sp</dimen>
 
     <dimen name="item_article_image_height">200dp</dimen>
     <dimen name="item_article_title_text_size">16sp</dimen>
@@ -91,5 +92,6 @@
     <dimen name="item_event_player_text_size">12sp</dimen>
     <dimen name="item_event_margin">12dp</dimen>
     <dimen name="item_event_player_margin">4dp</dimen>
+    <dimen name="item_player_margin">8dp</dimen>
 
 </resources>

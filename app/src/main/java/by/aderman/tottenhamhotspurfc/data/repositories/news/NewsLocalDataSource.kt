@@ -2,7 +2,6 @@ package by.aderman.tottenhamhotspurfc.data.repositories.news
 
 import androidx.lifecycle.LiveData
 import by.aderman.tottenhamhotspurfc.domain.models.news.Article
-import kotlinx.coroutines.flow.Flow
 
 interface NewsLocalDataSource {
 

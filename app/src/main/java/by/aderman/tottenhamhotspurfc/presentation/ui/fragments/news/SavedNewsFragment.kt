@@ -30,10 +30,10 @@ class SavedNewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSavedNewsBinding.inflate(inflater, container, false)
-        viewModel.getBookmarks()
         setRecyclerView()
+        loadData()
         observeData()
         setDeletionWithSwipe()
 
@@ -46,9 +46,11 @@ class SavedNewsFragment : Fragment() {
         return binding.root
     }
 
+    private fun loadData() = viewModel.getBookmarks()
+
     private fun observeData() {
-        viewModel.getBookmarks().observe(viewLifecycleOwner, {
-            newsAdapter.differ.submitList(it)
+        viewModel.getBookmarks().observe(viewLifecycleOwner, { articles ->
+            newsAdapter.differ.submitList(articles)
         })
     }
 

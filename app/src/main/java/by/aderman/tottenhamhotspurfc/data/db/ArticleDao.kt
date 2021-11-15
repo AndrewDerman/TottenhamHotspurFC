@@ -3,7 +3,6 @@ package by.aderman.tottenhamhotspurfc.data.db
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import by.aderman.tottenhamhotspurfc.data.dto.news.ArticleLocal
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ArticleDao {

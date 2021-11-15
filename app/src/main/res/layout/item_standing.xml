@@ -33,7 +33,6 @@
             android:contentDescription="@string/item_standing_team_logo_description"
             android:scaleType="centerInside"
             android:layout_gravity="center_vertical"
-            app:error="@{@drawable/no_image_placeholder}"
             app:image="@{standing.team.logo}"
             tools:src="@tools:sample/avatars" />
 

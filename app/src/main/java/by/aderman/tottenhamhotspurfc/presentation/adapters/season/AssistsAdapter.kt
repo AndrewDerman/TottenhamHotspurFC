@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import by.aderman.tottenhamhotspurfc.databinding.ItemTopassistantBinding
 import by.aderman.tottenhamhotspurfc.domain.models.season.PlayerTopAssistant
 
-
 class AssistsAdapter : RecyclerView.Adapter<AssistsAdapter.TopAssistantViewHolder>() {
 
     inner class TopAssistantViewHolder(val binding: ItemTopassistantBinding) :
@@ -35,16 +34,12 @@ class AssistsAdapter : RecyclerView.Adapter<AssistsAdapter.TopAssistantViewHolde
         override fun areItemsTheSame(
             oldItem: PlayerTopAssistant,
             newItem: PlayerTopAssistant
-        ): Boolean {
-            return oldItem.photo == newItem.photo
-        }
+        ): Boolean = oldItem.photo == newItem.photo
 
         override fun areContentsTheSame(
             oldItem: PlayerTopAssistant,
             newItem: PlayerTopAssistant
-        ): Boolean {
-            return oldItem == newItem
-        }
+        ): Boolean = oldItem == newItem
     }
 
     var differ = AsyncListDiffer(this, diffResult)

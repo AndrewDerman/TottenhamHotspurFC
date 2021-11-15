@@ -3,8 +3,8 @@ package by.aderman.tottenhamhotspurfc.data.repositories.fixtures
 import by.aderman.tottenhamhotspurfc.data.api.football.FootballApi
 import by.aderman.tottenhamhotspurfc.data.mappers.fixtures.FixtureInfoResponseMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.fixtures.FixturesResponseMapper
-import by.aderman.tottenhamhotspurfc.domain.models.fixtures.Fixture
 import by.aderman.tottenhamhotspurfc.domain.common.Result
+import by.aderman.tottenhamhotspurfc.domain.models.fixtures.Fixture
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureInfo
 
 class FixturesRemoteDataSourceImpl(

@@ -4,10 +4,8 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.data.dto.fixtures.FixtureLocal
-import by.aderman.tottenhamhotspurfc.domain.models.fixtures.Fixture
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import java.util.*
 
@@ -18,8 +16,9 @@ object AlarmScheduler {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val alarmIntent = createPendingIntent(context, fixture)
 
-        val calendar = Calendar.getInstance(Locale.getDefault())
-        calendar.timeInMillis = fixture.timestamp.toLong() * 1000
+        val calendar = Calendar.getInstance(Locale.getDefault()).apply {
+            timeInMillis = fixture.timestamp.toLong() * 1000
+        }
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmIntent)
     }
 

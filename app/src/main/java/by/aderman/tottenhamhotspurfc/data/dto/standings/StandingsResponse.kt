@@ -1,6 +1,5 @@
 package by.aderman.tottenhamhotspurfc.data.dto.standings
 
-
 import com.google.gson.annotations.SerializedName
 
 data class StandingsResponse(

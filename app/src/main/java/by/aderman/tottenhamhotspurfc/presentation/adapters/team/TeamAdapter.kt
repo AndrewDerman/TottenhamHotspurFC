@@ -38,13 +38,11 @@ class TeamAdapter : RecyclerView.Adapter<TeamAdapter.PlayerViewHolder>() {
     override fun getItemCount(): Int = differ.currentList.size
 
     private val diffCallback = object : DiffUtil.ItemCallback<Player>() {
-        override fun areItemsTheSame(oldItem: Player, newItem: Player): Boolean {
-            return oldItem.id == newItem.id
-        }
+        override fun areItemsTheSame(oldItem: Player, newItem: Player): Boolean =
+            oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Player, newItem: Player): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: Player, newItem: Player): Boolean =
+            oldItem == newItem
     }
 
     val differ = AsyncListDiffer(this, diffCallback)

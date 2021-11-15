@@ -66,7 +66,7 @@ class NewsViewModel(
         deleteArticleUseCase.invoke(article)
     }
 
-    fun resetNewsList(){
+    fun resetNewsList() {
         newsPage = Constants.NEWS_API_QUERY_PAGE
         articlesList.clear()
     }

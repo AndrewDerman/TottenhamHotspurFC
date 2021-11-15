@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentAssistsBinding
 import by.aderman.tottenhamhotspurfc.domain.common.Result
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.AssistsAdapter
@@ -24,7 +25,7 @@ class AssistsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAssistsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -32,25 +33,26 @@ class AssistsFragment : Fragment() {
         observeData()
         setRecyclerView()
 
-        binding.swipeRefreshLayout.setOnRefreshListener { loadData() }
+        binding.swipeRefreshLayout.apply {
+            setColorSchemeResources(R.color.th_secondary_blue)
+            setOnRefreshListener { loadData() }
+        }
 
         return binding.root
     }
 
-    private fun loadData() {
-        viewModel.getTopAssists()
-    }
+    private fun loadData() = viewModel.getTopAssists()
 
     private fun observeData() {
-        viewModel.topAssistantsLiveData.observe(viewLifecycleOwner, {
-            when (it) {
+        viewModel.topAssistantsLiveData.observe(viewLifecycleOwner, { result ->
+            when (result) {
                 is Result.Success -> {
-                    assistsAdapter.differ.submitList(it.data)
+                    assistsAdapter.differ.submitList(result.data)
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is Result.Error -> {
-                    it.message?.let { error -> showSnackbar(binding.root, error) }
+                    result.message?.let { error -> showSnackbar(binding.root, error) }
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
                 }

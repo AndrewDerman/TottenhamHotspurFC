@@ -1,6 +1,5 @@
 package by.aderman.tottenhamhotspurfc.data.repositories.fixtures
 
-import androidx.lifecycle.LiveData
 import by.aderman.tottenhamhotspurfc.data.dto.fixtures.FixtureLocal
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.Fixture
 

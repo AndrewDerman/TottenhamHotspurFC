@@ -2,8 +2,6 @@ package by.aderman.tottenhamhotspurfc.utils
 
 import android.view.View
 import by.aderman.tottenhamhotspurfc.R
-import by.aderman.tottenhamhotspurfc.domain.models.fixtures.Fixture
-import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureStatus
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,12 +14,12 @@ fun showSnackbar(view: View, message: String) {
 
 fun toLocalTime(inputTime: String?, inputFormat: String): String? {
     val inFormat =
-        SimpleDateFormat(inputFormat, Locale.getDefault()).also {
-            it.timeZone = TimeZone.getTimeZone(Constants.TIMEZONE_UTC)
+        SimpleDateFormat(inputFormat, Locale.getDefault()).also { format ->
+            format.timeZone = TimeZone.getTimeZone(Constants.TIMEZONE_UTC)
         }
     val outFormat =
-        SimpleDateFormat(Constants.OUTPUT_TIME_FORMAT, Locale.getDefault()).also {
-            it.timeZone = TimeZone.getDefault()
+        SimpleDateFormat(Constants.OUTPUT_TIME_FORMAT, Locale.getDefault()).also { format ->
+            format.timeZone = TimeZone.getDefault()
         }
 
     if (inputTime != null) {

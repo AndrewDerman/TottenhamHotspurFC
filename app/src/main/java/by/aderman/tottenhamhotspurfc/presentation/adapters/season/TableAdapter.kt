@@ -27,13 +27,11 @@ class TableAdapter : RecyclerView.Adapter<TableAdapter.StandingViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Standing>() {
 
-        override fun areItemsTheSame(oldItem: Standing, newItem: Standing): Boolean {
-            return oldItem.team.id == newItem.team.id
-        }
+        override fun areItemsTheSame(oldItem: Standing, newItem: Standing): Boolean =
+            oldItem.team.id == newItem.team.id
 
-        override fun areContentsTheSame(oldItem: Standing, newItem: Standing): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: Standing, newItem: Standing): Boolean =
+            oldItem == newItem
     }
 
     val differ = AsyncListDiffer(this, diffCallback)

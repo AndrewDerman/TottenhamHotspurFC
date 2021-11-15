@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import by.aderman.tottenhamhotspurfc.databinding.FragmentStatsBinding
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.fixtures.FixturesViewModel
-import by.aderman.tottenhamhotspurfc.utils.Constants
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class StatsFragment : Fragment() {
@@ -18,18 +17,17 @@ class StatsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentStatsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         observeData()
-
         return binding.root
     }
 
     private fun observeData() {
-        viewModel.fixtureInfoLiveData.observe(viewLifecycleOwner, {
-            val statistic = it.data?.statistics
+        viewModel.fixtureInfoLiveData.observe(viewLifecycleOwner, { result ->
+            val statistic = result.data?.statistics
             if (!statistic.isNullOrEmpty()) {
                 binding.homeStats = statistic[0]
                 binding.awayStats = statistic[1]

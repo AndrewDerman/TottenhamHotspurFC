@@ -43,6 +43,12 @@
         <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
+    <style name="ToolbarTextStyle">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/toolbar_text_size</item>
+    </style>
+
     <style name="ItemFixtureTextStyle">
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textSize">@dimen/item_fixture_text_size</item>
@@ -124,6 +130,26 @@
 
     <style name="ItemEventPlayerTitleTextStyle" parent="ItemEventPlayerTextStyle">
         <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="ItemPlayerTextStyle">
+        <item name="android:textColor">@color/th_black</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textSize">@dimen/item_player_info_text_size</item>
+    </style>
+
+    <style name="ItemPlayerNameTextStyle" parent="ItemPlayerTextStyle">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">@dimen/item_player_name_text_size</item>
+    </style>
+
+    <style name="ItemPlayerSeeMoreTextStyle" parent="ItemPlayerTextStyle">
+        <item name="android:textColor">@color/th_primary_blue</item>
+    </style>
+
+    <style name="ItemPlayerNumberTextStyle" parent="ItemPlayerTextStyle">
+        <item name="android:textColor">@color/th_third_blue</item>
+        <item name="android:textSize">@dimen/item_player_number_text_size</item>
     </style>
 
 </resources>

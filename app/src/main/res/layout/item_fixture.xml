@@ -33,7 +33,6 @@
                     android:layout_width="@dimen/item_fixture_league_logo_width_height"
                     android:layout_height="@dimen/item_fixture_league_logo_width_height"
                     android:contentDescription="@string/item_fixture_league_logo_description"
-                    app:error="@{@drawable/no_image_placeholder}"
                     app:image="@{fixture.league.logo}"
                     app:layout_constraintEnd_toStartOf="@id/league_name"
                     app:layout_constraintHorizontal_chainStyle="packed"
@@ -74,7 +73,6 @@
                             android:layout_height="@dimen/item_fixture_team_logo_width_height"
                             android:layout_gravity="center_horizontal"
                             android:contentDescription="@string/item_fixture_team_logo_description"
-                            app:error="@{@drawable/no_image_placeholder}"
                             app:image="@{fixture.teams.home.logo}"
                             tools:src="@tools:sample/avatars" />
 
@@ -178,7 +176,6 @@
                             android:layout_height="@dimen/item_fixture_team_logo_width_height"
                             android:layout_gravity="center_horizontal"
                             android:contentDescription="@string/item_fixture_team_logo_description"
-                            app:error="@{@drawable/no_image_placeholder}"
                             app:image="@{fixture.teams.away.logo}"
                             tools:src="@tools:sample/avatars" />
 

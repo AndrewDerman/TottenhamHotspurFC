@@ -30,7 +30,7 @@ class ResultsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentResultsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -38,13 +38,16 @@ class ResultsFragment : Fragment() {
         loadData()
         observeSavedResults()
 
-        resultsAdapter.setOnItemClickListener {
+        resultsAdapter.setOnItemClickListener { fixtureId ->
             findNavController().navigate(
-                MatchesFragmentDirections.actionMatchesFragmentToFixtureInfoFragment(it)
+                MatchesFragmentDirections.actionMatchesFragmentToFixtureInfoFragment(fixtureId)
             )
         }
 
-        binding.swipeRefreshLayout.setOnRefreshListener { loadData() }
+        binding.swipeRefreshLayout.apply {
+            setOnRefreshListener { loadData() }
+            setColorSchemeResources(R.color.th_secondary_blue)
+        }
 
         return binding.root
     }
@@ -65,10 +68,10 @@ class ResultsFragment : Fragment() {
     }
 
     private fun observeResultsFromRemote() {
-        viewModel.resultsLiveData.observe(viewLifecycleOwner, {
-            when (it) {
+        viewModel.resultsLiveData.observe(viewLifecycleOwner, { result ->
+            when (result) {
                 is Result.Success -> {
-                    val fixtures = it.data?.reversed()?.filter { fixture ->
+                    val fixtures = result.data?.reversed()?.filter { fixture ->
                         fixture.status.shortValue == FixtureStatus.FT.name
                                 || fixture.status.shortValue == FixtureStatus.AET.name
                                 || fixture.status.shortValue == FixtureStatus.PEN.name
@@ -85,7 +88,7 @@ class ResultsFragment : Fragment() {
                     }
                 }
                 is Result.Error -> {
-                    it.message?.let { error -> showSnackbar(binding.root, error) }
+                    result.message?.let { error -> showSnackbar(binding.root, error) }
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
                 }

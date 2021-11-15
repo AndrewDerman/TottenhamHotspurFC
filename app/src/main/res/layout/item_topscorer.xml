@@ -32,7 +32,6 @@
             android:layout_weight="1"
             android:contentDescription="@string/item_topscorer_player_photo_description"
             android:scaleType="centerInside"
-            app:error="@{@drawable/no_image_placeholder}"
             app:image="@{topScorer.photo}"
             tools:src="@tools:sample/avatars" />
 

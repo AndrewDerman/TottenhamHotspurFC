@@ -1,15 +1,9 @@
 package by.aderman.tottenhamhotspurfc.presentation.adapters
 
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
-import android.opengl.Visibility
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.EventDetails
@@ -17,43 +11,16 @@ import by.aderman.tottenhamhotspurfc.domain.models.fixtures.EventTypes
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureStatsTypes
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureStatus
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import org.w3c.dom.Text
 
 object BindingAdapters {
 
     @JvmStatic
-    @BindingAdapter(value = ["image", "error"], requireAll = true)
-    fun loadImage(view: ImageView, imageUrl: String?, error: Drawable) {
+    @BindingAdapter(value = ["image"])
+    fun loadImage(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
             .load(imageUrl)
             .placeholder(R.drawable.no_image_placeholder)
-            .listener(object : RequestListener<Drawable> {
-
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    view.setImageDrawable(error)
-                    return true
-                }
-
-                override fun onResourceReady(
-                    resource: Drawable?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    view.setImageDrawable(resource)
-                    return true
-                }
-            })
+            .error(R.drawable.no_image_placeholder)
             .into(view)
     }
 

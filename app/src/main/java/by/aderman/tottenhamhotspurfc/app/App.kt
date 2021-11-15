@@ -1,9 +1,7 @@
 package by.aderman.tottenhamhotspurfc.app
 
 import android.app.Application
-import android.app.NotificationManager
 import androidx.core.app.NotificationManagerCompat
-import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.di.*
 import by.aderman.tottenhamhotspurfc.notifications.NotificationHelper
 import by.aderman.tottenhamhotspurfc.utils.Constants

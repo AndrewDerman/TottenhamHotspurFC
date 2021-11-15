@@ -1,6 +1,5 @@
 package by.aderman.tottenhamhotspurfc.data.dto.team
 
-
 import com.google.gson.annotations.SerializedName
 
 data class TeamResponse(

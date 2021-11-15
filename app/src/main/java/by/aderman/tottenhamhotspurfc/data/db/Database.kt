@@ -12,7 +12,6 @@ import by.aderman.tottenhamhotspurfc.data.dto.team.PlayerLocal
     version = 1
 )
 abstract class Database : RoomDatabase() {
-
     abstract fun getArticleDao(): ArticleDao
     abstract fun getFixtureDao(): FixtureDao
     abstract fun getResultDao(): ResultDao

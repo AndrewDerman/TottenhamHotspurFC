@@ -31,16 +31,13 @@ class GoalsAdapter : RecyclerView.Adapter<GoalsAdapter.TopScorerViewHolder>() {
 
     private val diffResult = object : DiffUtil.ItemCallback<PlayerTopScorer>() {
 
-        override fun areItemsTheSame(oldItem: PlayerTopScorer, newItem: PlayerTopScorer): Boolean {
-            return oldItem.photo == newItem.photo
-        }
+        override fun areItemsTheSame(oldItem: PlayerTopScorer, newItem: PlayerTopScorer): Boolean =
+            oldItem.photo == newItem.photo
 
         override fun areContentsTheSame(
             oldItem: PlayerTopScorer,
             newItem: PlayerTopScorer
-        ): Boolean {
-            return oldItem == newItem
-        }
+        ): Boolean = oldItem == newItem
     }
 
     var differ = AsyncListDiffer(this, diffResult)

@@ -12,9 +12,7 @@ import by.aderman.tottenhamhotspurfc.domain.models.fixtures.Fixture
 import by.aderman.tottenhamhotspurfc.domain.models.fixtures.FixtureInfo
 import by.aderman.tottenhamhotspurfc.domain.usecases.fixtures.*
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.BasicViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class FixturesViewModel(
@@ -70,9 +68,7 @@ class FixturesViewModel(
                     _fixturesLiveData.postValue(response)
                 }
                 is Result.Error -> {
-                    _fixturesLiveData.postValue(response.message?.let {
-                        Result.Error(it)
-                    })
+                    _fixturesLiveData.postValue(response.message?.let { Result.Error(it) })
                 }
             }
         } else {
@@ -95,9 +91,7 @@ class FixturesViewModel(
                     _resultsLiveData.postValue(response)
                 }
                 is Result.Error -> {
-                    _resultsLiveData.postValue(response.message?.let {
-                        Result.Error(it)
-                    })
+                    _resultsLiveData.postValue(response.message?.let { Result.Error(it) })
                 }
             }
         } else {
@@ -120,9 +114,7 @@ class FixturesViewModel(
                     _fixtureInfoLiveData.postValue(response)
                 }
                 is Result.Error -> {
-                    _fixtureInfoLiveData.postValue(response.message?.let {
-                        Result.Error(it)
-                    })
+                    _fixtureInfoLiveData.postValue(response.message?.let { Result.Error(it) })
                 }
             }
         } else {

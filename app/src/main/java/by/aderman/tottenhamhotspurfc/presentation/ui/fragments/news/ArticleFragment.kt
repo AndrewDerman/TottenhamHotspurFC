@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentArticleBinding
+import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import by.aderman.tottenhamhotspurfc.utils.showSnackbar
-import by.aderman.tottenhamhotspurfc.presentation.viewmodels.news.NewsViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -25,24 +26,45 @@ class ArticleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentArticleBinding.inflate(inflater, container, false)
 
-        binding.webView.apply {
-            webViewClient = WebViewClient()
-            loadUrl(args.currentArticle.url)
-        }
+        with(binding) {
 
-        binding.bSaveArticle.setOnClickListener {
-            viewModel.saveArticle(args.currentArticle)
-            showSnackbar(binding.root, getString(R.string.success_article_save))
-        }
+            toolbar.apply {
+                setNavigationIcon(R.drawable.ic_arrow_back)
+                setTitleTextAppearance(requireContext(), R.style.ToolbarTextStyle)
+                inflateMenu(R.menu.article_menu)
+                setNavigationOnClickListener {
+                    findNavController().popBackStack()
+                }
+                setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.save_article -> {
+                            saveArticle()
+                            true
+                        }
+                        R.id.share_article -> {
+                            shareArticle()
+                            true
+                        }
+                        else -> false
+                    }
+                }
+            }
 
-        binding.bShareArticle.setOnClickListener {
-            shareArticle()
-        }
+            webView.apply {
+                webViewClient = WebViewClient()
+                loadUrl(args.currentArticle.url)
+            }
 
-        return binding.root
+            return binding.root
+        }
+    }
+
+    private fun saveArticle() {
+        viewModel.saveArticle(args.currentArticle)
+        showSnackbar(binding.root, getString(R.string.success_article_save))
     }
 
     private fun shareArticle() {

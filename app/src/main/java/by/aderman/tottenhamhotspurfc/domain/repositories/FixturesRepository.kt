@@ -15,6 +15,6 @@ interface FixturesRepository {
     suspend fun getFixtureForAlarm(fixtureId: Int): FixtureLocal
     suspend fun getSavedFixtures(): List<FixtureLocal>
     suspend fun updateFixture(fixture: FixtureLocal)
-    suspend fun getSavedResults() : List<Fixture>
+    suspend fun getSavedResults(): List<Fixture>
     suspend fun saveResult(fixture: Fixture)
 }

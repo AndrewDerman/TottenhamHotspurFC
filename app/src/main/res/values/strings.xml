@@ -4,11 +4,16 @@
     <string name="bottom_nav_team">Team</string>
     <string name="bottom_nav_season">Season</string>
     <string name="bottom_nav_matches">Matches</string>
+    <string name="bottom_nav_media">Media</string>
     <string name="saved_news_hint">Swipe left or right to delete</string>
     <string name="error_no_internet_connection">No internet connection</string>
     <string name="success_article_save">Saved to bookmarks</string>
     <string name="success_article_delete">Article deleted</string>
     <string name="operation_undo">UNDO</string>
+    <string name="share_button_title">Share</string>
+    <string name="save_button_title">Save</string>
+
+    <string name="fragment_article_title">Article</string>
 
     <string name="player_stats_general_title">GENERAL</string>
     <string name="player_stats_goalkeeping_title">GOALKEEPING</string>
@@ -16,6 +21,7 @@
     <string name="player_stats_defense_title">DEFENSE</string>
     <string name="player_stats_attack_title">ATTACK</string>
     <string name="player_stats_discipline_title">DISCIPLINE</string>
+    <string name="fragment_player_title">Player statistics</string>
     <string name="fragment_player_position_title">Position</string>
     <string name="fragment_player_born_title">Born</string>
     <string name="fragment_player_age_title">Age</string>
@@ -64,6 +70,8 @@
     <string name="fragment_fixture_info_events_tab">Events</string>
     <string name="fragment_fixture_info_stats_tab">Stats</string>
     <string name="fragment_fixture_info_lineups_tab">Line-up</string>
+    <string name="fragment_fixture_info_title">Match details</string>
+    <string name="fragment_fixture_info_referee_title">Referee:</string>
 
     <string name="item_standing_team_logo_description">Team logo</string>
     <string name="item_standing_number_title">№</string>
@@ -91,8 +99,6 @@
     <string name="item_fixture_score_divider">-</string>
     <string name="item_fixture_league_logo_description">League logo</string>
     <string name="item_fixture_team_logo_description">Team logo</string>
-
-    <string name="fragment_fixture_info_referee_title">Referee:</string>
 
     <string name="fragment_stats_no_content_message">Statistics are not available yet.\nCheck back later!</string>
     <string name="fragment_stats_total_shots_title">Total Shots</string>

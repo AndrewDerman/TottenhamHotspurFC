@@ -29,13 +29,11 @@ class HomeLineupAdapter : RecyclerView.Adapter<HomeLineupAdapter.HomeLineupViewH
     override fun getItemCount(): Int = differ.currentList.size
 
     private val diffCallback = object : DiffUtil.ItemCallback<LineupPlayer>() {
-        override fun areItemsTheSame(oldItem: LineupPlayer, newItem: LineupPlayer): Boolean {
-            return oldItem.id == newItem.id
-        }
+        override fun areItemsTheSame(oldItem: LineupPlayer, newItem: LineupPlayer): Boolean =
+            oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: LineupPlayer, newItem: LineupPlayer): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: LineupPlayer, newItem: LineupPlayer): Boolean =
+            oldItem == newItem
     }
 
     var differ = AsyncListDiffer(this, diffCallback)

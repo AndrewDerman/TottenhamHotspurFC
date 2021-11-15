@@ -5,7 +5,7 @@ data class Games(
     val captain: Boolean,
     val lineups: Int,
     val minutes: Int,
-    val number: Any,
+    val number: Int,
     val position: String,
     val rating: String
 )

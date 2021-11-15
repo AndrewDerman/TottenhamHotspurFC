@@ -39,6 +39,7 @@ object Constants {
     const val FIXTURE_ENTITY_TABLE_NAME = "fixtures"
     const val RESULT_ENTITY_TABLE_NAME = "results"
     const val PLAYER_ENTITY_TABLE_NAME = "players"
+    const val PLAYER_WITH_STATS_ENTITY_TABLE_NAME = "players_with_stats"
 
     //Notifications
     const val NOTIFICATIONS_CHANNEL_ID = "THFC_01"

@@ -4,10 +4,10 @@ import by.aderman.tottenhamhotspurfc.data.api.football.FootballApi
 import by.aderman.tottenhamhotspurfc.data.mappers.season.StandingsResponseMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.season.TopAssistsResponseMapper
 import by.aderman.tottenhamhotspurfc.data.mappers.season.TopScorersResponseMapper
-import by.aderman.tottenhamhotspurfc.domain.models.season.Standing
 import by.aderman.tottenhamhotspurfc.domain.common.Result
 import by.aderman.tottenhamhotspurfc.domain.models.season.PlayerTopAssistant
 import by.aderman.tottenhamhotspurfc.domain.models.season.PlayerTopScorer
+import by.aderman.tottenhamhotspurfc.domain.models.season.Standing
 
 class SeasonRemoteDataSourceImpl(
     private val api: FootballApi,

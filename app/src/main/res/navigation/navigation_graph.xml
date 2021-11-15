@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news.ArticleFragment"
-        android:label="Reading"
+        android:label="Article"
         tools:layout="@layout/fragment_article">
         <argument
             android:name="currentArticle"
@@ -50,7 +50,7 @@
     <fragment
         android:id="@+id/playerFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.team.PlayerFragment"
-        android:label="fragment_player"
+        android:label="Player"
         tools:layout="@layout/fragment_player">
         <action
             android:id="@+id/action_playerFragment_to_teamFragment"
@@ -84,7 +84,7 @@
     <fragment
         android:id="@+id/fixtureInfoFragment"
         android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches.FixtureInfoFragment"
-        android:label="FixtureInfoFragment"
+        android:label="FixtureInfo"
         tools:layout="@layout/fragment_fixture_info" >
         <argument
             android:name="currentFixtureId"
@@ -97,5 +97,10 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/mediaFragment"
+        android:name="by.aderman.tottenhamhotspurfc.presentation.ui.fragments.media.MediaFragment"
+        android:label="Media"
+        tools:layout="@layout/fragment_media" />
 
 </navigation>

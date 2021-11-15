@@ -1,6 +1,5 @@
 package by.aderman.tottenhamhotspurfc.data.dto.topassists
 
-
 import com.google.gson.annotations.SerializedName
 
 data class TopAssistsResponse(

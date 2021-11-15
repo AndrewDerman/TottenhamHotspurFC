@@ -33,7 +33,6 @@
                     android:layout_height="@dimen/item_article_image_height"
                     android:scaleType="centerCrop"
                     app:image="@{article.urlToImage}"
-                    app:error="@{@drawable/no_image_placeholder}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

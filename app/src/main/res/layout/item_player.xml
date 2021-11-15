@@ -20,6 +20,7 @@
             android:layout_height="match_parent"
             android:backgroundTint="@color/th_background"
             app:cardCornerRadius="@dimen/card_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -33,7 +34,6 @@
                     android:layout_height="@dimen/item_player_photo_height"
                     android:contentDescription="@string/item_player_photo_description"
                     android:scaleType="centerCrop"
-                    app:error="@{@drawable/no_image_placeholder}"
                     app:image="@{player.photo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -42,27 +42,23 @@
 
                 <TextView
                     android:id="@+id/player_name"
+                    style="@style/ItemPlayerNameTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginStart="@dimen/item_player_margin"
+                    android:layout_marginTop="@dimen/item_player_margin"
                     android:text="@{player.name}"
-                    android:textColor="@color/th_black"
-                    android:textSize="@dimen/item_player_name_text_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/player_photo"
                     tools:text="Hugo Lloris" />
 
                 <TextView
                     android:id="@+id/player_position"
+                    style="@style/ItemPlayerTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/montserrat"
+                    android:layout_marginStart="@dimen/item_player_margin"
                     android:text="@{player.position}"
-                    android:textColor="@color/th_black"
-                    android:textSize="@dimen/item_player_info_text_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/player_name"
                     tools:text="Goalkeeper" />
@@ -71,8 +67,8 @@
                     android:id="@+id/player_arrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="@dimen/item_player_margin"
+                    android:layout_marginBottom="@dimen/item_player_margin"
                     android:contentDescription="@string/item_player_arrow_description"
                     android:src="@drawable/ic_arrow_circle_right"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -83,13 +79,11 @@
 
                 <TextView
                     android:id="@+id/player_arrow_title"
+                    style="@style/ItemPlayerSeeMoreTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/item_player_see_more_margin_start"
-                    android:fontFamily="@font/montserrat"
                     android:text="@string/item_player_see_more"
-                    android:textColor="@color/th_primary_blue"
-                    android:textSize="@dimen/item_player_info_text_size"
                     app:layout_constraintBottom_toBottomOf="@id/player_arrow"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/player_arrow"
@@ -97,14 +91,12 @@
 
                 <TextView
                     android:id="@+id/player_number"
+                    style="@style/ItemPlayerNumberTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/item_player_number_margin_end"
-                    android:fontFamily="@font/montserrat"
                     android:text="@{Integer.toString(player.number)}"
                     android:textAlignment="viewEnd"
-                    android:textColor="@color/th_third_blue"
-                    android:textSize="@dimen/item_player_number_text_size"
                     app:layout_constraintBottom_toBottomOf="@id/player_position"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/player_name"

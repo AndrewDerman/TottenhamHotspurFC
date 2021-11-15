@@ -21,19 +21,18 @@ class EventsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentEventsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         setRecyclerView()
         observeData()
-
         return binding.root
     }
 
     private fun observeData() {
-        viewModel.fixtureInfoLiveData.observe(viewLifecycleOwner, {
-            val events = it.data?.events
+        viewModel.fixtureInfoLiveData.observe(viewLifecycleOwner, { result ->
+            val events = result.data?.events
             if (!events.isNullOrEmpty()) {
                 viewModel.changeEventsStatus(true)
                 eventsAdapter.differ.submitList(events.reversed())

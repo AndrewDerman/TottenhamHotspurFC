@@ -8,14 +8,15 @@ import by.aderman.tottenhamhotspurfc.utils.toLocalTime
 class FixtureInfoResponseMapper {
 
     fun toFixtureInfo(response: FixtureInfoResponse): FixtureInfo {
-        val fixture = response.response?.get(0)?.fixture
-        val league = response.response?.get(0)?.league
-        val teams = response.response?.get(0)?.teams
-        val goals = response.response?.get(0)?.goals
-        val score = response.response?.get(0)?.score
-        val events = response.response?.get(0)?.events
-        val lineups = response.response?.get(0)?.lineups
-        val statistics = response.response?.get(0)?.statistics
+        val resp = response.response?.get(0)
+        val fixture = resp?.fixture
+        val league = resp?.league
+        val teams = resp?.teams
+        val goals = resp?.goals
+        val score = resp?.score
+        val events = resp?.events
+        val lineups = resp?.lineups
+        val statistics = resp?.statistics
 
         return FixtureInfo(
             id = fixture?.id ?: -1,

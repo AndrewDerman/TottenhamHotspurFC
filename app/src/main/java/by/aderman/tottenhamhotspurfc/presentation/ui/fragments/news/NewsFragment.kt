@@ -1,15 +1,13 @@
 package by.aderman.tottenhamhotspurfc.presentation.ui.fragments.news
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import androidx.fragment.app.Fragment
 import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentNewsBinding
 import by.aderman.tottenhamhotspurfc.presentation.adapters.ViewPagerAdapter
-import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
 
@@ -22,13 +20,11 @@ class NewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNewsBinding.inflate(inflater, container, false)
 
         val fragments = arrayListOf(latestNewsFragment, savedNewsFragment)
-
-        val viewPagerAdapter =
-            ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
+        val viewPagerAdapter = ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
 
         with(binding) {
             viewPager.adapter = viewPagerAdapter

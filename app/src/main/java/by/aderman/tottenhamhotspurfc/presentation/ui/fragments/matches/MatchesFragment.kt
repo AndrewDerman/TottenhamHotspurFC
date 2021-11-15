@@ -1,10 +1,10 @@
 package by.aderman.tottenhamhotspurfc.presentation.ui.fragments.matches
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.FragmentMatchesBinding
 import by.aderman.tottenhamhotspurfc.presentation.adapters.ViewPagerAdapter
@@ -20,13 +20,11 @@ class MatchesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMatchesBinding.inflate(inflater, container, false)
 
         val fragments = arrayListOf(fixturesFragment, resultsFragment)
-
-        val viewPagerAdapter =
-            ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
+        val viewPagerAdapter = ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
 
         with(binding) {
             viewPager.adapter = viewPagerAdapter

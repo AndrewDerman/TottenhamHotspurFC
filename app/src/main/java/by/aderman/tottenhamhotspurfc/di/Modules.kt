@@ -42,10 +42,7 @@ import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetPlayerStatisticUseC
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetSavedTeamSquadUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.GetTeamSquadUseCase
 import by.aderman.tottenhamhotspurfc.domain.usecases.team.SavePlayerUseCase
-import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.AwayLineupAdapter
-import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.EventsAdapter
-import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.FixturesAdapter
-import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.HomeLineupAdapter
+import by.aderman.tottenhamhotspurfc.presentation.adapters.fixtures.*
 import by.aderman.tottenhamhotspurfc.presentation.adapters.news.NewsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.AssistsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.GoalsAdapter
@@ -64,6 +61,7 @@ import by.aderman.tottenhamhotspurfc.presentation.viewmodels.team.TeamViewModel
 import by.aderman.tottenhamhotspurfc.utils.Constants
 import by.aderman.tottenhamhotspurfc.utils.GridMarginItemDecoration
 import by.aderman.tottenhamhotspurfc.utils.LinearMarginItemDecoration
+import by.aderman.tottenhamhotspurfc.utils.TableItemDecoration
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -217,8 +215,11 @@ val applicationModules = module {
     factory { HomeLineupAdapter() }
     factory { AwayLineupAdapter() }
     factory { EventsAdapter() }
+    factory { StatsAdapter() }
+
     factory { LinearMarginItemDecoration() }
     factory { GridMarginItemDecoration() }
+    factory { TableItemDecoration() }
 
     factory { DeleteArticleUseCase(get()) }
     factory { GetBookmarksUseCase(get()) }

@@ -71,7 +71,11 @@ class LatestNewsFragment : Fragment() {
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
                     isLoading = false
-                    result.message?.let { error -> showSnackbar(binding.root, error) }
+                    result.message?.let { error ->
+                        parentFragment?.view?.let { view ->
+                            showSnackbar(view, error)
+                        }
+                    }
                 }
                 is Result.Loading -> {
                     viewModel.changeResponseReceivedStatus(false)

@@ -15,11 +15,12 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            app:title="@string/fragment_article_title"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
+            android:elevation="0dp"
             app:layout_constraintBottom_toTopOf="@id/web_view"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/fragment_article_title" />
 
         <WebView
             android:id="@+id/web_view"

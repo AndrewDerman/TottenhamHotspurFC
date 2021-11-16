@@ -77,7 +77,11 @@ class FixturesFragment : Fragment() {
                     observeSavedFixtures()
                 }
                 is Result.Error -> {
-                    result.message?.let { error -> showSnackbar(binding.root, error) }
+                    result.message?.let { error ->
+                        parentFragment?.view?.let { view ->
+                            showSnackbar(view, error)
+                        }
+                    }
                     viewModel.changeResponseReceivedStatus(true)
                     binding.swipeRefreshLayout.isRefreshing = false
                 }

@@ -11,6 +11,7 @@ import by.aderman.tottenhamhotspurfc.databinding.FragmentTableBinding
 import by.aderman.tottenhamhotspurfc.domain.common.Result
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.TableAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.season.SeasonViewModel
+import by.aderman.tottenhamhotspurfc.utils.TableItemDecoration
 import by.aderman.tottenhamhotspurfc.utils.showSnackbar
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -21,6 +22,7 @@ class TableFragment : Fragment() {
     private lateinit var binding: FragmentTableBinding
     private val tableAdapter by inject<TableAdapter>()
     private val viewModel by viewModel<SeasonViewModel> { parametersOf() }
+    private val itemDecoration by inject<TableItemDecoration>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +67,7 @@ class TableFragment : Fragment() {
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = tableAdapter
+            addItemDecoration(itemDecoration)
         }
     }
 }

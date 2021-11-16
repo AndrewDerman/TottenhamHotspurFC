@@ -14,25 +14,26 @@
     <dimen name="saved_news_hint_text_size">11sp</dimen>
     <dimen name="saved_news_hint_padding">8dp</dimen>
 
-    <dimen name="fragment_player_header_height">380dp</dimen>
+    <dimen name="fragment_player_header_height">320dp</dimen>
     <dimen name="fragment_player_photo_width">150dp</dimen>
     <dimen name="fragment_player_photo_height">150dp</dimen>
     <dimen name="fragment_player_margin_start">16dp</dimen>
+    <dimen name="fragment_player_info_margin_start">8dp</dimen>
     <dimen name="fragment_player_margin_top">16dp</dimen>
     <dimen name="fragment_player_number_text_size">40sp</dimen>
-    <dimen name="fragment_player_first_name_text_size">24sp</dimen>
-    <dimen name="fragment_player_last_name_text_size">28sp</dimen>
-    <dimen name="fragment_player_header_info_text_size">16sp</dimen>
+    <dimen name="fragment_player_first_name_text_size">20sp</dimen>
+    <dimen name="fragment_player_last_name_text_size">24sp</dimen>
+    <dimen name="fragment_player_header_info_text_size">14sp</dimen>
     <dimen name="fragment_player_header_margin_top">8dp</dimen>
     <dimen name="fragment_player_header_margin_start">24dp</dimen>
-    <dimen name="fragment_player_stats_title_padding">16dp</dimen>
-    <dimen name="fragment_player_stats_title_text_size">24sp</dimen>
+    <dimen name="fragment_player_stats_title_padding">12dp</dimen>
+    <dimen name="fragment_player_stats_title_text_size">20sp</dimen>
     <dimen name="fragment_player_stats_card_margin_horizontal">24dp</dimen>
-    <dimen name="fragment_player_stats_card_margin_top">8dp</dimen>
+    <dimen name="fragment_player_stats_card_margin_bottom">24dp</dimen>
     <dimen name="fragment_player_margin_bottom">16dp</dimen>
     <dimen name="fragment_player_stats_card_margin">24dp</dimen>
     <dimen name="fragment_player_discipline_text_padding">8dp</dimen>
-    <dimen name="fragment_player_stats_card_title_text_size">32sp</dimen>
+    <dimen name="fragment_player_stats_card_title_text_size">24sp</dimen>
 
     <dimen name="item_player_padding">8dp</dimen>
     <dimen name="item_player_photo_width">150dp</dimen>
@@ -46,7 +47,7 @@
     <dimen name="item_player_number_margin_end">8dp</dimen>
 
     <dimen name="fragment_team_recycler_margin">16dp</dimen>
-    <dimen name="fragment_team_image_height">150dp</dimen>
+    <dimen name="fragment_team_image_height">200dp</dimen>
 
     <dimen name="fragment_news_recycler_margin">16dp</dimen>
 
@@ -76,8 +77,9 @@
     <dimen name="fragment_fixture_info_margin_start">4dp</dimen>
 
     <dimen name="fragment_stats_titles_margin_top">8dp</dimen>
+    <dimen name="fragment_stats_items_margin">8dp</dimen>
     <dimen name="fragment_stats_text_size">11sp</dimen>
-    <dimen name="fragment_stats_padding">16dp</dimen>
+    <dimen name="fragment_stats_padding_horizontal">8dp</dimen>
     <dimen name="fragment_stats_progress_bar_heigth">8dp</dimen>
 
     <dimen name="fragment_lineups_text_size">11sp</dimen>

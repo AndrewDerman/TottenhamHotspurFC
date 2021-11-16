@@ -5,24 +5,44 @@
         <item name="android:windowBackground">@drawable/splash_screen_background</item>
     </style>
 
-    <style name="PlayerFragmentStatsCardTitleText">
-        <item name="fontFamily">@font/montserrat_bold</item>
-        <item name="android:textSize">@dimen/fragment_player_stats_card_title_text_size</item>
-        <item name="android:textColor">@color/th_accent_green</item>
-        <item name="android:alpha">0.5</item>
+    <style name="FragmentPlayerTextStyle">
+        <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
-    <style name="PlayerFragmentStatsText">
-        <item name="fontFamily">@font/montserrat_bold</item>
+    <style name="FragmentPlayerHeaderTextStyle" parent="FragmentPlayerTextStyle">
+        <item name="android:textSize">@dimen/fragment_player_header_info_text_size</item>
+        <item name="android:textColor">@color/th_primary_white</item>
+    </style>
+
+    <style name="FragmentPlayerHeaderTitlesTextStyle" parent="FragmentPlayerHeaderTextStyle">
+        <item name="android:textColor">@color/th_accent_yellow</item>
+    </style>
+
+    <style name="FragmentPlayerStatsCardTitleText" parent="FragmentPlayerTextStyle">
         <item name="android:textSize">@dimen/fragment_player_stats_card_title_text_size</item>
+        <item name="android:textColor">@color/th_accent_green</item>
+    </style>
+
+    <style name="FragmentPlayerStatsText" parent="FragmentPlayerStatsCardTitleText">
         <item name="android:textColor">@color/th_primary_blue</item>
     </style>
 
-    <style name="PlayerFragmentStatsTitleText">
-        <item name="fontFamily">@font/montserrat</item>
+    <style name="FragmentPlayerStatsTitleText" parent="FragmentPlayerTextStyle">
         <item name="android:textSize">@dimen/fragment_player_header_info_text_size</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/th_black</item>
+    </style>
+
+    <style name="FragmentPlayerCardViewStyle">
+        <item name="cardBackgroundColor">@color/th_background</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="android:layout_marginBottom">@dimen/fragment_player_stats_card_margin_bottom
+        </item>
+        <item name="android:layout_marginStart">
+            @dimen/fragment_player_stats_card_margin_horizontal
+        </item>
+        <item name="android:layout_marginEnd">@dimen/fragment_player_stats_card_margin_horizontal
+        </item>
     </style>
 
     <style name="SeasonTablesStyle">

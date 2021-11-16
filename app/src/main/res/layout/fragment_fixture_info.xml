@@ -28,6 +28,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             app:title="@string/fragment_fixture_info_title"
             android:layout_width="match_parent"
+            android:elevation="0dp"
             android:layout_height="?android:attr/actionBarSize"
             app:layout_constraintBottom_toTopOf="@id/swipe_refresh_layout"
             app:layout_constraintTop_toTopOf="parent" />

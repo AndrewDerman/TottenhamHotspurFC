@@ -26,22 +26,27 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter(value = ["first", "second", "type"], requireAll = true)
-    fun fillProgressBar(view: ProgressBar, first: String?, second: String?, type: String?) {
-        when (type) {
-            FixtureStatsTypes.TS.value,
-            FixtureStatsTypes.SONG.value,
-            FixtureStatsTypes.SOFFG.value,
-            FixtureStatsTypes.SI.value,
-            FixtureStatsTypes.SO.value,
-            FixtureStatsTypes.BS.value,
-            FixtureStatsTypes.CK.value,
-            FixtureStatsTypes.O.value,
-            FixtureStatsTypes.GS.value,
-            FixtureStatsTypes.F.value,
-            FixtureStatsTypes.YC.value,
-            FixtureStatsTypes.RC.value,
-            FixtureStatsTypes.TP.value,
-            FixtureStatsTypes.PA.value -> {
+    fun fillProgressBar(
+        view: ProgressBar,
+        first: String?,
+        second: String?,
+        type: FixtureStatsTypes?
+    ) {
+        when (type?.position) {
+            9 -> {
+                if (first != null && second != null) {
+                    val firstValue = first.substring(0, 2).toDouble()
+                    val secondValue = second.substring(0, 2).toDouble()
+                    val result = firstValue / (firstValue + secondValue) * 100
+                    view.progress = result.toInt()
+                }
+            }
+            15 -> {
+                if (first != null && second != null) {
+                    view.progress = first.substring(0, 2).toInt()
+                }
+            }
+            else -> {
                 if (first != null && second != null) {
                     if (first == "null") {
                         view.progress = 0
@@ -61,26 +66,21 @@ object BindingAdapters {
                     view.progress = 0
                 }
             }
-            FixtureStatsTypes.BP.value,
-            FixtureStatsTypes.P.value -> {
-                if (first != null && second != null) {
-                    val firstValue = first.substring(0, 2).toDouble()
-                    val secondValue = second.substring(0, 2).toDouble()
-                    val result = firstValue / (firstValue + secondValue) * 100
-                    view.progress = result.toInt()
-                }
-            }
         }
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["value"])
-    fun setStatsText(view: TextView, value: String?) {
+    @BindingAdapter(value = ["value", "type"], requireAll = true)
+    fun setStatsText(view: TextView, value: String?, type: FixtureStatsTypes?) {
         if (value != null) {
             if (value == "null") {
                 view.text = "0"
             } else {
-                view.text = value.substring(0, value.length - 2)
+                if (type == FixtureStatsTypes.BP || type == FixtureStatsTypes.P) {
+                    view.text = value
+                } else {
+                    view.text = value.substring(0, value.length - 2)
+                }
             }
         } else view.text = "0"
     }
@@ -126,7 +126,7 @@ object BindingAdapters {
                 }
             }
             EventTypes.CARD.value -> {
-                if (eventDetail == EventDetails.YC.value || eventDetail == EventDetails.YC.value) {
+                if (eventDetail == EventDetails.YC.value || eventDetail == EventDetails.SYC.value) {
                     view.setImageResource(R.drawable.event_yellow_card)
                 } else {
                     view.setImageResource(R.drawable.event_red_card)
@@ -150,11 +150,19 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["color", "eventType", "playerName"], requireAll = true)
-    fun setEventPlayerText(view: TextView, color: Int, eventType: String, playerName: String) {
+    @BindingAdapter(value = ["eventType", "playerName", "colorIn", "colorBasic"], requireAll = true)
+    fun setEventPlayerText(
+        view: TextView,
+        eventType: String,
+        playerName: String,
+        colorIn: Int,
+        colorBasic: Int
+    ) {
         view.text = playerName
         if (eventType == EventTypes.SUBST.value) {
-            view.setTextColor(color)
+            view.setTextColor(colorIn)
+        } else {
+            view.setTextColor(colorBasic)
         }
     }
 
@@ -165,15 +173,24 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["assistant", "eventType", "color"], requireAll = true)
-    fun setEventAssistText(view: TextView, assistant: String?, eventType: String, color: Int) {
+    @BindingAdapter(value = ["assistant", "eventType", "colorOut", "colorBasic"], requireAll = true)
+    fun setEventAssistText(
+        view: TextView,
+        assistant: String?,
+        eventType: String,
+        colorOut: Int,
+        colorBasic: Int
+    ) {
         if (assistant == null) {
             view.visibility = View.GONE
         } else {
+            view.visibility = View.VISIBLE
             view.text = assistant
         }
         if (eventType == EventTypes.SUBST.value) {
-            view.setTextColor(color)
+            view.setTextColor(colorOut)
+        } else {
+            view.setTextColor(colorBasic)
         }
     }
 }

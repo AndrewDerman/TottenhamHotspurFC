@@ -28,7 +28,7 @@
             android:layout_height="@dimen/fragment_team_image_height"
             android:contentDescription="@string/fragment_team_header_image"
             android:scaleType="centerCrop"
-            android:src="@drawable/come_on_your_spurs"
+            android:src="@drawable/team_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

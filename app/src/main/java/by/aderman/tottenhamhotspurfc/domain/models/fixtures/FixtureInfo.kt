@@ -15,5 +15,5 @@ data class FixtureInfo(
     val teams: Teams,
     val events: List<Event>?,
     val lineups: List<Lineup>?,
-    val statistics: List<Statistic>?
+    val statistics: List<Statistics>?
 )

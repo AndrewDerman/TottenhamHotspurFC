@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import by.aderman.tottenhamhotspurfc.R
 import by.aderman.tottenhamhotspurfc.databinding.ItemStandingBinding
 import by.aderman.tottenhamhotspurfc.domain.models.season.Standing
 

@@ -18,9 +18,11 @@
             type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_player_xml_constraintlayout2_scene"
         tools:context=".presentation.ui.fragments.team.PlayerFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -28,6 +30,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
+            android:elevation="0dp"
             app:layout_constraintBottom_toTopOf="@id/swipe_refresh_layout"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/fragment_player_title" />
@@ -64,14 +67,15 @@
                     android:contentDescription="@string/fragment_player_team_logo_description"
                     android:src="@drawable/ic_spurs_logo"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <TextView
                     android:id="@+id/player_number"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/fragment_player_margin_start"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/montserrat"
                     android:textColor="@color/th_primary_white"
                     android:textSize="@dimen/fragment_player_number_text_size"
                     app:layout_constraintBottom_toTopOf="@id/player_first_name"
@@ -111,129 +115,118 @@
 
                 <TextView
                     android:id="@+id/player_position_title"
+                    style="@style/FragmentPlayerHeaderTitlesTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/fragment_player_margin_start"
                     android:layout_marginTop="@dimen/fragment_player_margin_top"
                     android:text="@string/fragment_player_position_title"
-                    android:textColor="@color/th_accent_yellow"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/player_photo" />
 
                 <TextView
                     android:id="@+id/player_position"
+                    style="@style/FragmentPlayerHeaderTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_player_margin_start"
+                    android:layout_marginStart="@dimen/fragment_player_info_margin_start"
                     android:text="@{player.statistic.games.position}"
-                    android:textColor="@color/th_primary_white"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintBottom_toBottomOf="@id/player_position_title"
                     app:layout_constraintStart_toEndOf="@id/player_position_title"
                     tools:text="Goalkeeper" />
 
                 <TextView
                     android:id="@+id/player_born_title"
+                    style="@style/FragmentPlayerHeaderTitlesTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/fragment_player_margin_start"
                     android:layout_marginTop="@dimen/fragment_player_header_margin_top"
                     android:text="@string/fragment_player_born_title"
-                    android:textColor="@color/th_accent_yellow"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/player_position_title" />
 
                 <TextView
                     android:id="@+id/player_born_date"
+                    style="@style/FragmentPlayerHeaderTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{player.birth.date}"
-                    android:textColor="@color/th_primary_white"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintBottom_toBottomOf="@id/player_born_title"
                     app:layout_constraintStart_toStartOf="@id/player_position"
                     tools:text="1986-12-26" />
 
                 <TextView
                     android:id="@+id/player_born_place"
+                    style="@style/FragmentPlayerHeaderTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_player_margin_start"
+                    android:layout_marginStart="@dimen/fragment_player_info_margin_start"
                     android:text="@{player.birth.country}"
-                    android:textColor="@color/th_primary_white"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintBottom_toBottomOf="@id/player_born_date"
                     app:layout_constraintStart_toEndOf="@id/player_born_date"
                     tools:text="Nice, France" />
 
                 <TextView
                     android:id="@+id/player_age_title"
+                    style="@style/FragmentPlayerHeaderTitlesTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/fragment_player_margin_start"
                     android:layout_marginTop="@dimen/fragment_player_header_margin_top"
                     android:text="@string/fragment_player_age_title"
-                    android:textColor="@color/th_accent_yellow"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/player_born_title" />
 
                 <TextView
                     android:id="@+id/player_age"
+                    style="@style/FragmentPlayerHeaderTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{Integer.toString(player.age)}"
-                    android:textColor="@color/th_primary_white"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintBottom_toBottomOf="@id/player_age_title"
                     app:layout_constraintStart_toStartOf="@id/player_position"
                     tools:text="35" />
 
                 <TextView
                     android:id="@+id/player_height_title"
+                    style="@style/FragmentPlayerHeaderTitlesTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/fragment_player_margin_start"
                     android:layout_marginTop="@dimen/fragment_player_header_margin_top"
                     android:text="@string/fragment_player_height_title"
-                    android:textColor="@color/th_accent_yellow"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/player_age_title" />
 
                 <TextView
                     android:id="@+id/player_height"
+                    style="@style/FragmentPlayerHeaderTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text='@{player.height}'
-                    android:textColor="@color/th_primary_white"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintBottom_toBottomOf="@id/player_height_title"
                     app:layout_constraintStart_toStartOf="@id/player_position"
                     tools:text="188 cm" />
 
                 <TextView
                     android:id="@+id/player_weight_title"
+                    style="@style/FragmentPlayerHeaderTitlesTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/fragment_player_header_margin_start"
                     android:layout_marginTop="@dimen/fragment_player_header_margin_top"
                     android:text="@string/fragment_player_weight_title"
-                    android:textColor="@color/th_accent_yellow"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintStart_toEndOf="@id/player_height"
                     app:layout_constraintTop_toBottomOf="@id/player_age_title" />
 
                 <TextView
                     android:id="@+id/player_weight"
+                    style="@style/FragmentPlayerHeaderTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_player_margin_start"
+                    android:layout_marginStart="@dimen/fragment_player_info_margin_start"
                     android:text='@{player.weight}'
-                    android:textColor="@color/th_primary_white"
-                    android:textSize="@dimen/fragment_player_header_info_text_size"
                     app:layout_constraintBottom_toBottomOf="@id/player_weight_title"
                     app:layout_constraintStart_toEndOf="@id/player_weight_title"
                     tools:text="82 kg" />
@@ -247,12 +240,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/player_stats_title_background"
+            android:fontFamily="@font/montserrat"
             android:padding="@dimen/fragment_player_stats_title_padding"
             android:text="@string/fragment_player_stats_title"
             android:textAlignment="center"
             android:textColor="@color/th_black"
             android:textSize="@dimen/fragment_player_stats_title_text_size"
-            app:layout_constraintBottom_toTopOf="@id/player_scroll_view" />
+            app:layout_constraintBottom_toTopOf="@id/player_scroll_view"
+            app:layout_constraintTop_toBottomOf="@id/swipe_refresh_layout" />
 
         <ImageView
             android:id="@+id/drag"
@@ -269,7 +264,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swipe_refresh_layout">
+            app:layout_constraintTop_toBottomOf="@id/player_stats_title">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -277,12 +272,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/player_stats_general"
+                    style="@style/FragmentPlayerCardViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/fragment_player_stats_card_margin_horizontal"
-                    android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
-                    app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
+                    app:layout_constraintBottom_toTopOf="@id/player_stats_goalkeeping"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -291,10 +284,10 @@
 
                         <TextView
                             android:id="@+id/player_stats_general_title"
-                            style="@style/PlayerFragmentStatsCardTitleText"
+                            style="@style/FragmentPlayerStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_margin_top"
                             android:text="@string/player_stats_general_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -314,7 +307,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_games"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -323,7 +316,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_games_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -345,7 +338,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_minutes"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -354,7 +347,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_minutes_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -376,7 +369,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_rating"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -385,7 +378,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_rating_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -399,12 +392,11 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/player_stats_goalkeeping"
+                    style="@style/FragmentPlayerCardViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/fragment_player_stats_card_margin"
+                    android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
                     android:visibility="@{viewModel.isGoalkeeperLiveData() ? view.VISIBLE : view.GONE}"
-                    app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_general">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -413,10 +405,10 @@
 
                         <TextView
                             android:id="@+id/player_stats_goalkeeping_title"
-                            style="@style/PlayerFragmentStatsCardTitleText"
+                            style="@style/FragmentPlayerStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_margin_top"
                             android:text="@string/player_stats_goalkeeping_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -435,7 +427,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_saves"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -444,7 +436,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_saves_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -466,7 +458,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_conceded"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -475,7 +467,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_conceded_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -497,7 +489,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_penalty_saved"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -506,7 +498,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_penalty_saved_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -520,11 +512,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/player_stats_distribution"
+                    style="@style/FragmentPlayerCardViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/fragment_player_stats_card_margin"
-                    app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
+                    android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_goalkeeping">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -533,10 +524,10 @@
 
                         <TextView
                             android:id="@+id/player_stats_distribution_title"
-                            style="@style/PlayerFragmentStatsCardTitleText"
+                            style="@style/FragmentPlayerStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_margin_top"
                             android:text="@string/player_stats_distribution_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -555,7 +546,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_total_passes"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -564,7 +555,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_total_passes_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -585,7 +576,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_key_passes"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -594,7 +585,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_key_passes_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -616,7 +607,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_successful_dribbles"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -625,7 +616,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_successful_dribbles_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -639,11 +630,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/player_stats_defense"
+                    style="@style/FragmentPlayerCardViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/fragment_player_stats_card_margin"
-                    app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
+                    android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_distribution">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -652,10 +642,10 @@
 
                         <TextView
                             android:id="@+id/player_stats_defense_title"
-                            style="@style/PlayerFragmentStatsCardTitleText"
+                            style="@style/FragmentPlayerStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_margin_top"
                             android:text="@string/player_stats_defense_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -674,7 +664,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_tackles"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -683,7 +673,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_tackles_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -704,7 +694,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_blocks"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -713,7 +703,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_blocks_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -725,7 +715,7 @@
                             android:id="@+id/player_stats_defence_interceptions"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
                             android:layout_marginBottom="@dimen/fragment_player_margin_bottom"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -736,7 +726,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_interceptions"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -745,7 +735,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_interceptions_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -757,7 +747,7 @@
                             android:id="@+id/player_stats_defence_duels_won"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
                             android:layout_marginBottom="@dimen/fragment_player_margin_bottom"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -768,7 +758,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_duels_won"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -777,7 +767,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_duels_won_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -791,11 +781,11 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/player_stats_attack"
+                    style="@style/FragmentPlayerCardViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/fragment_player_stats_card_margin"
-                    app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
+                    android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
+
                     app:layout_constraintTop_toBottomOf="@id/player_stats_defense">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -804,10 +794,10 @@
 
                         <TextView
                             android:id="@+id/player_stats_attack_title"
-                            style="@style/PlayerFragmentStatsCardTitleText"
+                            style="@style/FragmentPlayerStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_margin_top"
                             android:text="@string/player_stats_attack_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -826,7 +816,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_goals"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -835,7 +825,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_goals_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -856,7 +846,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_assists"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -865,7 +855,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_assists_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -877,7 +867,7 @@
                             android:id="@+id/player_stats_attack_shots"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
                             android:layout_marginBottom="@dimen/fragment_player_margin_bottom"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -888,7 +878,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_shots"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -897,7 +887,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_shots_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -909,7 +899,7 @@
                             android:id="@+id/player_stats_attack_on_target"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
                             android:layout_marginBottom="@dimen/fragment_player_margin_bottom"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -920,7 +910,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_on_target"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -929,7 +919,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_on_target_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -943,11 +933,11 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/player_stats_discipline"
+                    style="@style/FragmentPlayerCardViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/fragment_player_stats_card_margin"
-                    app:cardBackgroundColor="@color/th_background"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
+                    android:layout_marginTop="@dimen/fragment_player_stats_card_margin_bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/player_stats_attack">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -956,10 +946,10 @@
 
                         <TextView
                             android:id="@+id/player_stats_discipline_title"
-                            style="@style/PlayerFragmentStatsCardTitleText"
+                            style="@style/FragmentPlayerStatsCardTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fragment_player_stats_card_margin_top"
+                            android:layout_marginTop="@dimen/fragment_player_margin_top"
                             android:text="@string/player_stats_discipline_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -979,7 +969,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_yellow_cards"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -990,7 +980,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_yellow_cards_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -1012,7 +1002,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_red_cards"
-                                style="@style/PlayerFragmentStatsText"
+                                style="@style/FragmentPlayerStatsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -1023,7 +1013,7 @@
 
                             <TextView
                                 android:id="@+id/player_stats_red_cards_title"
-                                style="@style/PlayerFragmentStatsTitleText"
+                                style="@style/FragmentPlayerStatsTitleText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="top|center"
@@ -1049,5 +1039,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

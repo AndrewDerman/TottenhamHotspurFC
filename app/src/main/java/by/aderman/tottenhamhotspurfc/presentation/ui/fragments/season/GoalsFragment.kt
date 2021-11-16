@@ -11,6 +11,7 @@ import by.aderman.tottenhamhotspurfc.databinding.FragmentGoalsBinding
 import by.aderman.tottenhamhotspurfc.domain.common.Result
 import by.aderman.tottenhamhotspurfc.presentation.adapters.season.GoalsAdapter
 import by.aderman.tottenhamhotspurfc.presentation.viewmodels.season.SeasonViewModel
+import by.aderman.tottenhamhotspurfc.utils.TableItemDecoration
 import by.aderman.tottenhamhotspurfc.utils.showSnackbar
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -21,6 +22,7 @@ class GoalsFragment : Fragment() {
     private lateinit var binding: FragmentGoalsBinding
     private val viewModel by viewModel<SeasonViewModel> { parametersOf() }
     private val goalsAdapter by inject<GoalsAdapter>()
+    private val itemDecoration by inject<TableItemDecoration>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +67,7 @@ class GoalsFragment : Fragment() {
         with(binding.recyclerView) {
             adapter = goalsAdapter
             layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(itemDecoration)
         }
     }
 }

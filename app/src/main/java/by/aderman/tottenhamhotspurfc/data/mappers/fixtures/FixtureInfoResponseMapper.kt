@@ -16,7 +16,14 @@ class FixtureInfoResponseMapper {
         val score = resp?.score
         val events = resp?.events
         val lineups = resp?.lineups
-        val statistics = resp?.statistics
+        val stats = resp?.statistics
+        var homeStatsMap: Map<String?, Any?>? = null
+        var awayStatsMap: Map<String?, Any?>? = null
+
+        if (!stats.isNullOrEmpty()) {
+            homeStatsMap = stats[0].statistics?.map { it.type to it.value }?.toMap()
+            awayStatsMap = stats[1].statistics?.map { it.type to it.value }?.toMap()
+        }
 
         return FixtureInfo(
             id = fixture?.id ?: -1,
@@ -144,22 +151,32 @@ class FixtureInfoResponseMapper {
                     }
                 )
             },
-            statistics = statistics?.map
-            {
-                Statistic(
-                    team = Team(
-                        id = it.team?.id ?: -1,
-                        name = it.team?.name.orEmpty(),
-                        logo = it.team?.logo.orEmpty()
-                    ),
-                    statistics = it.statistics?.map { stats ->
-                        FixtureStats(
-                            type = stats.type.orEmpty(),
-                            value = stats.value.toString()
-                        )
-                    }
+//            statistics = statistics?.map
+//            {
+//                Statistic(
+//                    team = Team(
+//                        id = it.team?.id ?: -1,
+//                        name = it.team?.name.orEmpty(),
+//                        logo = it.team?.logo.orEmpty()
+//                    ),
+//                    statistics = it.statistics?.map { stats ->
+//                        FixtureStats(
+//                            type = stats.type.orEmpty(),
+//                            value = stats.value.toString()
+//                        )
+//                    }
+//                )
+//            }
+
+            statistics = homeStatsMap?.map { homeStats ->
+                Statistics(
+                    type = FixtureStatsTypes.values().first {
+                        it.value == homeStats.key.orEmpty()
+                    },
+                    homeValue = homeStats.value.toString(),
+                    awayValue = awayStatsMap?.get(homeStats.key).toString()
                 )
-            }
+            }?.toList()
         )
     }
 }

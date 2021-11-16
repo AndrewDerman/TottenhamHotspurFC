@@ -14,6 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/th_background"
         android:padding="@dimen/item_event_padding">
 
         <TextView
@@ -58,8 +59,9 @@
         <TextView
             android:id="@+id/event_player"
             style="@style/ItemEventPlayerTextStyle"
-            color="@{@color/th_accent_green}"
+            colorIn="@{@color/th_accent_green}"
             eventType="@{event.type}"
+            colorBasic="@{@color/th_black}"
             playerName="@{event.player.name}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -87,8 +89,9 @@
             android:id="@+id/event_assistant"
             style="@style/ItemEventPlayerTextStyle"
             assistant="@{event.assist.name}"
-            color="@{@color/th_red}"
+            colorOut="@{@color/th_red}"
             eventType="@{event.type}"
+            colorBasic="@{@color/th_black}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="viewEnd"

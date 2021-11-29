@@ -21,7 +21,7 @@ class BootReceiver : BroadcastReceiver(), KoinComponent {
             CoroutineScope(Dispatchers.IO).launch {
                 val fixturesList = getSavedFixturesUseCase.invoke()
                 for (fixture in fixturesList) {
-                    NotificationHelper.createNotificationForFixture(context, fixture)
+                    AlarmScheduler.scheduleAlarm(context, fixture)
                 }
             }
         }

@@ -72,6 +72,7 @@
             android:id="@+id/event_assistant_title"
             style="@style/ItemEventPlayerTitleTextStyle"
             eventDetail="@{event.detail}"
+            assistant="@{event.assist.name}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/item_event_assist_title"

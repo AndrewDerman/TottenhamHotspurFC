@@ -167,9 +167,10 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["eventDetail"])
-    fun setEventAssistVisibility(view: TextView, eventDetail: String) {
-        view.visibility = if (eventDetail == EventDetails.NG.value) View.VISIBLE else View.GONE
+    @BindingAdapter(value = ["eventDetail", "assistant"])
+    fun setEventAssistVisibility(view: TextView, eventDetail: String, assistant: String?) {
+        view.visibility =
+            if (eventDetail == EventDetails.NG.value && assistant != null) View.VISIBLE else View.GONE
     }
 
     @JvmStatic

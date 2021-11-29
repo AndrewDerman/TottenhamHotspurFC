@@ -31,7 +31,7 @@ object AlarmScheduler {
                 fixture.homeTeamName,
                 fixture.awayTeamName
             )
-            putExtra(Constants.NOTIFICATIONS_KEY_ID, fixture.id)
+            putExtra(Constants.FIXTURES_ID_KEY, fixture.id)
         }
         return PendingIntent.getBroadcast(
             context,

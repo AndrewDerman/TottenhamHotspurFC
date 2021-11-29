@@ -75,6 +75,7 @@
             android:id="@+id/event_assistant_title"
             style="@style/ItemEventPlayerTitleTextStyle"
             eventDetail="@{event.detail}"
+            assistant="@{event.assist.name}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/item_event_player_margin"

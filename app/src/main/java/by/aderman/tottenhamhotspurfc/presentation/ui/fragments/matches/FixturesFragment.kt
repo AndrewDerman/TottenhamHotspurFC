@@ -48,7 +48,10 @@ class FixturesFragment : Fragment() {
         }
 
         binding.swipeRefreshLayout.apply {
-            setOnRefreshListener { loadData() }
+            setOnRefreshListener {
+                fixturesFromRemote.clear()
+                loadData()
+            }
             setColorSchemeResources(R.color.th_secondary_blue)
         }
 
